@@ -97,15 +97,160 @@
                 transform: scale(0.95);
                 border-radius: 8px;
             }
+            
+            /*repo*/
+            .reposbox {
+  position:relative;
+  height:150px;
+  width:100%;
+  overflow-x:scroll;
+  overflow-y:hidden;
+}
+.reposbox2 {
+  width:calc(var(--card-length) * 310px);
+  height:130px;
+  display: flex;
+  flex-direction:row;
+  margin-top:10px;
+}
+.repocard {
+  width:300px;
+  height:130px;
+  background:#f5f5f5;
+  border-radius:15px;
+  position:relative;
+  float:left;
+  margin-left:10px;
+}
+.repocard h2 {
+  position:absolute;
+  margin:0px;
+  padding:0px;
+  line-height:30px;
+  top:15px;
+  left:15px;
+  height:30px;
+  width:calc(100% - 30px);
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+.repocard .repodes {
+  position:absolute;
+  margin:0px;
+  padding:0px;
+  line-height:15px;
+  top:48px;
+  left:15px;
+  width:calc(100% - 30px);
+  height:calc(100% - 30px - 15px - 50px - 3px - 3px);
+  background:none;
+  font-size:15px;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+.repocard .repolink {
+  position:absolute;
+  margin:0px;
+  padding:0px;
+  line-height:15px;
+  top:calc(100% - 30px - 15px - 50px + 45px);
+  left:15px;
+  height:35px;
+  background:#e3e3e3;
+  width:70px;
+  border-radius:99em;
+  display: flex;
+justify-content: center;
+align-items: center;
+}
+.repoloading h2,.repoloading .repodes,.repoloading .repolink {
+  background:#e3e3e3;
+  border-radius:8px;
+}
+            
+            /*repoend*/
         </style>
     </head>
     <body>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <div class="title"><h1>EricHsia</h1></div>
         <div class="titlemenu"><a class="titletab" link="https://github.com/EricHsia7">Github</a></div>
         <div class="imagebox"><img src="" class="auto" /></div>
-        <div class="message" >hi!</div>
-        <iframe width="1920" height="1080" src="https://www.youtube.com/embed/v_jF8kqBj6Y" frameborder="0" id="video"></iframe>
+        <!--<div class="message" >hi!</div>-->
+        <div class="reposbox">
+  <div class="reposbox2"></div>
+</div>
+        <script>
+        function genid(mode) {
+if(mode === "random"){
+var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            var genid = "";
+            for (var i = 0; i < 16; i++) {
+                var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+                genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+            }
+  return genid ;
+}
+          
+ if(mode === "time"){
+   var gtoday=new Date();
+   var genid2 = (gtoday.getMonth()+1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8));
+   
+   return genid2
+ }
+  
+  if(mode === "number"){
+   
+   var genid3 = '' ;
+for (var i = 0; i < 16; i++) {
+  genid3 += '' + (0+Math.floor(Math.random() * 9))
+}
+   return genid3
+ }
+  
+  if(mode === "uuid"){
+var genidchars4 = "abcdef012345678";
+    var geniduu = [8,4,4,4,12];
+            var genid4 = "";
+            var genid5 = "";
+    for (var ia = 0; ia < geniduu.length; ia++) {
+      var genid4 = "";
+            for (var i = 0; i < geniduu[ia]; i++) {
+                var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
+                genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
+            }
+genid5 += '-' + genid4 ;
+    }
+    return genid5.substring(1,genid5.length)
+  }
+
+}
+
+
+for (var i = 0; i < 16; i++) {
+$('.reposbox2').append('<div class="repocard repoloading"><h2>&nbsp</h2><div class="repodes">&nbsp</div><div class="repolink" link="">&nbsp</div></div>').css({'--card-length':i});
+}
+$.ajax({type:'get',url:"https://api.github.com/users/Erichsia7/repos?" + genid('random'),dataType:'json',success:function(e) {
+  $('.reposbox2').html('')
+  for (var i = 0; i < e.length; i++) {
+var tyrdes = e[i].description ;
+    if(String(e[i].description).length > 35) {
+      tyrdes = e[i].description.substring(0,34) + '...'
+    }
+    if(String(e[i].description) === 'null') {
+      tyrdes = 'No description.'
+    }
+    var eeid = genid('random') ;
+    $('.reposbox2').append('<div class="repocard"><h2>' +  e[i].name + '</h2><div class="repodes">' +  tyrdes + '</div><div class="repolink" link="' + e[i].html_url + '" id="' + eeid + '">Open</div></div>').css({'--card-length':i});
+    $('#' + eeid).click(function() {
+    window.open($(this).attr('link'));
+  });
+  }
+  
+  
+}
+});
+        </script>
         <div class="co"></div>
         <script>
             $(window).scroll(function () {
@@ -122,6 +267,7 @@
             });
         </script>
         <script>
+            /*
           $(function() {
   if(typeof YOUTUBE_VIDEO_MARGIN == 'undefined') {
     YOUTUBE_VIDEO_MARGIN=0;
@@ -145,6 +291,7 @@
     }
   });
 });  
+*/
         </script>
     </body>
     <style>
