@@ -1,0 +1,13 @@
+<script>
+function injectScript() {
+    const e = document.createElement("script");
+    (e.src = "https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"),
+        document.getElementsByTagName("head")[0].appendChild(e),
+        setTimeout(() => {
+            const e = document.createElement("script");
+            (e.text = "window.vConsole = new VConsole();"), document.body.appendChild(e);
+        }, 1e3);
+}
+injectScript();
+
+</script>
