@@ -1,0 +1,67 @@
+<meta charset="UTF-8">
+<title>Happy New Year</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+body {
+  background:#0e131f;
+}
+.fi {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  display: flex;
+justify-content: center;
+align-items: center;
+  
+  
+  background:#0e131f url(https://unsplash.com/photos/xplrF8WMitE/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjQwOTI1MDgw&force=true&w=640);
+  background-size:cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+h1 {
+  font-family: 'Pacifico', cursive;
+  background: -webkit-linear-gradient(0deg,rgba(255, 0, 0,1),rgba(255, 255, 0, 1), rgba(0, 255, 0, 1), rgba(0, 255, 255, 1), rgba(0, 0, 255, 1), rgba(255, 0, 255, 1), rgba(255, 0, 0, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size:900%;
+  animation:h 40s;
+  animation-iteration-count:infinite;
+  /*animation-timing-function:ease-in-out;*/
+  animation-timing-function:linear;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:320px;
+  text-align: center;
+}
+h1#t {
+  opacity:0.5;
+}
+.blur {
+  -webkit-backdrop-filter: blur(8px);
+backdrop-filter: blur(8px);
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+}
+@keyframes h {
+  0% {
+    background-position:20%;
+  }
+  100% {
+    background-position:800%;
+  }
+}
+</style>
+<div class="fi">
+  <h1 id="t">Happy New Year</h1>
+  <div class="blur"></div>
+  <h1>Happy New Year</h1>
+</div>
