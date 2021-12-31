@@ -17,7 +17,7 @@ justify-content: center;
 align-items: center;
   
   
-  background:#0e131f url(https://unsplash.com/photos/xplrF8WMitE/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjQwOTI1MDgw&force=true&w=320);
+  background:#0e131f;
   background-size:cover;
   background-position:center;
   background-repeat: no-repeat;
@@ -65,3 +65,9 @@ backdrop-filter: blur(8px);
   <div class="blur"></div>
   <h1>Happy New Year</h1>
 </div>
+<script>
+window.onload = function() {
+  var bg = '#0e131f url(https://unsplash.com/photos/xplrF8WMitE/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjQwOTI1MDgw&force=true&w=320)'
+  document.querySelector('.fi').style.background = bg
+}
+</script>
