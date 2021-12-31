@@ -74,6 +74,12 @@ window.onload = function() {
   fi.style.backgroundSize = 'cover' ;
   fi.style.backgroundPosition = 'center' ;
   fi.style.backgroundRepeat = 'no-repeat' ;
+    
+    caches.open('hny_bg_img_cache_v1').then(function(cache){
+            cache.addAll([
+                'https://unsplash.com/photos/xplrF8WMitE/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjQwOTI1MDgw&force=true&w=320'
+            ]);   
+        })  
   },500);
 }
 </script>
