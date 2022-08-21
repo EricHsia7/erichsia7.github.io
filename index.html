@@ -434,21 +434,42 @@
       }
     }
 
-    #github_profile_link {
+
+
+    .github-button {
+      width: 130px;
+      height: 45px;
+      border-radius: var(--d-border-radius);
+      position: relative;
+      background: #171515;
+    }
+
+    .github-button .github-icon {
+      position: absolute;
+      top: 0px;
+      left: 3px;
+      width: 45px;
+      height: 45px;
       display: flex;
-      width: 100%;
-      height: 450px;
       justify-content: center;
       align-items: center;
     }
 
-    .github_screenshot {
-      width: var(--d-width);
-      height: 300px;
-      background: var(--github-screenshot);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
+    .github-button .github-text {
+      position: absolute;
+      top: 0px;
+      left: 48px;
+      width: calc(100% - 45px - 3px - 13px);
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-family: sans-serif;
+      font-size: 13px;
+      line-height: 13px;
+      white-space: nowrap;
+      font-weight: 500;
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -522,9 +543,21 @@
       <div class="content_title">GitHub</div>
       <div class="space"></div>
       <div class="center">
-        <a class="github-button" href="https://github.com/EricHsia7"
-          data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
-          aria-label="EricHsia7 on GitHub">EricHsia7</a>
+        <a href="https://github.com/EricHsia7">
+          <div class="github-button">
+            <div class="github-icon">
+              <svg stroke-miterlimit="10"
+                style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+                viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path
+                  d="M28.4343 0.870753C13.6954 2.47281 1.84014 14.328 0.238084 28.7466C-1.68439 44.7671 8.24837 58.5448 22.3465 63.0306L22.3465 55.6611C22.3465 55.6611 21.0648 55.9816 19.4628 55.9816C14.977 55.9816 13.0545 52.1366 12.7341 49.8937C12.4137 48.6121 11.7729 47.6509 10.8117 46.6896C9.85043 46.3692 9.53002 46.3692 9.53002 46.0488C9.53002 45.408 10.4913 45.408 10.8117 45.408C12.7341 45.408 14.3362 47.6509 14.977 48.6121C16.5791 51.1754 18.5015 51.8162 19.4628 51.8162C20.7444 51.8162 21.7057 51.4958 22.3465 51.1754C22.6669 48.9325 23.6281 46.6896 25.5506 45.408C18.1811 43.8059 12.7341 39.6406 12.7341 32.5915C12.7341 29.067 14.3362 25.5424 16.5791 22.9792C16.2587 22.3383 15.9383 20.7363 15.9383 18.4934C15.9383 17.2117 15.9383 15.2893 16.8995 13.3668C16.8995 13.3668 21.3853 13.3668 25.871 17.5322C27.4731 16.8913 29.716 16.5709 31.9588 16.5709C34.2017 16.5709 36.4446 16.8913 38.3671 17.5322C42.5324 13.3668 47.3386 13.3668 47.3386 13.3668C47.9794 15.2893 47.9794 17.2117 47.9794 18.4934C47.9794 21.0567 47.659 22.3383 47.3386 22.9792C49.5815 25.5424 51.1835 28.7466 51.1835 32.5915C51.1835 39.6406 45.7365 43.8059 38.3671 45.408C40.2895 47.01 41.5712 49.8937 41.5712 52.7774L41.5712 63.351C54.7081 59.1857 64 47.01 64 32.9119C64 13.6872 47.659-1.37213 28.4343 0.870753Z"
+                  fill="#fff" fill-rule="nonzero" opacity="1" stroke="none" />
+              </svg>
+            </div>
+            <div class="github-text">@EricHsia7</div>
+          </div>
+        </a>
       </div>
       <div class="space"></div>
     </div>
