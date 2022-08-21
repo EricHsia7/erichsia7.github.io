@@ -138,6 +138,7 @@
       display: inline-block;
       padding: 0px;
       margin: 0px;
+      margin-top: 20px;
     }
 
     .content_title {
@@ -763,7 +764,7 @@
     })
     $('.title .title-list ul li').click(function () {
       var s = $(this).attr('s')
-      var st = $('.content_box .content[s="' + s + '"]').offset().top - 54
+      var st = $('.content_box .content[s="' + s + '"]').offset().top - 49
       $('html,body').animate({ 'scrollTop': st }, 550)
     })
   }
