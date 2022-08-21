@@ -13,6 +13,7 @@
       --d-border-radius: 10px;
       --d-border-radius-h: 5px;
       --d-width: clamp(180px, 90%, 600px);
+      --github-screenshot: url(https://raw.githubusercontent.com/EricHsia7/erichsia7.github.io/main/github-screenshot/v-84dq44zq9z7s/light.jpeg)
     }
 
     @media (prefers-color-scheme: dark) {
@@ -20,6 +21,7 @@
         --main-color: #111111;
         --main-color-text: #ffffff;
         --main-color-grey: #333;
+        --github-screenshot: url(https://raw.githubusercontent.com/EricHsia7/erichsia7.github.io/main/github-screenshot/v-84dq44zq9z7s/dark.jpeg)
       }
 
     }
@@ -429,6 +431,15 @@
         transform: translateY(15px);
       }
     }
+
+    .github_screenshot {
+      width: var(--d-width);
+      height: 300px;
+      background: var(--github-screenshot);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -500,7 +511,11 @@
     <div class="content" s="github" r="1">
       <div class="content_title">GitHub</div>
     </div>
-    <div class="content_foot"></div>
+    <div class="content_foot">
+      <div class="center">
+        <a href="https://github.com/EricHsia7" id="github_profile_link" target="_blank"></a>
+      </div>
+    </div>
   </div>
 
   <div class="title">
@@ -629,6 +644,13 @@
     }
   }
 
+  var screenshot_loaded = 0
+  function load_screenshot() {
+    if (screenshot_loaded === 0) {
+      screenshot_loaded = 1
+      $('#github_profile_link').html('<div class="github_screenshot"></div>')
+    }
+  }
 
   function addreposskeletonscreen() {
     for (var i = 0; i < 10; i++) {
@@ -672,6 +694,9 @@
       }
       if (st > ($('.content[s="repos"]').offset().top - loadwh)) {
         load_repos()
+      }
+      if (st > ($('.content[s="github"]').offset().top - loadwh)) {
+        load_screenshot()
       }
 
       check_title_list(st)
