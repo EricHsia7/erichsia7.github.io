@@ -1,315 +1,698 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>EricHsia</title>
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;900&display=swap");
-            .co {
-                height: 5000px;
-            }
-            body {
-                margin: 0px;
-                padding: 0px;
-            }
-            .title {
-                margin: 0px;
-                width: 100%;
-                height: 60px;
-                background: #fff;
-                z-index: 1000;
-            }
-            .title h1 {
-                margin: 0px;
-                font-size: 2rem;
-                color: #333;
-                line-height: 50px;
-                margin-left: 10px;
-                font-family: "Noto Sans TC", sans-serif;
-                font-weight: 900;
-                z-index: 1000;
-            }
-            .titlemenu {
-                margin: 0px;
-                width: 100%;
-                box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0);
-                height: 60px;
-                background: #fff;
-                position: sticky;
-                top: 0px;
-                left: 0px;
-                transition: 0.3s;
-                padding: 0px;
-                display: flex;
-                flex-direction: row;
-                overflow: scroll;
-                -webkit-backdrop-filter: blur(15px);
-                backdrop-filter: blur(15px);
-                z-index: 1000;
-            }
-            .titletab {
-                margin: 10px;
-                padding: 9px;
-                background: #f5f5f5;
-                border-radius: 30px;
-                font-size: 15px;
-                font-family: "Noto Sans TC", sans-serif;
-                font-weight: 500;
-                transition: 0.3s;
-                z-index: 1000;
-            }
+<html lang="en">
 
-            .imagebox {
-                width: 100%;
-                height: 250px;
-                background: #f5f5f5;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .imagebox img.fill {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-            .imagebox img.auto {
-                max-width: 100%;
-                max-height: 100%;
-                width: auto;
-                height: auto;
-            }
-            .message {
-                width: 100%;
-                height: 60px;
-                border-radius: 12px;
-                background: #fff;
-                box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.05);
-                transform: scale(0.9);
-                margin-top: 20px;
-                margin-bottom: 20px;
-                color: #333;
-                font-size: 30px;
-                line-height: 60px;
-                position: relative;
-            }
-            #video {
-                transform: scale(0.95);
-                border-radius: 8px;
-            }
-            
-            /*repo*/
-            .reposbox * {
-                font-family: "Noto Sans TC", sans-serif;
-            }
-            .reposbox {
-  position:relative;
-  height:150px;
-  width:100%;
-  overflow-x:scroll;
-  overflow-y:hidden;
-}
-.reposbox2 {
-  width:calc(var(--card-length) * 310px);
-  height:130px;
-  display: flex;
-  flex-direction:row;
-  margin-top:10px;
-}
-.repocard {
-  width:300px;
-  height:130px;
-  background:#f5f5f5;
-  border-radius:15px;
-  position:relative;
-  float:left;
-  margin-left:10px;
-}
-.repocard h2 {
-  position:absolute;
-  margin:0px;
-  padding:0px;
-  line-height:30px;
-  top:15px;
-  left:15px;
-  height:30px;
-  width:calc(100% - 30px);
-  overflow:hidden;
-  text-overflow: ellipsis;
-}
-.repocard .repodes {
-  position:absolute;
-  margin:0px;
-  padding:0px;
-  line-height:15px;
-  top:48px;
-  left:15px;
-  width:calc(100% - 30px);
-  height:calc(100% - 30px - 15px - 50px - 3px - 3px);
-  background:none;
-  font-size:13px;
-  overflow:hidden;
-  text-overflow: ellipsis;
-  word-break: break-word;
-}
-.repocard .repolink {
-  position:absolute;
-  margin:0px;
-  padding:0px;
-  line-height:15px;
-  top:calc(100% - 30px - 15px - 50px + 45px);
-  left:15px;
-  height:35px;
-  background:#e3e3e3;
-  width:70px;
-  border-radius:99em;
-  display: flex;
-justify-content: center;
-align-items: center;
-}
-.repoloading h2,.repoloading .repodes,.repoloading .repolink {
-  background:#e3e3e3;
-  border-radius:8px;
-}
-            
-            /*repoend*/
-        </style>
-    </head>
-    <body>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <div class="title"><h1>EricHsia</h1></div>
-        <div class="titlemenu"><a class="titletab" link="https://github.com/EricHsia7">Github</a></div>
-        <div class="imagebox"><img src="https://source.unsplash.com/960x540?light,night,view" class="fill" /></div>
-        <!--<div class="message" >hi!</div>-->
-        <h2 style="font-size:30px;line-height:30px;margin:0px;padding:0px;padding-left:10px;margin-top:10px">Repositories</h1>
-        <div class="reposbox">
-  <div class="reposbox2"></div>
-</div>
-        <script>
-        function genid(mode) {
-if(mode === "random"){
-var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-            var genid = "";
-            for (var i = 0; i < 16; i++) {
-                var genrandomNumber = Math.floor(Math.random() * genidchars.length);
-                genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
-            }
-  return genid ;
-}
-          
- if(mode === "time"){
-   var gtoday=new Date();
-   var genid2 = (gtoday.getMonth()+1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8));
-   
-   return genid2
- }
-  
-  if(mode === "number"){
-   
-   var genid3 = '' ;
-for (var i = 0; i < 16; i++) {
-  genid3 += '' + (0+Math.floor(Math.random() * 9))
-}
-   return genid3
- }
-  
-  if(mode === "uuid"){
-var genidchars4 = "abcdef012345678";
-    var geniduu = [8,4,4,4,12];
-            var genid4 = "";
-            var genid5 = "";
-    for (var ia = 0; ia < geniduu.length; ia++) {
+<head>
+  <meta charset="UTF-8" />
+  <title>EricHsia7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --main-color: #fff;
+      --main-color-text: #333;
+      --main-color-grey: #e3e3e3;
+      --d-border-radius: 10px;
+      --d-border-radius-h: 5px;
+      --d-width: clamp(180px, 90%, 600px);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --main-color: #111111;
+        --main-color-text: #ffffff;
+        --main-color-grey: #333;
+      }
+
+    }
+
+    body {
+      margin: 0px;
+      padding: 0px;
+      background: var(--main-color)
+    }
+
+    * {
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .title {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 50px;
+      background: var(--main-color);
+      color: var(--main-color-text);
+    }
+
+    .title-text {
+      font-weight: 800;
+      font-size: 25px;
+      position: absolute;
+      top: 0px;
+      left: 15px;
+      margin: 0px;
+      padding: 0px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+    }
+
+    .title-list {
+      font-weight: 400;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      display: inline-flex;
+      flex-direction: row;
+    }
+
+    .title-list ul {
+      display: inline-flex;
+      flex-direction: row;
+      height: 50px;
+      position: absolute;
+      right: 5px;
+      top: 0px;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .title-list ul li {
+      list-style: none;
+      margin: 0px;
+      padding: 0px 10px;
+      font-size: 18px;
+      height: 50px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .title-list ul li[sl="1"] {
+      font-weight: 600;
+    }
+
+    .title-list ul li[sl="1"]::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      width: calc(100% - 20px);
+      height: 2.3px;
+      background: var(--main-color-text);
+      border-radius: 3px;
+      transform: translateX(-50%)
+    }
+
+    .title[d="1"] {
+      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(15px);
+      background: rgba(0, 0, 0, 0);
+      border-bottom: 1px solid var(--main-color-grey);
+    }
+
+
+    .content_box {
+      position: absolute;
+      top: 55px;
+      left: 0px;
+      display: inline-block;
+      width: 100%;
+      height: auto;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .content {
+      position: relative;
+      width: 100%;
+      height: auto;
+      display: inline-block;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    .content_title {
+      font-weight: 700;
+      font-size: 25px;
+      color: var(--main-color-text);
+      width: 100%;
+      height: 40px;
+      margin: 10px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .stats_box {
+      position: relative;
+      width: var(--d-width);
+      height: 120px;
+      border: 1px solid var(--main-color-grey);
+      border-radius: var(--d-border-radius);
+    }
+
+    .stats_box ul {
+      margin: 0px;
+      padding: 0px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .stats_box ul li {
+      list-style: none;
+      margin: 0px;
+      padding: 0px;
+      height: 25%;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      color: var(--main-color-text);
+      font-size: 18px;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .stats_box[loading="1"] ul li::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 0px;
+      height: calc(100% - 6px);
+      width: 100%;
+      background: var(--main-color-grey);
+      border-radius: var(--d-border-radius-h);
+    }
+
+    .center {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      padding: 0px;
+    }
+
+    .repos {
+      position: relative;
+      width: var(--d-width);
+      height: auto;
+      display: inline-block;
+      border: 1px solid var(--main-color-grey);
+      border-radius: var(--d-border-radius);
+    }
+
+    .repo {
+      height: 50px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      display: block;
+      border-top: 1px solid var(--main-color-grey);
+      box-sizing: border-box;
+    }
+
+    .repos .repo:first-child {
+      border-top: none;
+    }
+
+    .repo_title {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: calc(100% - 20px);
+      width: calc(100% - 20px - 47px * 2 - 5px - 5px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      font-size: 18px;
+      color: var(--main-color-text);
+      font-weight: 600;
+      word-break: keep-all;
+    }
+
+    .repo_link,
+    .repo_open_description {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: var(--main-color-grey);
+      display: flex;
+      width: 47px;
+      height: 25px;
+      border-radius: var(--d-border-radius-h);
+      font-size: 14px;
+      align-items: center;
+      justify-content: center;
+      color: var(--main-color-text)
+    }
+
+    .repo_open_description {
+      right: 62px;
+    }
+
+    .repo_description {
+      display: none;
+    }
+
+    .repos[loading="1"] .repo .repo_title {
+      background: var(--main-color-grey);
+      border-radius: var(--d-border-radius-h);
+      height: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(0, 0, 0, 0);
+    }
+
+    .repo[desc="1"] {
+      display: inline-block;
+      min-height: 50px;
+      height: auto;
+    }
+
+    .repo[desc="1"] .repo_title {
+      position: relative;
+      height: 40px;
+      top: 5px;
+      left: 10px;
+    }
+
+    .repo[desc="1"] .repo_link,
+    .repo[desc="1"] .repo_open_description {
+      top: 12.5px;
+      transform: translateY(0px);
+    }
+
+    .repo[desc="1"] .repo_description {
+      display: inline-block;
+      position: relative;
+      width: calc(100% - 20px);
+      height: auto;
+      left: 10px;
+      word-break: break-all;
+      margin-bottom: 5px;
+      color: var(--main-color-text);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .content_foot {
+      width: 100%;
+      height: 512px;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .btn {
+      width: var(--d-width);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 45px;
+      background: var(--main-color-grey);
+      color: var(--main-color-text);
+      border-radius: var(--d-border-radius);
+      font-weight: 400;
+      margin: 5px 0px;
+    }
+
+    .btn[hide="1"] {
+      display: none
+    }
+
+    .profile_photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--main-color-grey);
+      position: relative;
+      border: 1px solid var(--main-color-grey);
+    }
+
+    .profile_photo img {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .profile_photo_mask {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      background: rgba(0, 0, 0, 0);
+    }
+
+    .user_name {
+      display: inline-flex;
+      height: 30px;
+      align-items: center;
+      justify-content: center;
+      font-size: 23px;
+      font-weight: 600;
+      color: var(--main-color-text);
+    }
+
+    .user_description {
+      display: inline-block;
+      word-break: break-all;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--main-color-text);
+      text-align: center;
+      padding: 5px 10px;
+      box-sizing: border-box;
+    }
+
+    .content_line {
+      width: var(--d-width);
+      height: 1px;
+      background: var(--main-color-grey);
+      position: relative;
+    }
+
+    .space {
+      width: 100%;
+      height: 75px;
+      background: rgba(0, 0, 0, 0);
+      position: relative;
+    }
+
+    .scroll_hint {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: var(--main-color-text);
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    .scroll_hint_icon {
+      width: 25px;
+      height: 40px;
+    }
+
+    .scroll_hint_icon svg {
+      width: 25px;
+      height: 25px;
+      animation-name: scrollhinticon;
+      animation-duration: 1500ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+
+    @keyframes scrollhinticon {
+
+      0%,
+      100% {
+        transform: translateY(5px);
+      }
+
+      50% {
+        transform: translateY(15px);
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="content_box">
+    <div class="content" r="0" s="profile">
+      <div class="space"></div>
+      <div class="center">
+        <div class="profile_photo">
+          <img
+            src="https://raw.githubusercontent.com/EricHsia7/erichsia7.github.io/main/profile/photo/EAD9446E-E981-425D-98D5-BDA45F4637BE.jpg">
+          <div class="profile_photo_mask"></div>
+        </div>
+      </div>
+      <div class="center">
+        <div class="user_name">EricHsia7</div>
+      </div>
+
+      <div class="center">
+        <div class="user_description">
+          Hi there👋<br />
+          ⌨️Coding|🎧Music|📖Reading|📝Write fiction
+        </div>
+      </div>
+
+      <div class="scroll_hint">
+        scroll down
+        <div class="scroll_hint_icon">
+          <svg stroke-miterlimit="10"
+            style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+            viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path
+              d="M32 64L-8.85555e-07 32L1.82857 30.1714L30.7429 59.2L30.7429-1.42109e-14L33.2571-1.42109e-14L33.2571 59.2L62.1714 30.1714L64 32L32 64Z"
+              fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="content" s="stats" r="1">
+      <div class="content_title">Stats</div>
+      <div class="center">
+        <div class="stats_box" loading="1">
+          <ul>
+            <li d="commit">&nbsp;</li>
+            <li d="pulls">&nbsp;</li>
+            <li d="issues">&nbsp;</li>
+            <li d="update-time">&nbsp;</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="content" s="repos" r="1">
+      <div class="content_title">Repositories</div>
+      <div class="center">
+        <div class="repos" loading="1"></div>
+      </div>
+      <div class="center">
+        <div class="btn" id="loadmorerepos" hide="1" page="1">Load more</div>
+      </div>
+    </div>
+    <div class="content" s="github" r="1">
+      <div class="content_title">GitHub</div>
+    </div>
+    <div class="content_foot"></div>
+  </div>
+
+  <div class="title">
+    <div class="title-list">
+      <ul>
+        <li s="stats">Stats</li>
+        <li s="repos">Repos</li>
+        <li s="github">GitHub</li>
+      </ul>
+    </div>
+    <div class="title-text">
+      EricHsia7
+    </div>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  function genid(mode) {
+    if (mode === "random") {
+      var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+      var genid = "";
+      for (var i = 0; i < 16; i++) {
+        var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+        genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+      }
+      return genid;
+    }
+
+    if (mode === "time") {
+      var gtoday = new Date();
+      var genid2 = (gtoday.getMonth() + 1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8));
+
+      return genid2
+    }
+
+    if (mode === "number") {
+
+      var genid3 = '';
+      for (var i = 0; i < 16; i++) {
+        genid3 += '' + (0 + Math.floor(Math.random() * 9))
+      }
+      return genid3
+    }
+
+    if (mode === "uuid") {
+      var genidchars4 = "abcdef012345678";
+      var geniduu = [8, 4, 4, 4, 12];
       var genid4 = "";
-            for (var i = 0; i < geniduu[ia]; i++) {
-                var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
-                genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
-            }
-genid5 += '-' + genid4 ;
-    }
-    return genid5.substring(1,genid5.length)
-  }
-
-}
-
-
-for (var i = 0; i < 16; i++) {
-$('.reposbox2').append('<div class="repocard repoloading"><h2>&nbsp</h2><div class="repodes">&nbsp</div><div class="repolink" link="">&nbsp</div></div>').css({'--card-length':i});
-}
-$.ajax({type:'get',url:"https://api.github.com/users/Erichsia7/repos?" + genid('random'),dataType:'json',success:function(e) {
-  $('.reposbox2').html('')
-  for (var i = 0; i < e.length; i++) {
-var tyrdes = e[i].description ;
-    if(String(e[i].description).length > 35) {
-      tyrdes = e[i].description.substring(0,34) + '...'
-    }
-    if(String(e[i].description) === 'null') {
-      tyrdes = 'No description.'
-    }
-    var eeid = genid('random') ;
-    $('.reposbox2').append('<div class="repocard"><h2>' +  e[i].name + '</h2><div class="repodes">' +  tyrdes + '</div><div class="repolink" link="' + e[i].html_url + '" id="' + eeid + '">Open</div></div>').css({'--card-length':i});
-    $('#' + eeid).click(function() {
-    window.open($(this).attr('link'));
-  });
-  }
-  
-  
-}
-});
-        </script>
-        <div class="co"></div>
-        <script>
-            $(window).scroll(function () {
-                if ($(window).scrollTop() > 60) {
-                    $(".titlemenu").css({ "box-shadow": "0 0 15px 1px rgba(0,0,0,0.05)", height: "45px", background: "rgba(255, 255, 255, 0.5)" });
-                    $(".titletab").css({ "font-size": "15px", padding: "10px", margin: "3px 10px" });
-                } else {
-                    $(".titlemenu").css({ "box-shadow": "0 0 15px 1px rgba(0,0,0,0.0)", height: "60px", background: "rgba(255, 255, 255, 1)" });
-                    $(".titletab").css({ "font-size": "15px", padding: "10px", margin: "10px" });
-                }
-            });
-            $(".titletab").click(function () {
-                window.open($(this).attr("link"));
-            });
-        </script>
-        <script>
-            /*
-          $(function() {
-  if(typeof YOUTUBE_VIDEO_MARGIN == 'undefined') {
-    YOUTUBE_VIDEO_MARGIN=0;
-  }
-  $('iframe').each(function(index,item) {
-    if($(item).attr('src').match(/http(s)?:\/\/www\.youtube\.com/)) {
-      var w=$(item).attr('width');
-      var h=$(item).attr('height');
-      var ar = h/w*100;
-      ar=ar.toFixed(2);
-      //Style iframe   
-      $(item).css('position','absolute');
-      $(item).css('top','0');
-      $(item).css('left','0');   
-      $(item).css('width','100%');
-      $(item).css('height','100%');
-      $(item).css('max-width',w+'px');
-      $(item).css('max-height', h+'px');       
-      $(item).wrap('<div style="max-width:'+w+'px;margin:0 auto; padding:'+YOUTUBE_VIDEO_MARGIN+'px;" />');
-      $(item).wrap('<div style="position: relative;padding-bottom: '+ar+'%; height: 0; overflow: hidden;" />');
-    }
-  });
-});  
-*/
-        </script>
-    </body>
-    <style>
-        .sharebg,
-        .sharebox,
-        .shareboxtitle,
-        .shareboxbtnfr,
-        .sharesf,
-        .sharesff,
-        .sharesfspace,
-        .sharebtn {
-            z-index: 2000;
+      var genid5 = "";
+      for (var ia = 0; ia < geniduu.length; ia++) {
+        var genid4 = "";
+        for (var i = 0; i < geniduu[ia]; i++) {
+          var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
+          genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
         }
-    </style>
-    
-    </html>
+        genid5 += '-' + genid4;
+      }
+      return genid5.substring(1, genid5.length)
+    }
+
+  }
+  var stats_loaded = 0
+  function load_stats() {
+    if (stats_loaded === 0) {
+      stats_loaded = 1
+      var stats_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=0&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
+      $.ajax({
+        type: 'get', url: stats_api, dataType: 'text', success: function (e) {
+          var res = e.replaceAll('""', '"')
+          var res_json = JSON.parse(res.substring(1, (res.length - 1)))
+          $('.stats_box ul li[d="commit"]').text('Total Commits: ' + res_json.commit)
+          $('.stats_box ul li[d="pulls"]').text('Total Pull requests: ' + res_json.pull)
+          $('.stats_box ul li[d="issues"]').text('Total Issues: ' + res_json.issues)
+          $('.stats_box ul li[d="update-time"]').text('Update time: ' + res_json.update_time)
+          $('.stats_box').attr('loading', '0')
+        }
+      });
+    }
+  }
+
+  var repos_loaded = 0
+  function load_repos(loadmore, page) {
+    if (repos_loaded === 0 || loadmore === true) {
+      if (!(loadmore === true)) {
+        page = 1
+      }
+      repos_loaded = 1
+      var repos_api = 'https://api.github.com/users/Erichsia7/repos?sort=pushed&per_page=10&page=' + page + '&' + new Date().getTime() + '.' + Math.random()
+      $.ajax({
+        type: 'get', url: repos_api, dataType: 'json', success: function (e) {
+          if (!(loadmore === true)) {
+            $('.repos').html('')
+          }
+          for (var i = 0; i < e.length; i++) {
+            var tyrdes = e[i].description;
+            if (String(e[i].description) === 'null') {
+              tyrdes = 'No description.'
+            }
+            var eeid = genid('random');
+            $('.repos').append('<div class="repo" e-id="' + eeid + '" desc="0"><div class="repo_title">' + e[i].name + '</div><a href="' + e[i].html_url + '" target="_blank"><div class="repo_link">Open</div></a><div class="repo_open_description" desc="0" e-id="' + eeid + '">DESC</div><div class="repo_description">' + tyrdes + '</div</div>')
+            $('.repo[e-id="' + eeid + '"] .repo_open_description').click(function () {
+              var this_desc = $(this).attr('desc')
+              var this_eeid = $(this).attr('e-id')
+              if (this_desc === '0') {
+                $('.repo[e-id="' + this_eeid + '"]').attr('desc', '1')
+                $(this).attr('desc', '1')
+              }
+              else {
+                $('.repo[e-id="' + this_eeid + '"]').attr('desc', '0')
+                $(this).attr('desc', '0')
+              }
+            })
+          }
+          $('.repos .repo[loading="1"]').remove()
+          $('.repos').attr('loading', '0')
+          if (loadmore === true) {
+            if (page < 3) {
+              $('.btn#loadmorerepos').attr('hide', '0')
+            }
+          }
+          else {
+            $('.btn#loadmorerepos').attr('hide', '0')
+          }
+        }
+      });
+    }
+  }
+
+
+  function addreposskeletonscreen() {
+    for (var i = 0; i < 10; i++) {
+      $('.repos').append('<div class="repo" loading="1"><div class="repo_title"></div><div class="repo_link"></div><div class="repo_open_description"></div><div class="repo_description"></div</div>')
+    }
+  }
+
+  function check_title_list(st) {
+    var content_len = $('.content_box .content').length
+    var s_content_len = 0
+    for (var u = 0; u < content_len; u++) {
+      var this_c = $('.content_box .content').eq(u)
+      var ft = this_c.offset().top
+      var this_c_h = this_c.height()
+      var this_s = this_c.attr('s')
+      if ((ft - st) < 50 && st < (ft + this_c_h - 50) && this_c.attr('r') === '1') {
+        $('.title .title-list ul li').attr('sl', '0')
+        $('.title .title-list ul li[s="' + this_s + '"]').attr('sl', '1')
+        s_content_len += 1
+        return ''
+      }
+    }
+    if (s_content_len < 1) {
+      $('.title .title-list ul li').attr('sl', '0')
+    }
+  }
+
+
+  function evt() {
+    $(document).scroll(function () {
+      var st = $(document).scrollTop()
+      if (st > 10) {
+        $('.title').attr('d', '1')
+      }
+      else {
+        $('.title').attr('d', '0')
+      }
+      var loadwh = window.innerHeight * (0.8)
+      if (st > ($('.content[s="stats"]').offset().top - loadwh)) {
+        load_stats()
+      }
+      if (st > ($('.content[s="repos"]').offset().top - loadwh)) {
+        load_repos()
+      }
+
+      check_title_list(st)
+    })
+    $('.btn#loadmorerepos').click(function () {
+      var oldpage = parseInt($(this).attr('page'))
+      var newpage = oldpage + 1
+      if (oldpage < 3) {
+        $('.btn#loadmorerepos').attr('hide', '1')
+        load_repos(true, newpage)
+        $(this).attr('page', newpage)
+      }
+      else {
+        $('.btn#loadmorerepos').attr('hide', '1')
+      }
+    })
+  }
+  $(document).ready(function () {
+    addreposskeletonscreen()
+    evt()
+  });
+</script>
+
+</html>
