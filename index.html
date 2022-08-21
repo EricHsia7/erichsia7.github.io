@@ -313,8 +313,8 @@
       height: 512px;
       margin: 0px;
       padding: 0px;
-      background:var(--main-color-grey);
-      opacity: 0.75;
+      background: var(--main-color-grey);
+      opacity: 0.4;
     }
 
     .btn {
@@ -520,10 +520,15 @@
     </div>
     <div class="content" s="github" r="1">
       <div class="content_title">GitHub</div>
+      <div class="space"></div>
       <div class="center">
-        <a href="https://github.com/EricHsia7" id="github_profile_link" target="_blank"></a>
+        <a class="github-button" href="https://github.com/EricHsia7"
+          data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
+          aria-label="EricHsia7 on GitHub">EricHsia7</a>
       </div>
+      <div class="space"></div>
     </div>
+
     <div class="content_foot">
     </div>
   </div>
@@ -542,6 +547,7 @@
   </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 <script>
   function genid(mode) {
     if (mode === "random") {
@@ -654,14 +660,6 @@
     }
   }
 
-  var screenshot_loaded = 0
-  function load_screenshot() {
-    if (screenshot_loaded === 0) {
-      screenshot_loaded = 1
-      $('#github_profile_link').html('<div class="github_screenshot"></div>')
-    }
-  }
-
   function addreposskeletonscreen() {
     for (var i = 0; i < 10; i++) {
       $('.repos').append('<div class="repo" loading="1"><div class="repo_title"></div><div class="repo_link"></div><div class="repo_open_description"></div><div class="repo_description"></div</div>')
@@ -704,9 +702,6 @@
       }
       if (st > ($('.content[s="repos"]').offset().top - loadwh)) {
         load_repos()
-      }
-      if (st > ($('.content[s="github"]').offset().top - loadwh)) {
-        load_screenshot()
       }
 
       check_title_list(st)
