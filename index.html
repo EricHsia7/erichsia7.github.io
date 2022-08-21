@@ -310,7 +310,7 @@
 
     .content_foot {
       width: 100%;
-      height: 256px;
+      height: 330px;
       margin: 0px;
       padding: 0px;
       background: var(--main-color-grey);
@@ -757,6 +757,11 @@
       else {
         $('.btn#loadmorerepos').attr('hide', '1')
       }
+    })
+    $('.title .title-list ul li').click(function () {
+      var s = $(this).attr('s')
+      var st = $('.content_box .content[s="' + s + '"]').offset().top - 54
+      $(document).animate({ 'scrollTop': st }, 550)
     })
   }
   $(document).ready(function () {
