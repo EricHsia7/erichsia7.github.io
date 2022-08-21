@@ -34,6 +34,9 @@
 
     * {
       font-family: 'Noto Sans', sans-serif;
+      -webkit-appearance: none;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
 
     .title {
@@ -761,7 +764,7 @@
     $('.title .title-list ul li').click(function () {
       var s = $(this).attr('s')
       var st = $('.content_box .content[s="' + s + '"]').offset().top - 54
-      $(document).animate({ 'scrollTop': st }, 550)
+      $('html,body').animate({ 'scrollTop': st }, 550)
     })
   }
   $(document).ready(function () {
