@@ -15,6 +15,15 @@
       --d-width: clamp(180px, 90%, 600px);
     }
 
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --main-color: #111111;
+        --main-color-text: #ffffff;
+        --main-color-grey: #333;
+      }
+
+    }
+
     body {
       margin: 0px;
       padding: 0px;
@@ -328,6 +337,7 @@
       overflow: hidden;
       background: var(--main-color-grey);
       position: relative;
+      border: 1px solid var(--main-color-grey);
     }
 
     .profile_photo img {
@@ -444,7 +454,6 @@
       <div class="center">
         <div class="user_description">
           Hi there👋<br />
-          Interests<br />
           ⌨️Coding|🎧Music|📖Reading|📝Write fiction
         </div>
       </div>
@@ -553,21 +562,23 @@
     }
 
   }
-
+  var stats_loaded = 0
   function load_stats() {
-
-    var stats_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=0&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
-    $.ajax({
-      type: 'get', url: stats_api, dataType: 'text', success: function (e) {
-        var res = e.replaceAll('""', '"')
-        var res_json = JSON.parse(res.substring(1, (res.length - 1)))
-        $('.stats_box ul li[d="commit"]').text('Total Commits: ' + res_json.commit)
-        $('.stats_box ul li[d="pulls"]').text('Total Pull requests: ' + res_json.pull)
-        $('.stats_box ul li[d="issues"]').text('Total Issues: ' + res_json.issues)
-        $('.stats_box ul li[d="update-time"]').text('Update time: ' + res_json.update_time)
-        $('.stats_box').attr('loading', '0')
-      }
-    });
+    if (stats_loaded === 0) {
+      stats_loaded = 1
+      var stats_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=0&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
+      $.ajax({
+        type: 'get', url: stats_api, dataType: 'text', success: function (e) {
+          var res = e.replaceAll('""', '"')
+          var res_json = JSON.parse(res.substring(1, (res.length - 1)))
+          $('.stats_box ul li[d="commit"]').text('Total Commits: ' + res_json.commit)
+          $('.stats_box ul li[d="pulls"]').text('Total Pull requests: ' + res_json.pull)
+          $('.stats_box ul li[d="issues"]').text('Total Issues: ' + res_json.issues)
+          $('.stats_box ul li[d="update-time"]').text('Update time: ' + res_json.update_time)
+          $('.stats_box').attr('loading', '0')
+        }
+      });
+    }
   }
 
   var repos_loaded = 0
@@ -583,16 +594,13 @@
           if (!(loadmore === true)) {
             $('.repos').html('')
           }
-
           for (var i = 0; i < e.length; i++) {
             var tyrdes = e[i].description;
             if (String(e[i].description) === 'null') {
               tyrdes = 'No description.'
             }
-
             var eeid = genid('random');
             $('.repos').append('<div class="repo" e-id="' + eeid + '" desc="0"><div class="repo_title">' + e[i].name + '</div><a href="' + e[i].html_url + '" target="_blank"><div class="repo_link">Open</div></a><div class="repo_open_description" desc="0" e-id="' + eeid + '">DESC</div><div class="repo_description">' + tyrdes + '</div</div>')
-
             $('.repo[e-id="' + eeid + '"] .repo_open_description').click(function () {
               var this_desc = $(this).attr('desc')
               var this_eeid = $(this).attr('e-id')
@@ -605,7 +613,6 @@
                 $(this).attr('desc', '0')
               }
             })
-
           }
           $('.repos .repo[loading="1"]').remove()
           $('.repos').attr('loading', '0')
@@ -617,10 +624,8 @@
           else {
             $('.btn#loadmorerepos').attr('hide', '0')
           }
-
         }
       });
-
     }
   }
 
