@@ -832,10 +832,10 @@
       }
     })
     $('.title .title-list ul li').click(function () {
+      $('.title,.content_box').attr('m', '0')
       var s = $(this).attr('s')
       var st = $('.content_box .content[s="' + s + '"]').offset().top - 49
       $('html,body').animate({ 'scrollTop': st }, 550)
-      $('.title,.content_box').attr('m', '0')
     })
 
     $('.title-list-icon').click(function () {
