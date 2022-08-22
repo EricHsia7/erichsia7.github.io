@@ -844,13 +844,10 @@
               }
             }
           });
-
+          $('#contributions_chart').width(($('.stats_contributions').width() - 20))
+          $('#contributions_chart').height(($('.stats_contributions').height() - 20))
         }
       });
-      
-      $('#contributions_chart').width(($('.stats_contributions').width() - 20))
-      $('#contributions_chart').height(($('.stats_contributions').height() - 20))
-      
     }
   }
 
@@ -976,12 +973,12 @@
         $('.title,.content_box').attr('m', '0')
       }
     })
-    
+
     $(window).resize(function () {
       $('#contributions_chart').width(($('.stats_contributions').width() - 20))
       $('#contributions_chart').height(($('.stats_contributions').height() - 20))
     })
-    
+
   }
   $(document).ready(function () {
     addreposskeletonscreen()
