@@ -858,7 +858,7 @@
           $('#contributions_chart').css({ 'width': 'calc(100% - 10px)', 'height': 'calc(100% - 10px)' })
           $.ajax({
             type: 'get', url: contributions_graph_update_time_api, dataType: 'text', success: function (e2) {
-              $('.contributions_update_time').text(e2)
+              $('.contributions_update_time').text('Update time: ' + e2)
             }
           });
 
