@@ -192,6 +192,12 @@
       border-radius: var(--d-border-radius);
     }
 
+    .stats_contributions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .stats {
       position: relative;
       display: flex;
@@ -644,7 +650,7 @@
       </div>
       <div class="center">
         <div class="stats_contributions">
-          <canvas id="contributions_chart"></canvas>
+          <canvas id="contributions_chart" width="100px" height="100px"></canvas>
         </div>
       </div>
       <div class="center">
@@ -780,6 +786,9 @@
   var contributions_loaded = 0
   function load_contributions() {
     if (contributions_loaded === 0) {
+      $('#contributions_chart').width($('.stats_contributions').width() - 20)
+      $('#contributions_chart').height($('.stats_contributions').height() - 20)
+
       contributions_loaded = 1
       var contributions_graph_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1205904222&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
       var chart_data_date = []
@@ -962,6 +971,10 @@
       else {
         $('.title,.content_box').attr('m', '0')
       }
+    })
+    $(window).resize(function () {
+      $('#contributions_chart').width($('.stats_contributions').width() - 20)
+      $('#contributions_chart').height($('.stats_contributions').height() - 20)
     })
   }
   $(document).ready(function () {
