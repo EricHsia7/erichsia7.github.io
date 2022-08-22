@@ -126,6 +126,9 @@
       height: 50px;
       justify-content: center;
       align-items: center;
+      position: absolute;
+      top: 0px;
+      right: 0px;
     }
 
     .title-list-icon svg {
@@ -511,6 +514,8 @@
 
       .title-list {
         top: 50px;
+        right: auto;
+        left: 0px;
       }
 
       .title-list ul {
@@ -525,6 +530,11 @@
         padding: 0px;
         padding-left: 10px;
       }
+
+      .title-list ul li[sl="1"]::after {
+        display: none;
+      }
+
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -820,15 +830,15 @@
       var s = $(this).attr('s')
       var st = $('.content_box .content[s="' + s + '"]').offset().top - 49
       $('html,body').animate({ 'scrollTop': st }, 550)
-      $('.title').attr('m','0')
+      $('.title').attr('m', '0')
     })
 
-    $('.title-list-icon').click(function() {
-      if($('.title').attr('m') === '0') {
-        $('.title').attr('m','1')
+    $('.title-list-icon').click(function () {
+      if ($('.title').attr('m') === '0') {
+        $('.title').attr('m', '1')
       }
       else {
-        $('.title').attr('m','0')
+        $('.title').attr('m', '0')
       }
     })
   }
