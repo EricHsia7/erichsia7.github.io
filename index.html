@@ -245,6 +245,19 @@
       border-radius: 0px 0px var(--d-border-radius) var(--d-border-radius);
       background: var(--main-color-grey);
       border-top: 1px solid var(--d-border-color);
+      position: relative;
+    }
+
+    .stats_update_time[loading="1"]::after,
+    .contributions_update_time[loading="1"]::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 10px;
+      height: calc(100% - 6px);
+      width: calc(100% - 20px);
+      border-radius: var(--d-border-radius-h);
+      background: var(--d-btn-color);
     }
 
     .stats_box[loading="1"] .stats_value::after {
@@ -665,7 +678,7 @@
         </div>
       </div>
       <div class="center">
-        <div class="stats_update_time"></div>
+        <div class="stats_update_time" loading="1"></div>
       </div>
       <div class="space-h"></div>
       <div class="center">
@@ -676,7 +689,7 @@
         </div>
       </div>
       <div class="center">
-        <div class="contributions_update_time"></div>
+        <div class="contributions_update_time" loading="1"></div>
       </div>
     </div>
 
@@ -800,7 +813,7 @@
           $('.stats_box .stats_value[d="pulls"]').text(res_json.pull)
           $('.stats_box .stats_value[d="issues"]').text(res_json.issues)
           $('.stats_update_time').text('Update time: ' + res_json.update_time)
-          $('.stats_box').attr('loading', '0')
+          $('.stats_box,.stats_update_time').attr('loading', '0')
         }
       });
     }
@@ -874,6 +887,7 @@
       $.ajax({
         type: 'get', url: contributions_graph_update_time_api, dataType: 'text', success: function (e2) {
           $('.contributions_update_time').text('Update time: ' + e2)
+          $('.contributions_update_time').attr('loading', '0')
         }
       });
     }
