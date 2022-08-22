@@ -522,6 +522,7 @@
         flex-direction: column;
         right: auto;
         left: 0px;
+        width: 100%;
       }
 
       .title-list ul li {
@@ -538,7 +539,7 @@
         display: none;
       }
 
-      .content_box {
+      .content_box[m="1"] {
         transform: translateY(calc(40px * 3));
       }
     }
@@ -836,15 +837,15 @@
       var s = $(this).attr('s')
       var st = $('.content_box .content[s="' + s + '"]').offset().top - 49
       $('html,body').animate({ 'scrollTop': st }, 550)
-      $('.title').attr('m', '0')
+      $('.title,.content_box').attr('m', '0')
     })
 
     $('.title-list-icon').click(function () {
       if ($('.title').attr('m') === '0') {
-        $('.title').attr('m', '1')
+        $('.title,.content_box').attr('m', '1')
       }
       else {
-        $('.title').attr('m', '0')
+        $('.title,.content_box').attr('m', '0')
       }
     })
   }
