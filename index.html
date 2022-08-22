@@ -190,6 +190,7 @@
       grid-column-gap: 1px;
       background: var(--main-color-grey);
       border-radius: var(--d-border-radius);
+      border-radius: var(--d-border-radius) var(--d-border-radius) 0px 0px;
     }
 
     .stats_contributions {
@@ -230,7 +231,7 @@
     .stats_update_time,
     .contributions_update_time {
       width: var(--d-width);
-      height: 25px;
+      height: 40px;
       color: var(--main-color-comment);
       font-size: 13px;
       font-weight: 400;
@@ -239,6 +240,7 @@
       align-items: center;
       word-break: break-all;
       overflow: hidden;
+      border-radius: 0px 0px var(--d-border-radius) var(--d-border-radius);
     }
 
     .stats_box[loading="1"] .stats_value::after {
@@ -261,7 +263,7 @@
       align-items: center;
     }
 
-    .contributions_chart {
+    #contributions_chart {
       width: 100%;
       height: 100%;
     }
@@ -855,8 +857,7 @@
               }
             }
           });
-          $('#contributions_chart').css({ 'width': 'calc(100% - 10px)', 'height': 'calc(100% - 10px)' })
-
+          $('#contributions_chart').css({ 'width': '100%', 'height': '100%' })
         }
       });
 
@@ -992,7 +993,7 @@
     })
 
     $(window).resize(function () {
-      $('#contributions_chart').css({ 'width': 'calc(100% - 10px)', 'height': 'calc(100% - 10px)' })
+      $('#contributions_chart').css({ 'width': '100%', 'height': '100%' })
     })
 
 
