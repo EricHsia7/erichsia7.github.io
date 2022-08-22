@@ -514,13 +514,14 @@
 
       .title-list {
         top: 50px;
-        right: auto;
-        left: 0px;
+        width: 100%;
       }
 
       .title-list ul {
         height: calc(40px * 3);
         flex-direction: column;
+        right: auto;
+        left: 10px;
       }
 
       .title-list ul li {
@@ -528,7 +529,6 @@
         box-sizing: border-box;
         border-top: var(--main-color-grey);
         padding: 0px;
-        padding-left: 10px;
       }
 
       .title-list ul li[sl="1"]::after {
