@@ -181,7 +181,8 @@
       align-items: center;
     }
 
-    .stats_box {
+    .stats_box,
+    .stats_contributions {
       width: var(--d-width);
       height: 160px;
       display: grid;
@@ -220,7 +221,8 @@
       color: var(--main-color-text);
     }
 
-    .stats_update_time {
+    .stats_update_time,
+    .contributions_update_time {
       width: var(--d-width);
       height: 25px;
       color: var(--main-color-comment);
@@ -243,6 +245,11 @@
       transform: translate(-50%, -50%);
       background: var(--d-btn-color);
       border-radius: var(--d-border-radius-h);
+    }
+
+    #contributions_chart {
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
     }
 
     .center {
@@ -635,7 +642,14 @@
       <div class="center">
         <div class="stats_update_time"></div>
       </div>
-
+      <div class="center">
+        <div class="stats_contributions">
+          <canvas id="contributions_chart"></canvas>
+        </div>
+      </div>
+      <div class="center">
+        <div class="contributions_update_time"></div>
+      </div>
     </div>
 
     <div class="content" s="repos" r="1">
@@ -763,6 +777,70 @@
       });
     }
   }
+  var contributions_loaded = 0
+  function load_contributions() {
+    if (contributions_loaded === 0) {
+      contributions_loaded = 1
+      var contributions_graph_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1205904222&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
+      var chart_data_date = []
+      var chart_data_count = []
+      $.ajax({
+        type: 'get', url: contributions_graph_api, dataType: 'text', success: function (e) {
+          var res = e.split(/\r?\n|\r|\n/g)
+          for (var y = 0; y < res.length; y++) {
+            var this_res = String(res[y]).split(',')
+            chart_data_date.push('')
+            chart_data_count.push(this_res[1])
+          }
+
+          var ctx = document.getElementById('contributions_chart');
+          var contributions_chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: chart_data_date,
+              datasets: [{
+                label: 'Commits',
+                data: chart_data_count,
+                cubicInterpolationMode: 'monotone',
+                tension: 0.9,
+                borderColor: '#56AB5A',
+                pointStyle: 'circle',
+                pointRadius: 0,
+                pointHoverRadius: 0,
+                borderWidth: 1.6
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: false,
+                  min: -15,
+                  display: false,
+                  grid: {
+                    display: false
+                  }
+                },
+                x: {
+                  display: false,
+                  grid: {
+                    display: false
+                  }
+                }
+              },
+              plugins: {
+                legend: false
+              },
+              tooltip: {
+                display: false
+              }
+            }
+          });
+
+        }
+      });
+    }
+  }
+
 
   var repos_loaded = 0
   function load_repos(loadmore, page) {
@@ -850,6 +928,7 @@
       var loadwh = window.innerHeight * (0.8)
       if (st > ($('.content[s="stats"]').offset().top - loadwh)) {
         load_stats()
+        load_contributions()
       }
       if (st > ($('.content[s="repos"]').offset().top - loadwh)) {
         load_repos()
