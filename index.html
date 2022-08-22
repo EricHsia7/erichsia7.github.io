@@ -650,7 +650,7 @@
       </div>
       <div class="center">
         <div class="stats_contributions">
-          <canvas id="contributions_chart" width="100px" height="100px"></canvas>
+          <canvas id="contributions_chart" width="calc(100% - 20px)" height="calc(100% - 20px)"></canvas>
         </div>
       </div>
       <div class="center">
@@ -817,7 +817,7 @@
               }]
             },
             options: {
-              responsive: false,
+              responsive: true,
               scales: {
                 y: {
                   beginAtZero: true,
@@ -847,8 +847,10 @@
 
         }
       });
+      /*
       $('#contributions_chart').width(($('.stats_contributions').width() - 20) * 1.5)
       $('#contributions_chart').height(($('.stats_contributions').height() - 20) * 1.5)
+      */
     }
   }
 
@@ -974,10 +976,12 @@
         $('.title,.content_box').attr('m', '0')
       }
     })
+    /*
     $(window).resize(function () {
       $('#contributions_chart').width(($('.stats_contributions').width() - 20) * 1.5)
       $('#contributions_chart').height(($('.stats_contributions').height() - 20) * 1.5)
     })
+    */
   }
   $(document).ready(function () {
     addreposskeletonscreen()
