@@ -260,9 +260,10 @@
       justify-content: center;
       align-items: center;
     }
+
     .contributions_chart {
-      width:100%;
-      height:100%;
+      width: 100%;
+      height: 100%;
     }
 
     .center {
@@ -658,7 +659,7 @@
       <div class="center">
         <div class="stats_contributions">
           <div class="stats_contributions_canvas">
-          <canvas id="contributions_chart"></canvas>
+            <canvas id="contributions_chart"></canvas>
           </div>
         </div>
       </div>
@@ -826,11 +827,11 @@
                 pointStyle: 'circle',
                 pointRadius: 0,
                 pointHoverRadius: 0,
-                borderWidth: 1.6
+                borderWidth: 1.1
               }]
             },
             options: {
-              responsive: false,
+              responsive: true,
               scales: {
                 y: {
                   beginAtZero: true,
@@ -861,6 +862,7 @@
           $('#contributions_chart').width(($('.stats_contributions').width() - 20))
           $('#contributions_chart').height(($('.stats_contributions').height() - 20))
           */
+          $('#contributions_chart').css({ 'width': 'calc(100% - 10px)', 'height': 'calc(100% - 10px)' })
         }
       });
     }
@@ -988,12 +990,11 @@
         $('.title,.content_box').attr('m', '0')
       }
     })
-/*
+
     $(window).resize(function () {
-      $('#contributions_chart').width(($('.stats_contributions').width() - 20))
-      $('#contributions_chart').height(($('.stats_contributions').height() - 20))
+      $('#contributions_chart').css({ 'width': 'calc(100% - 10px)', 'height': 'calc(100% - 10px)' })
     })
-    */
+
 
   }
   $(document).ready(function () {
