@@ -8,13 +8,13 @@
   <style>
     :root {
       --main-color: #fff;
-      --main-color-r: 255;
-      --main-color-g: 255;
-      --main-color-b: 255;
+      --main-color-r: 245;
+      --main-color-g: 245;
+      --main-color-b: 245;
       --main-color-text: #333;
-      --main-color-grey: #e3e3e3;
-      --d-border-radius: 10px;
-      --d-border-radius-h: 5px;
+      --main-color-grey: #fff;
+      --d-border-radius: 18px;
+      --d-border-radius-h: 9px;
       --d-width: clamp(180px, 90%, 600px);
       --github-screenshot: url(https://raw.githubusercontent.com/EricHsia7/erichsia7.github.io/main/github-screenshot/v-84dq44zq9z7s/light.jpeg)
     }
@@ -120,10 +120,9 @@
     }
 
     .title[d="1"] {
-      -webkit-backdrop-filter: blur(15px);
-      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(17px);
+      backdrop-filter: blur(17px);
       background: rgba(var(--main-color-r), var(--main-color-g), var(--main-color-b), 0.6);
-      border-bottom: 1px solid var(--main-color-grey);
     }
 
     .title-list-icon {
@@ -182,7 +181,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-column-gap: 10px;
-      border: 1px solid var(--main-color-grey);
+      background: var(--main-color-grey);
       border-radius: var(--d-border-radius);
     }
 
@@ -255,7 +254,7 @@
       width: var(--d-width);
       height: auto;
       display: inline-block;
-      border: 1px solid var(--main-color-grey);
+      background: var(--main-color-grey);
       border-radius: var(--d-border-radius);
     }
 
