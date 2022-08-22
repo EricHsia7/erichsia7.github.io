@@ -120,6 +120,18 @@
       border-bottom: 1px solid var(--main-color-grey);
     }
 
+    .title-list-icon {
+      display: none;
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .title-list-icon svg {
+      width: 25px;
+      height: 25px;
+    }
 
     .content_box {
       position: absolute;
@@ -482,6 +494,38 @@
       white-space: nowrap;
       font-weight: 500;
     }
+
+    @media screen and (max-width:600px) {
+      .title-list-icon {
+        display: flex;
+      }
+
+      .title {
+        overflow: hidden;
+        transition: 0.35s;
+      }
+
+      .title[m="1"] {
+        height: calc(50px + 40px * 3);
+      }
+
+      .title-list {
+        top: 50px;
+      }
+
+      .title-list ul {
+        height: calc(40px * 3);
+        flex-direction: column;
+      }
+
+      .title-list ul li {
+        height: 40px;
+        box-sizing: border-box;
+        border-top: var(--main-color-grey);
+        padding: 0px;
+        padding-left: 10px;
+      }
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -578,7 +622,17 @@
     </div>
   </div>
 
-  <div class="title">
+  <div class="title" m="0">
+    <div class="title-list-icon">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path
+          d="M0 53.3333L0 48L64 48L64 53.3333L0 53.3333ZM0 34.6667L0 29.3333L64 29.3333L64 34.6667L0 34.6667ZM0 16L0 10.6667L64 10.6667L64 16L0 16Z"
+          fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+      </svg>
+    </div>
     <div class="title-list">
       <ul>
         <li s="stats">Stats</li>
@@ -731,7 +785,6 @@
     }
   }
 
-
   function evt() {
     $(document).scroll(function () {
       var st = $(document).scrollTop()
@@ -767,6 +820,16 @@
       var s = $(this).attr('s')
       var st = $('.content_box .content[s="' + s + '"]').offset().top - 49
       $('html,body').animate({ 'scrollTop': st }, 550)
+      $('.title').attr('m','0')
+    })
+
+    $('.title-list-icon').click(function() {
+      if($('.title').attr('m') === '0') {
+        $('.title').attr('m','1')
+      }
+      else {
+        $('.title').attr('m','0')
+      }
     })
   }
   $(document).ready(function () {
