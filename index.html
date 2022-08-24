@@ -197,7 +197,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
     }
 
     .stats {
@@ -688,9 +687,6 @@
           <div class="stats_contributions_canvas">
             <canvas id="contributions_chart"></canvas>
           </div>
-          <div class="stats_contributions_skeleton_screen">
-            <canvas id="contributions_chart_skeleton_screen"></canvas>
-          </div>
         </div>
       </div>
       <div class="center">
@@ -823,69 +819,10 @@
       });
     }
   }
-  function add_skeleton_screen() {
-    var f_date = []
-    var f_data = []
-    for (var e = 0; e < 32; e++) {
-      f_date.push(0)
-      f_data.push(Math.round(Math.random() * 32))
-    }
-    var ctx = document.getElementById('stats_contributions_skeleton_screen');
-    var contributions_chart_skeleton_screen = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: f_date,
-        datasets: [{
-          label: 'Commits',
-          data: f_data,
-          cubicInterpolationMode: 'monotone',
-          tension: 0.9,
-          borderColor: 'rgba(0, 0, 0, 0)',
-          pointStyle: 'circle',
-          pointRadius: 0,
-          pointHoverRadius: 0,
-          borderWidth: 1.1,
-          fill: true,
-          backgroundColor: getComputedStyle(document.body).getPropertyValue('--d-btn-color')
-        }]
-      },
-      options: {
-        responsive: true,
-        devicePixelRatio: window.devicePixelRatio * 3,
-        animation: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-            display: false,
-            grid: {
-              display: false
-            }
-          },
-          x: {
-            display: false,
-            grid: {
-              display: false
-            },
-            ticks: {
-              display: false
-            }
-          }
-        },
-        plugins: {
-          legend: false
-        },
-        tooltip: {
-          display: false
-        }
-      }
-    });
-    $('#stats_contributions_skeleton_screen').css({ 'width': '100%', 'height': '100%' })
-  }
   var contributions_loaded = 0
   function load_contributions() {
     if (contributions_loaded === 0) {
       contributions_loaded = 1
-      add_skeleton_screen()
       var contributions_graph_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1205904222&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
       var contributions_graph_update_time_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1258891098&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
       var chart_data_date = []
@@ -909,19 +846,15 @@
                 data: chart_data_count,
                 cubicInterpolationMode: 'monotone',
                 tension: 0.9,
-                borderColor: 'rgba(0, 0, 0, 0)',
+                borderColor: '#56AB5A',
                 pointStyle: 'circle',
                 pointRadius: 0,
                 pointHoverRadius: 0,
-                borderWidth: 1.1,
-                fill: true,
-                backgroundColor: 'rgba(86, 171, 90, 1)'
+                borderWidth: 1.1
               }]
             },
             options: {
               responsive: true,
-              devicePixelRatio: window.devicePixelRatio * 3,
-              animation: false,
               scales: {
                 y: {
                   beginAtZero: true,
@@ -949,7 +882,6 @@
             }
           });
           $('#contributions_chart').css({ 'width': '100%', 'height': '100%' })
-          $('.stats_contributions_skeleton_screen').css({ 'display': 'none' })
         }
       });
 
