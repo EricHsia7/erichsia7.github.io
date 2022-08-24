@@ -844,8 +844,10 @@
               datasets: [{
                 label: 'Commits',
                 data: chart_data_count,
+                /*
                 cubicInterpolationMode: 'monotone',
                 tension: 0.9,
+                */
                 borderColor: '#56AB5A',
                 pointStyle: 'circle',
                 pointRadius: 0,
@@ -855,7 +857,7 @@
             },
             options: {
               responsive: true,
-              devicePixelRatio: window.devicePixelRatio * 1.5,
+              devicePixelRatio: window.devicePixelRatio * 3,
               scales: {
                 y: {
                   beginAtZero: true,
