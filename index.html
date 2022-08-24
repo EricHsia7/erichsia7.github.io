@@ -710,13 +710,7 @@
             <canvas id="contributions_chart"></canvas>
           </div>
           <div class="stats_contributions_skeleton_screen">
-            <svg stroke-miterlimit="10"
-              style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-              xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <path
-                d="M365.562 41.0938C363.369 40.9636 360.526 42.0475 356.719 44.9688C347.749 52.0767 350.684 57.4531 338.719 64.6875C326.761 71.9169 325.941 73.4664 308.125 73.9062C290.47 74.3422 291.473 68.2194 278.625 68.0312C253.132 67.6579 234.722 101.319 218.688 107.281C207.156 111.569 198.376 99.2875 156.625 117.625C105.912 139.899 88.1665 91.7814 48.0625 93.9375C27.359 94.7683 11.9448 96.5875 0 98.9688L0 200L400 200L400 47.875C396.756 50.6101 392.032 53.8572 384.594 58.0312C372.496 64.8203 375.067 41.6575 365.562 41.0938Z"
-                fill="var(--d-btn-color" fill-rule="nonzero" opacity="1" stroke="none" />
-            </svg>
+            <canvas id="contributions_chart_skeleton_screen"></canvas>
           </div>
         </div>
       </div>
@@ -850,9 +844,67 @@
       });
     }
   }
+  function add_skeleton_screen() {
+    var f_date = []
+    var f_data = []
+    for (var e = 0; e < 32; e++) {
+      f_date.push(0)
+      f_data.push(Math.round(Math.random() * 32))
+    }
+    var ctx = document.getElementById('contributions_chart_skeleton_screen');
+    var contributions_chart_skeleton_screen = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: f_date,
+        datasets: [{
+          label: 'Commits',
+          data: f_data,
+          cubicInterpolationMode: 'monotone',
+          tension: 0.9,
+          borderColor: 'rgba(0, 0, 0, 0)',
+          pointStyle: 'circle',
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          borderWidth: 1.1,
+          fill: true,
+          backgroundColor: 'rgba(86, 171, 90, 1)'
+        }]
+      },
+      options: {
+        responsive: true,
+        devicePixelRatio: window.devicePixelRatio * 3,
+        animation: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            display: false,
+            grid: {
+              display: false
+            }
+          },
+          x: {
+            display: false,
+            grid: {
+              display: false
+            },
+            ticks: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: false
+        },
+        tooltip: {
+          display: false
+        }
+      }
+    });
+  }
   var contributions_loaded = 0
   function load_contributions() {
     if (contributions_loaded === 0) {
+      add_skeleton_screen()
       contributions_loaded = 1
       var contributions_graph_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1205904222&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
       var contributions_graph_update_time_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1258891098&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
@@ -917,6 +969,7 @@
             }
           });
           $('#contributions_chart').css({ 'width': '100%', 'height': '100%' })
+          $('.stats_contributions_skeleton_screen').css({ 'display': 'none' })
         }
       });
 
