@@ -891,8 +891,8 @@
   var contributions_loaded = 0
   function load_contributions() {
     if (contributions_loaded === 0) {
-      add_skeleton_screen()
       contributions_loaded = 1
+      add_skeleton_screen()
       var contributions_graph_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1205904222&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
       var contributions_graph_update_time_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1258891098&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
       var chart_data_date = []
