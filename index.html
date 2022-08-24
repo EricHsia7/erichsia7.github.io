@@ -846,14 +846,17 @@
                 data: chart_data_count,
                 cubicInterpolationMode: 'monotone',
                 tension: 0.9,
-                borderColor: '#56AB5A',
-                pointStyle: 'circle',
+                borderColor: 'rgba(0, 0, 0, 0)', pointStyle: 'circle',
                 pointRadius: 0,
                 pointHoverRadius: 0,
-                borderWidth: 1.1
+                borderWidth: 1.1,
+                fill: true,
+                backgroundColor: 'rgba(86, 171, 90, 1)'
               }]
             },
             options: {
+              devicePixelRatio: window.devicePixelRatio * 3,
+              animation: false,
               responsive: true,
               scales: {
                 y: {
