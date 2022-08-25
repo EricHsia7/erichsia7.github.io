@@ -14,12 +14,12 @@
       --main-color-text: #333;
       --main-color-grey: #fff;
       --main-color-comment: #888;
+      --main-color-content-foot:#ededed;
       --d-btn-color: #e3e3e3;
       --d-border-color: #ededed;
       --d-border-radius: 15px;
       --d-border-radius-h: 9px;
       --d-width: clamp(180px, 90%, 600px);
-      --github-screenshot: url(https://raw.githubusercontent.com/EricHsia7/erichsia7.github.io/main/github-screenshot/v-84dq44zq9z7s/light.jpeg)
     }
 
     @media (prefers-color-scheme: dark) {
@@ -33,7 +33,7 @@
         --d-btn-color: #333;
         --d-border-color: #242424;
         --main-color-comment: #888;
-        --github-screenshot: url(https://raw.githubusercontent.com/EricHsia7/erichsia7.github.io/main/github-screenshot/v-84dq44zq9z7s/dark.jpeg)
+        --main-color-content-foot:#0a0a0a;
       }
 
     }
@@ -426,7 +426,7 @@
       height: 330px;
       margin: 0px;
       padding: 0px;
-      background: var(--main-color);
+      background: var(--main-color-content-foot);
       display: inline-flex;
       justify-content: center;
       align-items: center;
