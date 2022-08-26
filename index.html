@@ -1073,7 +1073,7 @@
       var randid = ''
       var nt = new Date().getTime()
       if ((nt - parseInt(String(localStorage.getItem('github_repo_api_cache_time')))) > 3600000 || !(localStorage.hasOwnProperty('github_repo_api_cache_time') === true)) {
-        rand_id = genid('random')
+        randid = genid('random')
         localStorage.setItem('github_repo_api_cache_randid', randid)
         localStorage.setItem('github_repo_api_cache_time', nt)
       }
