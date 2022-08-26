@@ -926,6 +926,7 @@
   }
 
   function load_stats_callback(e) {
+    console.log(e)
     var res = e.replaceAll('""', '"')
     var res_json = JSON.parse(res.substring(1, (res.length - 1)))
     $('.stats_box .stats_value[d="commit"]').text(res_json.commit)
