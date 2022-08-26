@@ -1086,7 +1086,6 @@
       var api_name = 'github_repo_api_cache_p_' + page
       if (String(localStorage.getItem(api_name + '_id')) === api_id) {
         load_repos_callback(JSON.parse(String(localStorage.getItem(api_name))))
-        return ''
       }
       else {
         $.ajax({
