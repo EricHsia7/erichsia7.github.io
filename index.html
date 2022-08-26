@@ -1022,7 +1022,7 @@
     }
   }
 
-  function load_repos_callback(e) {
+  function load_repos_callback(e, loadmore, page) {
     if (!(loadmore === true)) {
       $('.repos').html('')
     }
@@ -1085,14 +1085,14 @@
       var api_id = page + '_' + randid
       var api_name = 'github_repo_api_cache_p_' + page
       if (String(localStorage.getItem(api_name + '_id')) === api_id) {
-        load_repos_callback(JSON.parse(String(localStorage.getItem(api_name))))
+        load_repos_callback(JSON.parse(String(localStorage.getItem(api_name))), loadmore, page)
       }
       else {
         $.ajax({
           type: 'get', url: repos_api, dataType: 'json', success: function (e2) {
             localStorage.setItem(api_name + '_id', api_id)
             localStorage.setItem(api_name, JSON.stringify(e2))
-            load_repos_callback(e2)
+            load_repos_callback(e2, loadmore, page)
           }
         });
       }
