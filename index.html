@@ -1072,18 +1072,18 @@
       repos_loaded = 1
       var randid = ''
       var nt = new Date().getTime()
-      if ((nt - parseInt(String(localStorage.getItem('github_repo_api_cache_time')))) > 3600000 || !(localStorage.hasOwnProperty('github_repo_api_cache_time') === true)) {
+      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_github_repo_api_cache_time')))) > 3600000 || !(localStorage.hasOwnProperty('erichsia7_github_io_github_repo_api_cache_time') === true)) {
         randid = genid('random')
-        localStorage.setItem('github_repo_api_cache_randid', randid)
-        localStorage.setItem('github_repo_api_cache_time', nt)
+        localStorage.setItem('erichsia7_github_io_github_repo_api_cache_randid', randid)
+        localStorage.setItem('erichsia7_github_io_github_repo_api_cache_time', nt)
       }
       else {
-        randid = String(localStorage.getItem('github_repo_api_cache_randid'))
+        randid = String(localStorage.getItem('erichsia7_github_io_github_repo_api_cache_randid'))
       }
 
       var repos_api = 'https://api.github.com/users/Erichsia7/repos?sort=pushed&per_page=10&page=' + page + '&' + randid
       var api_id = page + '_' + randid
-      var api_name = 'github_repo_api_cache_p_' + page
+      var api_name = 'erichsia7_github_io_github_repo_api_cache_p_' + page
       if (String(localStorage.getItem(api_name + '_id')) === api_id) {
         load_repos_callback(JSON.parse(String(localStorage.getItem(api_name))), loadmore, page)
       }
