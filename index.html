@@ -1032,14 +1032,14 @@
       var contributions_graph_update_time_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1258891098&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
       var nt = new Date().getTime()
       if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_contributions_api_cahce_time')))) < 43200000 || !(localStorage.hasOwnProperty('erichsia7_github_io_contributions_api_cahce') === true)) {
-        load_contributions_callback(JSON.parse(String(localStorage.getItem('erichsia7_github_io_contributions_api_cahce'))))
+        load_contributions_callback(String(localStorage.getItem('erichsia7_github_io_contributions_api_cahce')))
         load_contributions_update_time_callback(String(localStorage.getItem('erichsia7_github_io_contributions_update_time_api_cahce')))
       }
       else {
         $.ajax({
           type: 'get', url: contributions_graph_api, dataType: 'text', success: function (e) {
             load_contributions_callback(e)
-            localStorage.setItem('erichsia7_github_io_contributions_api_cahce', JSON.stringify(e))
+            localStorage.setItem('erichsia7_github_io_contributions_api_cahce', String(e))
             localStorage.setItem('erichsia7_github_io_contributions_api_cahce_time', nt)
           }
         });
