@@ -924,23 +924,105 @@
     }
 
   }
+
+  function load_stats_callback(e) {
+    var res = e.replaceAll('""', '"')
+    var res_json = JSON.parse(res.substring(1, (res.length - 1)))
+    $('.stats_box .stats_value[d="commit"]').text(res_json.commit)
+    $('.stats_box .stats_value[d="pulls"]').text(res_json.pull)
+    $('.stats_box .stats_value[d="issues"]').text(res_json.issues)
+    $('.stats_update_time').text('Update time: ' + res_json.update_time)
+    $('.stats_box,.stats_update_time').attr('loading', '0')
+  }
+
   var stats_loaded = 0
   function load_stats() {
     if (stats_loaded === 0) {
       stats_loaded = 1
       var stats_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=0&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
-      $.ajax({
-        type: 'get', url: stats_api, dataType: 'text', success: function (e) {
-          var res = e.replaceAll('""', '"')
-          var res_json = JSON.parse(res.substring(1, (res.length - 1)))
-          $('.stats_box .stats_value[d="commit"]').text(res_json.commit)
-          $('.stats_box .stats_value[d="pulls"]').text(res_json.pull)
-          $('.stats_box .stats_value[d="issues"]').text(res_json.issues)
-          $('.stats_update_time').text('Update time: ' + res_json.update_time)
-          $('.stats_box,.stats_update_time').attr('loading', '0')
-        }
-      });
+      var nt = new Date().getTime()
+      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_stats_api_cahce_time')))) < 43200000 || !(localStorage.hasOwnProperty('erichsia7_github_io_stats_api_cahce') === true)) {
+        load_stats_callback(JSON.parse(String(localStorage.getItem('erichsia7_github_io_stats_api_cahce'))))
+      }
+      else {
+        $.ajax({
+          type: 'get', url: stats_api, dataType: 'text', success: function (e) {
+            localStorage.setItem('erichsia7_github_io_stats_api_cahce', JSON.stringify(e))
+            localStorage.setItem('erichsia7_github_io_stats_api_cahce_time', nt)
+            load_stats_callback(e)
+          }
+        });
+
+      }
     }
+  }
+
+  function load_contributions_callback(e) {
+    var chart_data_date = []
+    var chart_data_count = []
+
+    var res = e.split(/\r?\n|\r|\n/g)
+    for (var y = 0; y < res.length; y++) {
+      var this_res = String(res[y]).split(',')
+      chart_data_date.push('')
+      chart_data_count.push(this_res[1])
+    }
+
+    var ctx = document.getElementById('contributions_chart');
+    var contributions_chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: chart_data_date,
+        datasets: [{
+          label: 'Commits',
+          data: chart_data_count,
+          cubicInterpolationMode: 'monotone',
+          tension: 0.9,
+          borderColor: 'rgba(0, 0, 0, 0)',
+          pointStyle: 'circle',
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          borderWidth: 1.1,
+          fill: true,
+          backgroundColor: 'rgba(86, 171, 90, 1)'
+        }]
+      },
+      options: {
+        devicePixelRatio: window.devicePixelRatio * 3,
+        animation: false,
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            display: false,
+            grid: {
+              display: false
+            }
+          },
+          x: {
+            display: false,
+            grid: {
+              display: false
+            },
+            ticks: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: false
+        },
+        tooltip: {
+          display: false
+        }
+      }
+    });
+    $('#contributions_chart').css({ 'width': '100%', 'height': '100%' })
+    $('.stats_contributions').attr('loading', '0')
+  }
+  function load_contributions_update_time_callback(e2) {
+    $('.contributions_update_time').text('Update time: ' + e2)
+    $('.contributions_update_time').attr('loading', '0')
   }
   var contributions_loaded = 0
   function load_contributions() {
@@ -948,77 +1030,28 @@
       contributions_loaded = 1
       var contributions_graph_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1205904222&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
       var contributions_graph_update_time_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1258891098&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
-      var chart_data_date = []
-      var chart_data_count = []
-      $.ajax({
-        type: 'get', url: contributions_graph_api, dataType: 'text', success: function (e) {
-          var res = e.split(/\r?\n|\r|\n/g)
-          for (var y = 0; y < res.length; y++) {
-            var this_res = String(res[y]).split(',')
-            chart_data_date.push('')
-            chart_data_count.push(this_res[1])
+      var nt = new Date().getTime()
+      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_contributions_api_cahce_time')))) < 43200000 || !(localStorage.hasOwnProperty('erichsia7_github_io_contributions_api_cahce') === true)) {
+        load_contributions_callback(JSON.parse(String(localStorage.getItem('erichsia7_github_io_contributions_api_cahce'))))
+        load_contributions_update_time_callback(String(localStorage.getItem('erichsia7_github_io_contributions_update_time_api_cahce')))
+      }
+      else {
+        $.ajax({
+          type: 'get', url: contributions_graph_api, dataType: 'text', success: function (e) {
+            load_contributions_callback(e)
+            localStorage.setItem('erichsia7_github_io_contributions_api_cahce', JSON.stringify(e))
+            localStorage.setItem('erichsia7_github_io_contributions_api_cahce_time', nt)
           }
+        });
 
-          var ctx = document.getElementById('contributions_chart');
-          var contributions_chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: chart_data_date,
-              datasets: [{
-                label: 'Commits',
-                data: chart_data_count,
-                cubicInterpolationMode: 'monotone',
-                tension: 0.9,
-                borderColor: 'rgba(0, 0, 0, 0)',
-                pointStyle: 'circle',
-                pointRadius: 0,
-                pointHoverRadius: 0,
-                borderWidth: 1.1,
-                fill: true,
-                backgroundColor: 'rgba(86, 171, 90, 1)'
-              }]
-            },
-            options: {
-              devicePixelRatio: window.devicePixelRatio * 3,
-              animation: false,
-              responsive: true,
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  display: false,
-                  grid: {
-                    display: false
-                  }
-                },
-                x: {
-                  display: false,
-                  grid: {
-                    display: false
-                  },
-                  ticks: {
-                    display: false
-                  }
-                }
-              },
-              plugins: {
-                legend: false
-              },
-              tooltip: {
-                display: false
-              }
-            }
-          });
-          $('#contributions_chart').css({ 'width': '100%', 'height': '100%' })
-          $('.stats_contributions').attr('loading', '0')
-        }
-      });
-
-      $.ajax({
-        type: 'get', url: contributions_graph_update_time_api, dataType: 'text', success: function (e2) {
-          $('.contributions_update_time').text('Update time: ' + e2)
-          $('.contributions_update_time').attr('loading', '0')
-        }
-      });
+        $.ajax({
+          type: 'get', url: contributions_graph_update_time_api, dataType: 'text', success: function (e2) {
+            load_contributions_update_time_callback(e2)
+            localStorage.setItem('erichsia7_github_io_contributions_update_time_api_cahce', String(e2))
+            localStorage.setItem('erichsia7_github_io_contributions_api_cahce_time', nt)
+          }
+        });
+      }
     }
   }
 
