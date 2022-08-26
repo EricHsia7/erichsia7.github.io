@@ -1022,6 +1022,46 @@
     }
   }
 
+  function load_repos_callback(e) {
+    if (!(loadmore === true)) {
+      $('.repos').html('')
+    }
+    for (var i = 0; i < e.length; i++) {
+      var tyrdes = e[i].description;
+      if (String(e[i].description) === 'null') {
+        tyrdes = 'No description.'
+      }
+      var eeid = genid('random');
+      $('.repos').append('<div class="repo" e-id="' + eeid + '" desc="0"><div class="repo_title">' + e[i].name + '</div><a href="' + e[i].html_url + '" target="_blank"><div class="repo_link">Open</div></a><div class="repo_open_description" desc="0" e-id="' + eeid + '">DESC</div><div class="repo_description">' + tyrdes + '</div</div>')
+      $('.repo[e-id="' + eeid + '"] .repo_open_description').click(function () {
+        var this_desc = $(this).attr('desc')
+        var this_eeid = $(this).attr('e-id')
+        if (this_desc === '0') {
+          $('.repo[e-id="' + this_eeid + '"]').attr('desc', '1')
+          $(this).attr('desc', '1')
+        }
+        else {
+          $('.repo[e-id="' + this_eeid + '"]').attr('desc', '0')
+          $(this).attr('desc', '0')
+        }
+      })
+    }
+    $('.repos .repo[loading="1"]').remove()
+    $('.repos').attr('loading', '0')
+    if (loadmore === true) {
+      if (page < 3) {
+        $('.btn#loadmorerepos').attr('qp', '0')
+      }
+      else {
+        $('.btn#loadmorerepos').attr('qp', '2')
+      }
+    }
+    else {
+      $('.btn#loadmorerepos').attr('qp', '0')
+    }
+
+  }
+
 
   var repos_loaded = 0
   function load_repos(loadmore, page) {
@@ -1032,55 +1072,29 @@
       repos_loaded = 1
       var randid = ''
       var nt = new Date().getTime()
-      if ((nt - parseInt(String(localStorage.getItem('github_repo_api_cache_page_' + page + '_time')))) > 3600000 || !(localStorage.hasOwnProperty('github_repo_api_cache_page_' + page + '_time') === true)) {
+      if ((nt - parseInt(String(localStorage.getItem('github_repo_api_cache_time')))) > 3600000 || !(localStorage.hasOwnProperty('github_repo_api_cache_time') === true)) {
         rand_id = genid('random')
-        localStorage.setItem('github_repo_api_cache_page_' + page + '_randid', randid)
-        localStorage.setItem('github_repo_api_cache_page_' + page + '_time', nt)
+        localStorage.setItem('github_repo_api_cache_randid', randid)
+        localStorage.setItem('github_repo_api_cache_time', nt)
       }
       else {
-        rand_id = String(localStorage.getItem('github_repo_api_cache_page_' + page + '_randid'))
+        rand_id = String(localStorage.getItem('github_repo_api_cache_randid'))
       }
+
       var repos_api = 'https://api.github.com/users/Erichsia7/repos?sort=pushed&per_page=10&page=' + page + '&' + randid
-      $.ajax({
-        type: 'get', url: repos_api, dataType: 'json', success: function (e) {
-          if (!(loadmore === true)) {
-            $('.repos').html('')
+      var api_id = page + '_' + randid
+      var api_name = 'github_repo_api_cache_p_' + page
+      if (String(localStorage.getItem(api_name + '_id')) === api_id) {
+        load_repos_callback(JSON.parse(String(localStorage.getItem(api_name))))
+        return ''
+      }
+      else {
+        $.ajax({
+          type: 'get', url: repos_api, dataType: 'json', success: function (e2) {
+            load_repos_callback(e2)
           }
-          for (var i = 0; i < e.length; i++) {
-            var tyrdes = e[i].description;
-            if (String(e[i].description) === 'null') {
-              tyrdes = 'No description.'
-            }
-            var eeid = genid('random');
-            $('.repos').append('<div class="repo" e-id="' + eeid + '" desc="0"><div class="repo_title">' + e[i].name + '</div><a href="' + e[i].html_url + '" target="_blank"><div class="repo_link">Open</div></a><div class="repo_open_description" desc="0" e-id="' + eeid + '">DESC</div><div class="repo_description">' + tyrdes + '</div</div>')
-            $('.repo[e-id="' + eeid + '"] .repo_open_description').click(function () {
-              var this_desc = $(this).attr('desc')
-              var this_eeid = $(this).attr('e-id')
-              if (this_desc === '0') {
-                $('.repo[e-id="' + this_eeid + '"]').attr('desc', '1')
-                $(this).attr('desc', '1')
-              }
-              else {
-                $('.repo[e-id="' + this_eeid + '"]').attr('desc', '0')
-                $(this).attr('desc', '0')
-              }
-            })
-          }
-          $('.repos .repo[loading="1"]').remove()
-          $('.repos').attr('loading', '0')
-          if (loadmore === true) {
-            if (page < 3) {
-              $('.btn#loadmorerepos').attr('qp', '0')
-            }
-            else {
-              $('.btn#loadmorerepos').attr('qp', '2')
-            }
-          }
-          else {
-            $('.btn#loadmorerepos').attr('qp', '0')
-          }
-        }
-      });
+        });
+      }
     }
   }
 
