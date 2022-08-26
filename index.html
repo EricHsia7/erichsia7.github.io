@@ -1035,6 +1035,7 @@
       if ((nt - parseInt(String(localStorage.getItem('github_repo_api_cache_page_' + page + '_time')))) > 3600000) {
         rand_id = genid('random')
         localStorage.setItem('github_repo_api_cache_page_' + page + '_randid', randid)
+        localStorage.setItem('github_repo_api_cache_page_' + page + '_time', nt)
       }
       else {
         rand_id = String(localStorage.getItem('github_repo_api_cache_page_' + page + '_randid'))
