@@ -14,7 +14,7 @@
       --main-color-text: #333;
       --main-color-grey: #fff;
       --main-color-comment: #888;
-      --main-color-content-foot:#ededed;
+      --main-color-content-foot: #ededed;
       --d-btn-color: #e3e3e3;
       --d-border-color: #ededed;
       --d-border-radius: 15px;
@@ -33,7 +33,7 @@
         --d-btn-color: #333;
         --d-border-color: #242424;
         --main-color-comment: #888;
-        --main-color-content-foot:#0a0a0a;
+        --main-color-content-foot: #0a0a0a;
       }
 
     }
@@ -443,10 +443,25 @@
       border-radius: var(--d-border-radius);
       font-weight: 400;
       margin: 5px 0px;
+      position: relative;
+      font-size: 16px;
     }
 
-    .btn[hide="1"] {
-      display: none
+    .btn[qp="1"] {
+      background: rgba(0, 0, 0, 0);
+      color: rgba(0, 0, 0, 0);
+    }
+
+    .btn[qp="1"]::after {
+      content: 'Loading...';
+      color: var(--main-color-text);
+      font-size: 16px;
+      font-weight: 400;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .profile_photo {
@@ -784,7 +799,7 @@
         <div class="repos" loading="1"></div>
       </div>
       <div class="center">
-        <div class="btn" id="loadmorerepos" hide="1" page="1">Load more</div>
+        <div class="btn" id="loadmorerepos" qp="1" page="1">Load more</div>
       </div>
     </div>
     <div class="content" s="github" r="1">
@@ -1038,11 +1053,11 @@
           $('.repos').attr('loading', '0')
           if (loadmore === true) {
             if (page < 3) {
-              $('.btn#loadmorerepos').attr('hide', '0')
+              $('.btn#loadmorerepos').attr('qp', '0')
             }
           }
           else {
-            $('.btn#loadmorerepos').attr('hide', '0')
+            $('.btn#loadmorerepos').attr('qp', '0')
           }
         }
       });
@@ -1099,12 +1114,12 @@
       var oldpage = parseInt($(this).attr('page'))
       var newpage = oldpage + 1
       if (oldpage < 3) {
-        $('.btn#loadmorerepos').attr('hide', '1')
+        $('.btn#loadmorerepos').attr('qp', '1')
         load_repos(true, newpage)
         $(this).attr('page', newpage)
       }
       else {
-        $('.btn#loadmorerepos').attr('hide', '1')
+        $('.btn#loadmorerepos').attr('qp', '1')
       }
     })
     $('.title .title-list ul li').click(function () {
