@@ -1032,7 +1032,7 @@
       repos_loaded = 1
       var randid = ''
       var nt = new Date().getTime()
-      if ((nt - parseInt(String(localStorage.getItem('github_repo_api_cache_page_' + page + '_time')))) > 3600000) {
+      if ((nt - parseInt(String(localStorage.getItem('github_repo_api_cache_page_' + page + '_time')))) > 3600000 || !(localStorage.hasOwnProperty('github_repo_api_cache_page_' + page + '_time') === true)) {
         rand_id = genid('random')
         localStorage.setItem('github_repo_api_cache_page_' + page + '_randid', randid)
         localStorage.setItem('github_repo_api_cache_page_' + page + '_time', nt)
