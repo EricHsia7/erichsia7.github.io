@@ -467,6 +467,10 @@
       left: 0px;
     }
 
+    .btn[qp="2"] {
+      display: none;
+    }
+
     .profile_photo {
       width: 150px;
       height: 150px;
@@ -1057,6 +1061,9 @@
           if (loadmore === true) {
             if (page < 3) {
               $('.btn#loadmorerepos').attr('qp', '0')
+            }
+            else {
+              $('.btn#loadmorerepos').attr('qp', '2')
             }
           }
           else {
