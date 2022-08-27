@@ -956,9 +956,18 @@
     }
   }
 
+  var contributions_chart, ctx
+  var chart_data_date_daily = []
+  var chart_data_count_daily = []
+  var chart_data_date_count_monthly_j = {}
+  var chart_data_date_monthly = []
+  var chart_data_count_monthly = []
+  var contributions_loaded = 0
+  var contributions_load_success = 0
+
   function draw_contributions_chart(labels, data) {
-    var ctx = document.getElementById('contributions_chart');
-    var contributions_chart = new Chart(ctx, {
+    ctx = document.getElementById('contributions_chart');
+    contributions_chart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: labels,
@@ -1010,14 +1019,6 @@
     $('.stats_contributions').attr('loading', '0')
   }
 
-  var chart_data_date_daily = []
-  var chart_data_count_daily = []
-  var chart_data_date_count_monthly_j = {}
-  var chart_data_date_monthly = []
-  var chart_data_count_monthly = []
-  var contributions_loaded = 0
-  var contributions_load_success = 0
-
   function load_contributions_callback(e) {
     var res = e.split(/\r?\n|\r|\n/g)
     for (var y = 0; y < res.length; y++) {
@@ -1055,7 +1056,9 @@
       l = chart_data_date_monthly
       d = chart_data_count_monthly
     }
-    draw_contributions_chart(l, d)
+    contributions_chart.data.labels = l
+    contributions_chart.data.datasets[0].data = d
+    contributions_chart.update()
   }
 
   function load_contributions_update_time_callback(e2) {
