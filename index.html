@@ -684,14 +684,14 @@
       right: 10px;
       top: 0px;
       height: 40px;
-      width: 80px;
+      width: 45px;
       display: flex;
       flex-direction: row;
     }
 
     .contributions_chart_switch span {
       display: flex;
-      width: 40px;
+      width: calc(45px / 2);
       height: 40px;
       justify-content: center;
       align-items: center;
@@ -1068,8 +1068,6 @@
       chart_data_date_monthly.push(e)
       chart_data_count_monthly.push(chart_data_date_count_monthly_j[e])
     }
-    console.log(chart_data_date_count_monthly_j)
-    console.log([chart_data_date_monthly, chart_data_count_monthly])
     contributions_load_success = 1
     draw_contributions_chart(chart_data_date_daily, chart_data_count_daily)
   }
