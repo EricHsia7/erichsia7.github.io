@@ -971,7 +971,7 @@
       chart_data_date_daily.push('')
       chart_data_count_daily.push(this_res[1])
       var thsdd = new Date(this_res[0])
-      var thedd_key = '_' + thsdd.getFullYear() + '_'(thsdd.getMonth() + 1)
+      var thedd_key = 't_' + thsdd.getFullYear() + '_' + (thsdd.getMonth() + 1)
       if (!(chart_data_date_count_monthly_j.hasOwnProperty(thedd_key) === true)) {
         chart_data_date_count_monthly_j[thedd_key] = 0
       }
