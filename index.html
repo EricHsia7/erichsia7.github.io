@@ -956,25 +956,42 @@
     }
   }
 
-  function load_contributions_callback(e) {
-    var chart_data_date = []
-    var chart_data_count = []
+  function load_contributions_callback(e, sw) {
+    var chart_data_date_daily = []
+    var chart_data_count_daily = []
+
+    var chart_data_date_count_monthly_j = {}
+
+    var chart_data_date_monthly = []
+    var chart_data_count_monthly = []
 
     var res = e.split(/\r?\n|\r|\n/g)
     for (var y = 0; y < res.length; y++) {
       var this_res = String(res[y]).split(',')
-      chart_data_date.push('')
-      chart_data_count.push(this_res[1])
+      chart_data_date_daily.push('')
+      chart_data_count_daily.push(this_res[1])
+      var thsdd = new Date(this_res[0])
+      var thedd_key = '_' + thsdd.getFullYear() + '_'(thsdd.getMonth() + 1)
+      if (!(chart_data_date_count_monthly_j.hasOwnProperty(thedd_key) === true)) {
+        chart_data_date_count_monthly_j[thedd_key] = 0
+      }
+      chart_data_date_count_monthly_j[thedd_key] = (parseInt(chart_data_date_count_monthly_j[thedd_key]) + this_res[0])
     }
 
+    for (var e in chart_data_date_count_monthly_j) {
+      chart_data_date_monthly.push(e)
+      chart_data_count_monthly.push(chart_data_date_count_monthly_j[e])
+    }
+    console.log(chart_data_date_count_monthly_j)
+    console.log([chart_data_date_monthly, chart_data_count_monthly])
     var ctx = document.getElementById('contributions_chart');
     var contributions_chart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: chart_data_date,
+        labels: chart_data_date_daily,
         datasets: [{
           label: 'Commits',
-          data: chart_data_count,
+          data: chart_data_count_daily,
           cubicInterpolationMode: 'monotone',
           tension: 0.9,
           borderColor: 'rgba(0, 0, 0, 0)',
