@@ -1043,6 +1043,9 @@
   }
 
   function switch_contributions_chart(sw) {
+    if (contributions_load_success === 0) {
+      return ''
+    }
     var l, d
     if (sw === 0) {
       l = chart_data_date_daily
