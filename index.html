@@ -1042,12 +1042,12 @@
       else {
         load_contributions_callback(String(localStorage.getItem('erichsia7_github_io_contributions_api_cahce')))
       }
-      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_contributions_update_time_api_cahce_time')))) > 3600000 || !(localStorage.hasOwnProperty('erichsia7_github_io_contributions_api_cahce_time') === true)) {
+      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_contributions_update_time_api_cahce_time')))) > 3600000 || !(localStorage.hasOwnProperty('erichsia7_github_io_contributions_update_time_api_cahce_time') === true)) {
         $.ajax({
           type: 'get', url: contributions_graph_update_time_api, dataType: 'text', success: function (e2) {
             load_contributions_update_time_callback(e2)
             localStorage.setItem('erichsia7_github_io_contributions_update_time_api_cahce', String(e2))
-            localStorage.setItem('erichsia7_github_io_contributions_api_cahce_time', nt)
+            localStorage.setItem('erichsia7_github_io_contributions_update_time_api_cahce_time', nt)
           }
         });
       }
