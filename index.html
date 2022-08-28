@@ -629,15 +629,9 @@
       height: auto;
     }
 
-    .content_foot_list a {
+    .content_foot_list li a {
       margin: 0px;
       padding: 0px;
-      display: inline-flex;
-      position: relative;
-      height: 25px;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
       text-decoration: none;
     }
 
@@ -866,36 +860,37 @@
 
     <div class="content_foot">
       <div class="content_foot_list">
-        <a href="https://twitter.com/erichsia7_32922" target="_blank">
-          <li>
-            <div class="content_foot_list_icon">
-              <svg stroke-miterlimit="10"
-                style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-                viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path
-                  d="M64 12.153C61.6442 13.1984 59.1158 13.9011 56.4548 14.2212C59.1683 12.5957 61.2515 10.0198 62.2319 6.9587C59.6935 8.46172 56.88 9.55461 53.8914 10.1423C51.4981 7.58892 48.0869 5.99586 44.3106 5.99586C37.058 5.99586 31.1785 11.8754 31.1785 19.1255C31.1785 20.1533 31.296 21.1562 31.5211 22.1165C20.6097 21.5663 10.9338 16.3395 4.45657 8.3967C3.32617 10.3399 2.68094 12.5957 2.68094 15.0015C2.68094 19.5556 4.99425 23.5745 8.52049 25.9304C6.36724 25.8628 4.34403 25.2701 2.5734 24.2873C2.5734 24.3423 2.5734 24.3973 2.5734 24.4523C2.5734 30.8171 7.1 36.1164 13.1021 37.3269C12.0042 37.6295 10.8438 37.7895 9.64589 37.7895C8.79809 37.7895 7.9753 37.707 7.17252 37.552C8.84811 42.7638 13.6948 46.5651 19.4393 46.6702C14.9478 50.1914 9.28576 52.2871 3.1311 52.2871C2.06823 52.2871 1.02536 52.2296 7.10543e-15 52.1046C5.80704 55.8309 12.712 58.0041 20.1271 58.0041C44.2781 58.0041 57.4877 37.9946 57.4877 20.6485C57.4877 20.0758 57.4727 19.5081 57.4477 18.9479C60.0186 17.1023 62.2419 14.7864 64 12.153"
-                  fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
-              </svg>
-            </div>
-            <div class="content_foot_list_text">@erichsia7_32922</div>
-          </li>
-        </a>
-        <a>
-          <li id="content_foot_email">
-            <div class="content_foot_list_icon">
-              <svg stroke-miterlimit="10"
-                style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-                viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path
-                  d="M4.8 57.6C3.52 57.6 2.4 57.12 1.44 56.16C0.48 55.2 0 54.08 0 52.8L0 11.2C0 9.92 0.48 8.8 1.44 7.84C2.4 6.88 3.52 6.4 4.8 6.4L59.2 6.4C60.48 6.4 61.6 6.88 62.56 7.84C63.52 8.8 64 9.92 64 11.2L64 52.8C64 54.08 63.52 55.2 62.56 56.16C61.6 57.12 60.48 57.6 59.2 57.6L4.8 57.6ZM32 33.44L4.8 15.6L4.8 52.8L59.2 52.8L59.2 15.6L32 33.44ZM32 28.64L58.88 11.2L5.2 11.2L32 28.64ZM4.8 15.6L4.8 11.2L4.8 52.8L4.8 15.6Z"
-                  fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
-              </svg>
-            </div>
-            <div class="content_foot_list_text">eric*****_**********@i****d.com (click to view hidden section)</div>
-          </li>
-        </a>
+        <li>
+          <div class="content_foot_list_icon">
+            <svg stroke-miterlimit="10"
+              style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+              viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path
+                d="M64 12.153C61.6442 13.1984 59.1158 13.9011 56.4548 14.2212C59.1683 12.5957 61.2515 10.0198 62.2319 6.9587C59.6935 8.46172 56.88 9.55461 53.8914 10.1423C51.4981 7.58892 48.0869 5.99586 44.3106 5.99586C37.058 5.99586 31.1785 11.8754 31.1785 19.1255C31.1785 20.1533 31.296 21.1562 31.5211 22.1165C20.6097 21.5663 10.9338 16.3395 4.45657 8.3967C3.32617 10.3399 2.68094 12.5957 2.68094 15.0015C2.68094 19.5556 4.99425 23.5745 8.52049 25.9304C6.36724 25.8628 4.34403 25.2701 2.5734 24.2873C2.5734 24.3423 2.5734 24.3973 2.5734 24.4523C2.5734 30.8171 7.1 36.1164 13.1021 37.3269C12.0042 37.6295 10.8438 37.7895 9.64589 37.7895C8.79809 37.7895 7.9753 37.707 7.17252 37.552C8.84811 42.7638 13.6948 46.5651 19.4393 46.6702C14.9478 50.1914 9.28576 52.2871 3.1311 52.2871C2.06823 52.2871 1.02536 52.2296 7.10543e-15 52.1046C5.80704 55.8309 12.712 58.0041 20.1271 58.0041C44.2781 58.0041 57.4877 37.9946 57.4877 20.6485C57.4877 20.0758 57.4727 19.5081 57.4477 18.9479C60.0186 17.1023 62.2419 14.7864 64 12.153"
+                fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+            </svg>
+          </div>
+          <div class="content_foot_list_text">
+            <a href="https://twitter.com/erichsia7_32922" target="_blank">
+              @erichsia7_32922
+            </a>
+          </div>
+        </li>
+
+        <li id="content_foot_email">
+          <div class="content_foot_list_icon">
+            <svg stroke-miterlimit="10"
+              style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+              viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path
+                d="M4.8 57.6C3.52 57.6 2.4 57.12 1.44 56.16C0.48 55.2 0 54.08 0 52.8L0 11.2C0 9.92 0.48 8.8 1.44 7.84C2.4 6.88 3.52 6.4 4.8 6.4L59.2 6.4C60.48 6.4 61.6 6.88 62.56 7.84C63.52 8.8 64 9.92 64 11.2L64 52.8C64 54.08 63.52 55.2 62.56 56.16C61.6 57.12 60.48 57.6 59.2 57.6L4.8 57.6ZM32 33.44L4.8 15.6L4.8 52.8L59.2 52.8L59.2 15.6L32 33.44ZM32 28.64L58.88 11.2L5.2 11.2L32 28.64ZM4.8 15.6L4.8 11.2L4.8 52.8L4.8 15.6Z"
+                fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+            </svg>
+          </div>
+          <div class="content_foot_list_text">eric*****_**********@i****d.com (click to view hidden section)</div>
+        </li>
       </div>
     </div>
   </div>
