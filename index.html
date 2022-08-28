@@ -881,21 +881,21 @@
             <div class="content_foot_list_text">@erichsia7_32922</div>
           </li>
         </a>
-
-        <li id="content_foot_email">
-          <div class="content_foot_list_icon">
-            <svg stroke-miterlimit="10"
-              style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-              viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink">
-              <path
-                d="M4.8 57.6C3.52 57.6 2.4 57.12 1.44 56.16C0.48 55.2 0 54.08 0 52.8L0 11.2C0 9.92 0.48 8.8 1.44 7.84C2.4 6.88 3.52 6.4 4.8 6.4L59.2 6.4C60.48 6.4 61.6 6.88 62.56 7.84C63.52 8.8 64 9.92 64 11.2L64 52.8C64 54.08 63.52 55.2 62.56 56.16C61.6 57.12 60.48 57.6 59.2 57.6L4.8 57.6ZM32 33.44L4.8 15.6L4.8 52.8L59.2 52.8L59.2 15.6L32 33.44ZM32 28.64L58.88 11.2L5.2 11.2L32 28.64ZM4.8 15.6L4.8 11.2L4.8 52.8L4.8 15.6Z"
-                fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
-            </svg>
-          </div>
-          <div class="content_foot_list_text">eric*****_**********@i****d.com (click to view hidden section)</div>
-        </li>
-
+        <a>
+          <li id="content_foot_email">
+            <div class="content_foot_list_icon">
+              <svg stroke-miterlimit="10"
+                style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+                viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path
+                  d="M4.8 57.6C3.52 57.6 2.4 57.12 1.44 56.16C0.48 55.2 0 54.08 0 52.8L0 11.2C0 9.92 0.48 8.8 1.44 7.84C2.4 6.88 3.52 6.4 4.8 6.4L59.2 6.4C60.48 6.4 61.6 6.88 62.56 7.84C63.52 8.8 64 9.92 64 11.2L64 52.8C64 54.08 63.52 55.2 62.56 56.16C61.6 57.12 60.48 57.6 59.2 57.6L4.8 57.6ZM32 33.44L4.8 15.6L4.8 52.8L59.2 52.8L59.2 15.6L32 33.44ZM32 28.64L58.88 11.2L5.2 11.2L32 28.64ZM4.8 15.6L4.8 11.2L4.8 52.8L4.8 15.6Z"
+                  fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+              </svg>
+            </div>
+            <div class="content_foot_list_text">eric*****_**********@i****d.com (click to view hidden section)</div>
+          </li>
+        </a>
       </div>
     </div>
   </div>
@@ -1247,11 +1247,15 @@
   }
 
   function email_protection() {
+    if ($('li#content_foot_email').attr('e') === '1') {
+      return ''
+    }
     var v_api = 'https://script.google.com/macros/s/AKfycbyfhQtIO8hweeY5eXk85JlImBP90n2C7kej1SdaelPmfStvFYQ3uVvUrqC_7ll-46cT/exec'
     grecaptcha.ready(function () {
       grecaptcha.execute('6Lc3Z7UhAAAAAPmVBZ9GRcGg08NM3d7Q4Wd3Y4Df', { action: 'submit' }).then(function (token) {
         var d = { 'res': token }
         $('li#content_foot_email .content_foot_list_text').text('verifying')
+        $('li#content_foot_email').attr('e', '1')
         $.ajax({
           url: v_api,
           method: "post",
@@ -1259,6 +1263,7 @@
           success: function (res) {
             if (res === 'error') {
               $('li#content_foot_email .content_foot_list_text').text('validation error')
+              $('li#content_foot_email').attr('e', '0')
             }
             else {
               var email_str = String(res)
