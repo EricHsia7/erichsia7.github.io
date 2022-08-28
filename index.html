@@ -1232,11 +1232,13 @@
   }
 
   function recaptcha_e() {
+    var v_api = 'https://script.google.com/macros/s/AKfycbwlImud6owQqBhkaSf3ctxnaT_W9YCED1ogpsjPX_vdBbnsrmP-06DZW55-JGn1_-nS/exec'
     grecaptcha.ready(function () {
       grecaptcha.execute('6Lc3Z7UhAAAAAPmVBZ9GRcGg08NM3d7Q4Wd3Y4Df', { action: 'submit' }).then(function (token) {
         var d = { 'res': token }
         $.ajax({
-          url: 'https://script.google.com/macros/s/AKfycbx7oN7bjyCwy-4dIqG05pN-4hvJZhERnILMSNTtnBYh2k-jfslwTm0DVnZESH1rdud7/exec', method: "post",
+          url: v_api,
+          method: "post",
           data: JSON.stringify(d),
           success: function (res) {
             console.log(res)
