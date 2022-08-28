@@ -1272,7 +1272,7 @@
             }
             else {
               var email_str = String(res)
-              $('li#content_foot_email .content_foot_list_text').text(email_str)
+              $('li#content_foot_email .content_foot_list_text').text(email_str).css({ 'user-select': 'text', '-webkit-user-select': 'text' })
             }
           }
         });
