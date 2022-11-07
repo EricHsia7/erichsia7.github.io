@@ -21,8 +21,10 @@ ju = setInterval(function () {
     document.getElementsByClassName("comments")[0].style.display = "none";
     if (document.querySelectorAll(".post-body").length > 0) {
      var text = document.querySelector(".post-body").innerText
-     var html = createHTML(JSON.parse(text))
+     var json = JSON.parse(text)
+     var html = createHTML(json)
      jkop.innerHTML = html
+     document.querySelectorAll(".post-title")[0].innerHTML = json.title
      document.getElementsByClassName("post-body entry-content float-container")[0].prepend(jkop);
     }
     jko += 1;
