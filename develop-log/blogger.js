@@ -27,7 +27,7 @@ ju = setInterval(function () {
  if (document.querySelector("body").getAttribute("data-js-state") === "loaded") {
   if (jko < 1) {
    if (document.getElementsByClassName("post-body entry-content float-container").length > 0) {
-    document.getElementsByClassName("comments")[0].style.display = "none";
+    //document.getElementsByClassName("comments")[0].style.display = "none";
     if (document.querySelectorAll(".post-body").length > 0) {
      var text = document.querySelector(".post-body").innerText
      var json = JSON.parse(text)
