@@ -1,3 +1,11 @@
+function chi(n) {
+ if (n < 10) {
+  return '0' + n
+ }
+ else {
+  return n
+ }
+}
 ju = setInterval(function () {
  if (document.querySelector("body").getAttribute("data-js-state") === "loaded") {
   if (jko < 1) {
