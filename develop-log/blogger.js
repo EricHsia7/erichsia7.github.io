@@ -8,6 +8,16 @@ function chi(n) {
 }
 function createHTML(json) {
  var html = ''
+ var changes_arr = []
+ var changes = function (title, description, prs) {
+  return '<li class="changes"><div class="changes_title">' + title + '</div><div class="changes_description">' + description + '</div><a href="' + prs + '"><div class="prs"></div></a></li>'
+ }
+ var list = json.changes
+ var list_len = list.length
+ for(var e = 0;e<list_len;e++) {
+  changes_arr.push(changes(list[e].title,list[e].description,list[e].prs))
+ }
+ html = changes_arr.join('')
  return html
 }
 var ju;
@@ -24,7 +34,8 @@ ju = setInterval(function () {
      var json = JSON.parse(text)
      var html = createHTML(json)
      jkop.innerHTML = html
-     document.querySelectorAll(".post-title")[0].innerHTML = json.title
+     document.querySelectorAll(".post-title")[0].innerHTML = json.repo_name
+     document.title = json.repo_name
      document.getElementsByClassName("post-body entry-content float-container")[0].prepend(jkop);
     }
     jko += 1;
