@@ -14,8 +14,8 @@ function createHTML(json) {
  }
  var list = json.changes
  var list_len = list.length
- for(var e = 0;e<list_len;e++) {
-  changes_arr.push(changes(list[e].title,list[e].description,list[e].prs))
+ for (var e = 0; e < list_len; e++) {
+  changes_arr.push(changes(list[e].title, list[e].description, list[e].prs))
  }
  html = changes_arr.join('')
  return html
@@ -26,17 +26,15 @@ var jko = 0;
 ju = setInterval(function () {
  if (document.querySelector("body").getAttribute("data-js-state") === "loaded") {
   if (jko < 1) {
-   var jkop = document.createElement("div");
    if (document.getElementsByClassName("post-body entry-content float-container").length > 0) {
     document.getElementsByClassName("comments")[0].style.display = "none";
     if (document.querySelectorAll(".post-body").length > 0) {
      var text = document.querySelector(".post-body").innerText
      var json = JSON.parse(text)
      var html = createHTML(json)
-     jkop.innerHTML = html
      document.querySelectorAll(".post-title")[0].innerHTML = json.repo_name
      document.title = json.repo_name
-     document.getElementsByClassName("post-body entry-content float-container")[0].prepend(jkop);
+     document.getElementsByClassName("post-body entry-content float-container")[0].html(html);
     }
     jko += 1;
     if (document.querySelectorAll(".FeaturedPost").length > 0) {
