@@ -6,6 +6,9 @@ function chi(n) {
   return n
  }
 }
+var ju;
+var gu = 0;
+var jko = 0;
 ju = setInterval(function () {
  if (document.querySelector("body").getAttribute("data-js-state") === "loaded") {
   if (jko < 1) {
