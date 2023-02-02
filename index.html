@@ -7,15 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --main-color: #f5f5f5;
-      --main-color-r: 245;
-      --main-color-g: 245;
-      --main-color-b: 245;
-      --main-color-text: #333;
-      --main-color-grey: #fff;
-      --main-color-comment: #888;
-      --main-color-content-foot: #ededed;
-      --d-btn-color: #e3e3e3;
+      --d-f5f5f5: #f5f5f5;
+      --d-f5f5f5-r: 245;
+      --d-f5f5f5-g: 245;
+      --d-f5f5f5-b: 245;
+      --d-333333: #333333;
+      --d-ffffff: #fff;
+      --d-888888: #888888;
+      --d-ededed: #ededed;
+      --d-e3e3e3: #e3e3e3;
       --d-border-color: #ededed;
       --d-border-radius: 15px;
       --d-border-radius-h: 9px;
@@ -25,16 +25,16 @@
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --main-color-r: 17;
-        --main-color-g: 17;
-        --main-color-b: 17;
-        --main-color: #111111;
-        --main-color-text: #ffffff;
-        --main-color-grey: #1c1c1c;
-        --d-btn-color: #333;
+        --d-f5f5f5-r: 17;
+        --d-f5f5f5-g: 17;
+        --d-f5f5f5-b: 17;
+        --d-f5f5f5: #111111;
+        --d-333333: #ffffff;
+        --d-ffffff: #1c1c1c;
+        --d-e3e3e3: #333;
         --d-border-color: #242424;
-        --main-color-comment: #888;
-        --main-color-content-foot: #0a0a0a;
+        --d-888888: #888;
+        --d-ededed: #0a0a0a;
       }
 
     }
@@ -42,7 +42,7 @@
     body {
       margin: 0px;
       padding: 0px;
-      background: var(--main-color);
+      background: var(--d-f5f5f5);
     }
 
     * {
@@ -67,8 +67,8 @@
       left: 0px;
       width: 100%;
       height: 50px;
-      background: var(--main-color);
-      color: var(--main-color-text);
+      background: var(--d-f5f5f5);
+      color: var(--d-333333);
     }
 
     .title-text {
@@ -130,7 +130,7 @@
       left: 50%;
       width: calc(100% - 20px);
       height: 1.5px;
-      background: var(--main-color-text);
+      background: var(--d-333333);
       border-radius: 2px;
       transform: translateX(-50%)
     }
@@ -138,7 +138,7 @@
     .title[d="1"] {
       -webkit-backdrop-filter: blur(17px);
       backdrop-filter: blur(17px);
-      background: rgba(var(--main-color-r), var(--main-color-g), var(--main-color-b), 0.6);
+      background: rgba(var(--d-f5f5f5-r), var(--d-f5f5f5-g), var(--d-f5f5f5-b), 0.6);
     }
 
     .title-list-icon {
@@ -182,7 +182,7 @@
     .content_title {
       font-weight: 700;
       font-size: 25px;
-      color: var(--main-color-text);
+      color: var(--d-333333);
       width: 100%;
       height: 40px;
       margin: 10px 0px;
@@ -198,7 +198,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-column-gap: 1px;
-      background: var(--main-color-grey);
+      background: var(--d-ffffff);
       border-radius: var(--d-border-radius) var(--d-border-radius) 0px 0px;
     }
 
@@ -222,7 +222,7 @@
       font-size: 23px;
       font-weight: 600;
       display: flex;
-      color: var(--main-color-text);
+      color: var(--d-333333);
       position: relative;
     }
 
@@ -234,14 +234,14 @@
       align-items: center;
       font-weight: 400;
       font-size: 16px;
-      color: var(--main-color-text);
+      color: var(--d-333333);
     }
 
     .stats_update_time,
     .contributions_update_time {
       width: var(--d-width);
       height: 40px;
-      color: var(--main-color-comment);
+      color: var(--d-888888);
       font-size: 13px;
       font-weight: 400;
       display: flex;
@@ -252,7 +252,7 @@
       box-sizing: border-box;
       padding-left: 10px;
       border-radius: 0px 0px var(--d-border-radius) var(--d-border-radius);
-      background: var(--main-color-grey);
+      background: var(--d-ffffff);
       border-top: 1px solid var(--d-border-color);
       position: relative;
     }
@@ -267,7 +267,7 @@
       width: calc(100% - 20px);
       transform: translateY(-50%);
       border-radius: var(--d-border-radius-h);
-      background: var(--d-btn-color);
+      background: var(--d-e3e3e3);
     }
 
     .stats_box[loading="1"] .stats_value::after {
@@ -278,7 +278,7 @@
       height: 20px;
       width: calc(80% - 30px);
       transform: translate(-50%, -50%);
-      background: var(--d-btn-color);
+      background: var(--d-e3e3e3);
       border-radius: var(--d-border-radius-h);
     }
 
@@ -290,7 +290,7 @@
       height: 100%;
       width: 100%;
       transform: translate(-50%, -50%);
-      background: var(--d-btn-color);
+      background: var(--d-e3e3e3);
       border-radius: var(--d-border-radius-h);
     }
 
@@ -323,7 +323,7 @@
       width: var(--d-width);
       height: auto;
       display: inline-block;
-      background: var(--main-color-grey);
+      background: var(--d-ffffff);
       border-radius: var(--d-border-radius);
     }
 
@@ -351,7 +351,7 @@
       align-items: center;
       overflow: hidden;
       font-size: 18px;
-      color: var(--main-color-text);
+      color: var(--d-333333);
       font-weight: 600;
       word-break: keep-all;
     }
@@ -362,7 +362,7 @@
       top: 50%;
       right: 10px;
       transform: translateY(-50%);
-      background: var(--d-btn-color);
+      background: var(--d-e3e3e3);
       display: flex;
       width: 47px;
       height: 25px;
@@ -370,7 +370,7 @@
       font-size: 14px;
       align-items: center;
       justify-content: center;
-      color: var(--main-color-text)
+      color: var(--d-333333)
     }
 
     .repo_open_description {
@@ -382,7 +382,7 @@
     }
 
     .repos[loading="1"] .repo .repo_title {
-      background: var(--d-btn-color);
+      background: var(--d-e3e3e3);
       border-radius: var(--d-border-radius-h);
       height: 25px;
       top: 50%;
@@ -417,7 +417,7 @@
       left: 10px;
       word-break: break-all;
       margin-bottom: 5px;
-      color: var(--main-color-text);
+      color: var(--d-333333);
       font-size: 15px;
       font-weight: 400;
     }
@@ -427,7 +427,7 @@
       height: 430px;
       margin: 0px;
       padding: 0px;
-      background: var(--main-color-content-foot);
+      background: var(--d-ededed);
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -439,8 +439,8 @@
       align-items: center;
       justify-content: center;
       height: 45px;
-      background: var(--d-btn-color);
-      color: var(--main-color-text);
+      background: var(--d-e3e3e3);
+      color: var(--d-333333);
       border-radius: var(--d-border-radius);
       font-weight: 400;
       margin: 5px 0px;
@@ -455,7 +455,7 @@
 
     .btn[qp="1"]::after {
       content: 'Loading...';
-      color: var(--main-color-text);
+      color: var(--d-333333);
       font-size: 16px;
       font-weight: 400;
       width: 100%;
@@ -477,9 +477,9 @@
       height: 150px;
       border-radius: 50%;
       overflow: hidden;
-      background: var(--main-color-grey);
+      background: var(--d-ffffff);
       position: relative;
-      border: 1px solid var(--main-color-grey);
+      border: 1px solid var(--d-ffffff);
     }
 
     .profile_photo img {
@@ -506,14 +506,14 @@
       justify-content: center;
       font-size: 23px;
       font-weight: 600;
-      color: var(--main-color-text);
+      color: var(--d-333333);
     }
 
     .user_description {
       display: inline-block;
       font-size: 18px;
       font-weight: 400;
-      color: var(--main-color-text);
+      color: var(--d-333333);
       text-align: center;
       padding: 5px 10px;
       box-sizing: border-box;
@@ -522,7 +522,7 @@
     .content_line {
       width: var(--d-width);
       height: 1px;
-      background: var(--main-color-grey);
+      background: var(--d-ffffff);
       position: relative;
     }
 
@@ -545,7 +545,7 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      color: var(--main-color-text);
+      color: var(--d-333333);
       font-size: 18px;
       font-weight: 300;
     }
@@ -584,7 +584,7 @@
       border-radius: var(--d-border-radius);
       position: relative;
       background: #171515;
-      border: 1px solid var(--main-color-grey);
+      border: 1px solid var(--d-ffffff);
     }
 
     .github-button .github-icon {
@@ -676,7 +676,7 @@
       align-items: center;
       box-sizing: border-box;
       padding-left: 3px;
-      color: var(--main-color-text);
+      color: var(--d-333333);
       font-size: 18px;
       font-weight: 400;
     }
@@ -697,7 +697,7 @@
       height: 40px;
       justify-content: center;
       align-items: center;
-      color: var(--main-color-text);
+      color: var(--d-333333);
       font-size: 17px;
       opacity: 0.6;
     }
@@ -712,7 +712,7 @@
     .pinned_repo {
       width: var(--pinned-repos-box-width);
       height: 400px;
-      background: var(--main-color-grey);
+      background: var(--d-ffffff);
       border-radius: var(--d-border-radius);
       overflow: hidden;
       position: relative;
@@ -721,7 +721,7 @@
     .pinned_repo_ogimage {
       width: var(--pinned-repos-box-width);
       height: calc(var(--pinned-repos-box-width) / 2);
-      background: var(--d-btn-color) var(--r-ogimage);
+      background: var(--d-e3e3e3) var(--r-ogimage);
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -750,7 +750,7 @@
       display: flex;
       align-items: center;
       font-weight: 500;
-      color: var(--main-color-text);
+      color: var(--d-333333);
     }
 
     .pinned_repo_desc {
@@ -767,7 +767,7 @@
       word-break: break-all;
       white-space: pre-line;
       vertical-align: text-top;
-      color: var(--main-color-text);
+      color: var(--d-333333);
     }
 
     .pinned_repo_languages_and_status {
@@ -816,10 +816,10 @@
       vertical-align: text-top;
       padding: 0px 5px 0px 5px;
       background: rgba(0, 0, 0, 0);
-      border: 1px solid var(--main-color-comment);
+      border: 1px solid var(--d-888888);
       box-sizing: border-box;
       align-items: center;
-      color: var(--main-color-comment);
+      color: var(--d-888888);
       border-radius: 10px;
       word-break: keep-all;
       white-space: nowrap;
@@ -866,11 +866,11 @@
       height: 90px;
       margin: 10px;
       margin-top: 5px;
-      border: 1px solid var(--main-color);
+      border: 1px solid var(--d-f5f5f5);
       box-sizing: border-box;
       border-radius: var(--d-border-radius-h);
       box-shadow: 0px 0px 12px -8px rgba(0, 0, 0, 0.2);
-      background: var(--main-color-grey);
+      background: var(--d-ffffff);
     }
 
     .pinned_repo_recent_event_title {
@@ -885,7 +885,7 @@
       word-break: keep-all;
       display: flex;
       white-space: nowrap;
-      color:var(--main-color-text)
+      color: var(--d-333333)
     }
 
     .pinned_repo_recent_event_time {
@@ -896,7 +896,7 @@
       overflow: hidden;
       font-size: 12px;
       height: 15px;
-      color: var(--main-color-comment);
+      color: var(--d-888888);
       align-items: center;
       display: flex;
       word-break: keep-all;
@@ -911,7 +911,7 @@
       overflow: hidden;
       font-size: 15px;
       height: 30px;
-      background: var(--main-color);
+      background: var(--d-f5f5f5);
       align-items: center;
       display: flex;
       word-break: keep-all;
@@ -926,7 +926,7 @@
       bottom: 0px;
       width: 100%;
       height: 120px;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--main-color-grey) 45%, var(--main-color-grey) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--d-ffffff) 45%, var(--d-ffffff) 100%);
     }
 
     .pinned_repo_github_link {
@@ -1018,7 +1018,7 @@
         scroll down
         <div class="scroll_hint_icon">
           <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path d="M32 64L-8.85555e-07 32L1.82857 30.1714L30.7429 59.2L30.7429-1.42109e-14L33.2571-1.42109e-14L33.2571 59.2L62.1714 30.1714L64 32L32 64Z" fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+            <path d="M32 64L-8.85555e-07 32L1.82857 30.1714L30.7429 59.2L30.7429-1.42109e-14L33.2571-1.42109e-14L33.2571 59.2L62.1714 30.1714L64 32L32 64Z" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
           </svg>
         </div>
       </div>
@@ -1104,7 +1104,7 @@
           <li>
             <div class="content_foot_list_icon">
               <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M64 12.153C61.6442 13.1984 59.1158 13.9011 56.4548 14.2212C59.1683 12.5957 61.2515 10.0198 62.2319 6.9587C59.6935 8.46172 56.88 9.55461 53.8914 10.1423C51.4981 7.58892 48.0869 5.99586 44.3106 5.99586C37.058 5.99586 31.1785 11.8754 31.1785 19.1255C31.1785 20.1533 31.296 21.1562 31.5211 22.1165C20.6097 21.5663 10.9338 16.3395 4.45657 8.3967C3.32617 10.3399 2.68094 12.5957 2.68094 15.0015C2.68094 19.5556 4.99425 23.5745 8.52049 25.9304C6.36724 25.8628 4.34403 25.2701 2.5734 24.2873C2.5734 24.3423 2.5734 24.3973 2.5734 24.4523C2.5734 30.8171 7.1 36.1164 13.1021 37.3269C12.0042 37.6295 10.8438 37.7895 9.64589 37.7895C8.79809 37.7895 7.9753 37.707 7.17252 37.552C8.84811 42.7638 13.6948 46.5651 19.4393 46.6702C14.9478 50.1914 9.28576 52.2871 3.1311 52.2871C2.06823 52.2871 1.02536 52.2296 7.10543e-15 52.1046C5.80704 55.8309 12.712 58.0041 20.1271 58.0041C44.2781 58.0041 57.4877 37.9946 57.4877 20.6485C57.4877 20.0758 57.4727 19.5081 57.4477 18.9479C60.0186 17.1023 62.2419 14.7864 64 12.153" fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+                <path d="M64 12.153C61.6442 13.1984 59.1158 13.9011 56.4548 14.2212C59.1683 12.5957 61.2515 10.0198 62.2319 6.9587C59.6935 8.46172 56.88 9.55461 53.8914 10.1423C51.4981 7.58892 48.0869 5.99586 44.3106 5.99586C37.058 5.99586 31.1785 11.8754 31.1785 19.1255C31.1785 20.1533 31.296 21.1562 31.5211 22.1165C20.6097 21.5663 10.9338 16.3395 4.45657 8.3967C3.32617 10.3399 2.68094 12.5957 2.68094 15.0015C2.68094 19.5556 4.99425 23.5745 8.52049 25.9304C6.36724 25.8628 4.34403 25.2701 2.5734 24.2873C2.5734 24.3423 2.5734 24.3973 2.5734 24.4523C2.5734 30.8171 7.1 36.1164 13.1021 37.3269C12.0042 37.6295 10.8438 37.7895 9.64589 37.7895C8.79809 37.7895 7.9753 37.707 7.17252 37.552C8.84811 42.7638 13.6948 46.5651 19.4393 46.6702C14.9478 50.1914 9.28576 52.2871 3.1311 52.2871C2.06823 52.2871 1.02536 52.2296 7.10543e-15 52.1046C5.80704 55.8309 12.712 58.0041 20.1271 58.0041C44.2781 58.0041 57.4877 37.9946 57.4877 20.6485C57.4877 20.0758 57.4727 19.5081 57.4477 18.9479C60.0186 17.1023 62.2419 14.7864 64 12.153" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
               </svg>
             </div>
             <div class="content_foot_list_text">
@@ -1119,7 +1119,7 @@
   <div class="title" m="0">
     <div class="title-list-icon">
       <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path d="M0 53.3333L0 48L64 48L64 53.3333L0 53.3333ZM0 34.6667L0 29.3333L64 29.3333L64 34.6667L0 34.6667ZM0 16L0 10.6667L64 10.6667L64 16L0 16Z" fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+        <path d="M0 53.3333L0 48L64 48L64 53.3333L0 53.3333ZM0 34.6667L0 29.3333L64 29.3333L64 34.6667L0 34.6667ZM0 16L0 10.6667L64 10.6667L64 16L0 16Z" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
       </svg>
     </div>
     <div class="title-list">
@@ -1401,7 +1401,7 @@
       }
       var ogimage = this_repo.ogImage
       if (ogimage === '') {
-        ogimage = 'var(--d-btn-color)'
+        ogimage = 'var(--d-e3e3e3)'
       }
       else {
         ogimage = `url(${ogimage})`
