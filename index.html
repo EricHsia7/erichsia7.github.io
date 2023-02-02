@@ -1514,6 +1514,14 @@
       }
     }
   }
+  function addPinnedReposSkeletonScreen() {
+    var data = { 'repos': [], 'update': '' }
+    var repo = { "full_name": "", "tags": ['', '', ''], "description": "", "pushed_at": "2023-02-02T08:31:59Z", "created_at": "2023-01-13T04:39:43Z", "updated_at": "2023-02-01T19:18:01Z", "active": false, "recentEvents": [{ "title": "", "url": "", "time": "" }, { "title": "", "url": "", "time": "" }, { "title": "", "url": "", "time": "" }], "ogImage": "", "languages": [{ "lang": "", "value": 0, "color": "#888888" }, { "lang": "", "value": 0, "color": "#888888" }, { "lang": "", "value": 0, "color": "#888888" }] }
+    for (var q = 0; q < 3; q++) {
+      data.repos.push(repo)
+    }
+    load_pinned_repos_callback(`"${String(JSON.stringify(data)).replaceAll('"', '""')}"`)
+  }
 
   function addreposskeletonscreen() {
     for (var i = 0; i < 10; i++) {
@@ -1621,6 +1629,7 @@
 
   $(document).ready(function () {
     addreposskeletonscreen()
+    addPinnedReposSkeletonScreen()
     evt()
   });
 </script>
