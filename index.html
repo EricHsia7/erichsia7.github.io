@@ -1027,7 +1027,12 @@
         </div>
       </div>
     </div>
-
+    <div class="content" s="pinned_repos" r="1">
+      <div class="content_title">Pinned Repositories</div>
+      <div class="center">
+        <div class="pinned_repos_box"></div>
+      </div>
+    </div>
     <div class="content" s="stats" r="1">
       <div class="content_title">Stats</div>
       <div class="center">
@@ -1408,6 +1413,7 @@
       var html = `<div class="pinned_repo"><div class="pinned_repo_ogimage" style="--r-ogimage:${ogimage}"></div><div class="pinned_repo_content"><div class="pinned_repo_name">${this_repo.full_name}</div><div class="pinned_repo_desc">${this_repo.description}</div><div class="pinned_repo_languages_and_status">${this_repo_languages.join('')}<div class="pinned_repo_active_status" status="${active_status}">${active_status_text}</div></div><div class="pinned_repo_tags">${this_repo_tags.join('')}</div>${recentEvent_htm}</div><div class="pinned_repo_github"><a href="https://github.com/${this_repo.full_name}"><div class="pinned_repo_github_link">View on GitHub</div></a></div></div>`
       allhtml.push(html)
     }
+    $('.pinned_repos_box').html(allhtml.join(''))
   }
   function load_repos_callback(e, loadmore, page) {
     if (!(loadmore === true)) {
