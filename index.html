@@ -813,7 +813,7 @@
       border-radius: 10px;
     }
 
-    .pinned_repo_activity_status {
+    .pinned_repo_active_status {
       height: 20px;
       display: inline-flex;
       position: relative;
@@ -831,7 +831,7 @@
       margin-left: 5px;
     }
 
-    .pinned_repo_activity_status[status="1"] {
+    .pinned_repo_active_status[status="1"] {
       border: 1px solid rgba(86, 171, 90, 1);
       color: rgba(86, 171, 90, 1);
     }
@@ -1376,7 +1376,38 @@
     var res_json = JSON.parse(res.substring(1, (res.length - 1)))
     var repos = res_json.repos
     var update = String(res_json.update)
-    console.log(repos, update)
+    var repos_len = repos.length
+    var allhtml = []
+    for (var q = 0; q < repos_len; q++) {
+      var this_repo = repos[q]
+      var recentEvent_htm = ''
+      if (this_repo.recentEvent.hasOwnProperty('title')) {
+        recentEvent_htm = `<div class="pinned_repo_recent_event"><div class="pinned_repo_recent_event_title">${this_repo.recentEvent.title}</div><div class="pinned_repo_recent_event_time">${this_repo.recentEvent.time}</div><a href="${this_repo.recentEvent.url}"><div class="pinned_repo_recent_event_view">View</div></a></div>`
+      }
+      var active_status = 0
+      var active_status_text = 'Unactive'
+      if (this_repo.active) {
+        active_status = '1'
+        active_status_text = 'Active'
+      }
+      var this_repo_tags = []
+      for (var o = 0; o < this_repo.tags.length; o++) {
+        this_repo_tags.push(`<div class="pinned_repo_tag">${this_repo.tags[o]}</div>`)
+      }
+      var this_repo_languages = []
+      for (var w = 0; w < this_repo.languages.length; w++) {
+        this_repo_languages.push(`<div class="pinned_repo_language" style="--r-lang-color:${this_repo.languages[w].color}">${this_repo.languages[w].lang}</div>`)
+      }
+      var ogimage = this_repo.ogimage
+      if (ogimage === '') {
+        ogimage = 'var(--main-color-text)'
+      }
+      else {
+        ogimage = `url(${ogimage})`
+      }
+      var html = `<div class="pinned_repo"><div class="pinned_repo_ogimage" style="--r-ogimage:${ogimage}"></div><div class="pinned_repo_content"><div class="pinned_repo_name">${this_repo.full_name}</div><div class="pinned_repo_desc">${this_repo.description}</div><div class="pinned_repo_languages_and_status">${this_repo_languages.join('')}<div class="pinned_repo_active_status" status="${active_status}">${active_status_text}</div></div><div class="pinned_repo_tags">${this_repo_tags.join('')}</div>${recentEvent_htm}</div><div class="pinned_repo_github"><a href="https://github.com/${this_repo.full_name}"><div class="pinned_repo_github_link">View on GitHub</div></a></div></div>`
+      allhtml.push(html)
+    }
   }
   function load_repos_callback(e, loadmore, page) {
     if (!(loadmore === true)) {
