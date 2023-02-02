@@ -712,9 +712,8 @@
     .pinned_repo {
       width: var(--pinned-repos-box-width);
       height: 400px;
-      background: #fff;
-      border-radius: 15px;
-      /*var*/
+      background: var(--main-color-grey);
+      border-radius: var(--d-border-radius);
       overflow: hidden;
       position: relative;
     }
@@ -722,18 +721,13 @@
     .pinned_repo_ogimage {
       width: var(--pinned-repos-box-width);
       height: calc(var(--pinned-repos-box-width) / 2);
-      background: var(--r-ogimage);
+      background: var(--d-btn-color) var(--r-ogimage);
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
       position: absolute;
       top: 0px;
       left: 0px;
-    }
-
-    .pinned_repo_ogimage img {
-      width: 100%;
-      height: auto;
     }
 
     .pinned_repo_content {
@@ -756,6 +750,7 @@
       display: flex;
       align-items: center;
       font-weight: 500;
+      color: var(--main-color-text);
     }
 
     .pinned_repo_desc {
@@ -772,7 +767,7 @@
       word-break: break-all;
       white-space: pre-line;
       vertical-align: text-top;
-      color: #333;
+      color: var(--main-color-text);
     }
 
     .pinned_repo_languages_and_status {
@@ -821,10 +816,10 @@
       vertical-align: text-top;
       padding: 0px 5px 0px 5px;
       background: rgba(0, 0, 0, 0);
-      border: 1px solid #888;
+      border: 1px solid var(--main-color-comment);
       box-sizing: border-box;
       align-items: center;
-      color: #888;
+      color: var(--main-color-comment);
       border-radius: 10px;
       word-break: keep-all;
       white-space: nowrap;
@@ -871,10 +866,11 @@
       height: 90px;
       margin: 10px;
       margin-top: 5px;
-      border: 1px solid #f5f5f5;
+      border: 1px solid var(--main-color);
       box-sizing: border-box;
-      border-radius: 10px;
+      border-radius: var(--d-border-radius-h);
       box-shadow: 0px 0px 12px -8px rgba(0, 0, 0, 0.2);
+      background: var(--main-color-grey);
     }
 
     .pinned_repo_recent_event_title {
@@ -885,11 +881,11 @@
       overflow: hidden;
       font-size: 16px;
       height: 25px;
-
       align-items: center;
       word-break: keep-all;
       display: flex;
       white-space: nowrap;
+      color:var(--main-color-text)
     }
 
     .pinned_repo_recent_event_time {
@@ -900,7 +896,7 @@
       overflow: hidden;
       font-size: 12px;
       height: 15px;
-      color: #888;
+      color: var(--main-color-comment);
       align-items: center;
       display: flex;
       word-break: keep-all;
@@ -915,7 +911,7 @@
       overflow: hidden;
       font-size: 15px;
       height: 30px;
-      background: #f5f5f5;
+      background: var(--main-color);
       align-items: center;
       display: flex;
       word-break: keep-all;
@@ -930,7 +926,7 @@
       bottom: 0px;
       width: 100%;
       height: 120px;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 45%, rgba(255, 255, 255, 1) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--main-color-grey) 45%, var(--main-color-grey) 100%);
     }
 
     .pinned_repo_github_link {
@@ -1405,7 +1401,7 @@
       }
       var ogimage = this_repo.ogImage
       if (ogimage === '') {
-        ogimage = 'var(--main-color-text)'
+        ogimage = 'var(--d-btn-color)'
       }
       else {
         ogimage = `url(${ogimage})`
