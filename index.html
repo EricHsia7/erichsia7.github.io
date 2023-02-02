@@ -771,6 +771,11 @@
       color: var(--d-333333);
     }
 
+    .pinned_repos_box_s[loading="1"] .pinned_repo_name {
+      background: var(--d-e3e3e3);
+      border-radius: var(--d-border-radius-h);
+    }
+
     .pinned_repo_desc {
       width: calc(100% - 10px);
       height: auto;
@@ -786,6 +791,11 @@
       white-space: pre-line;
       vertical-align: text-top;
       color: var(--d-333333);
+    }
+
+    .pinned_repos_box_s[loading="1"] .pinned_repo_desc {
+      background: var(--d-e3e3e3);
+      border-radius: var(--d-border-radius-h);
     }
 
     .pinned_repo_languages_and_status {
@@ -825,6 +835,17 @@
       top: 5px;
       left: 5px;
       border-radius: 10px;
+    }
+
+    .pinned_repos_box_s[loading="1"] .pinned_repo_language::after {
+      content: '';
+      height: 10px;
+      width: calc(100% - 20px - 5px);
+      background: var(--d-e3e3e3);
+      border-radius: 10px;
+      position: absolute;
+      top: 5px;
+      left: 20px;
     }
 
     .pinned_repo_active_status {
@@ -1390,11 +1411,13 @@
             load_pinned_repos_callback(e)
             localStorage.setItem('erichsia7_github_io_pinned_repos_api_cahce', String(e))
             localStorage.setItem('erichsia7_github_io_pinned_repos_api_cahce_time', nt)
+            $('.pinned_repos_box_s').attr('loading', '0')
           }
         });
       }
       else {
         load_pinned_repos_callback(String(localStorage.getItem('erichsia7_github_io_pinned_repos_api_cahce')))
+        $('.pinned_repos_box_s').attr('loading', '0')
       }
     }
   }
@@ -1521,6 +1544,7 @@
       data.repos.push(repo)
     }
     load_pinned_repos_callback(`"${String(JSON.stringify(data)).replaceAll('"', '""')}"`)
+    $('.pinned_repos_box_s').attr('loading', '1')
   }
 
   function addreposskeletonscreen() {
