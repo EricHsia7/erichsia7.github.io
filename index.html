@@ -1413,7 +1413,7 @@
         recentEvent_htm.push(`<div class="pinned_repo_recent_event" len="${recentEvent_l}"><div class="pinned_repo_recent_event_title">${this_repo.recentEvents[g].title}</div><div class="pinned_repo_recent_event_time">${this_repo.recentEvents[g].time}</div><a href="${this_repo.recentEvents[g].url}"><div class="pinned_repo_recent_event_view">View</div></a></div>`)
       }
       var active_status = 0
-      var active_status_text = 'Unactive'
+      var active_status_text = 'Inactive'
       if (this_repo.active) {
         active_status = '1'
         active_status_text = 'Active'
@@ -1438,7 +1438,7 @@
     }
     $('.pinned_repos_box_s').html(allhtml.join('')).css({ '--r-repo-count': repos_len })
   }
-  function load_repos_callback(e, loadmore, page) {
+  function load_repos_callback(e, loadmore, page) {ctive
     if (!(loadmore === true)) {
       $('.repos').html('')
     }
