@@ -47,6 +47,7 @@
     * {
       font-family: 'Noto Sans', sans-serif;
       -webkit-appearance: none;
+      appearance: none;
       outline: none;
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       user-select: none;
@@ -197,7 +198,6 @@
       grid-template-columns: 1fr 1fr 1fr;
       grid-column-gap: 1px;
       background: var(--main-color-grey);
-      border-radius: var(--d-border-radius);
       border-radius: var(--d-border-radius) var(--d-border-radius) 0px 0px;
     }
 
@@ -751,8 +751,7 @@
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -761,8 +760,7 @@
       <div class="space"></div>
       <div class="center">
         <div class="profile_photo">
-          <img
-            src="https://raw.githubusercontent.com/EricHsia7/erichsia7.github.io/main/profile/photo/EAD9446E-E981-425D-98D5-BDA45F4637BE.jpg">
+          <img src="https://raw.githubusercontent.com/EricHsia7/erichsia7.github.io/main/profile/photo/EAD9446E-E981-425D-98D5-BDA45F4637BE.jpg">
           <div class="profile_photo_mask"></div>
         </div>
       </div>
@@ -780,13 +778,8 @@
       <div class="scroll_hint">
         scroll down
         <div class="scroll_hint_icon">
-          <svg stroke-miterlimit="10"
-            style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-            viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path
-              d="M32 64L-8.85555e-07 32L1.82857 30.1714L30.7429 59.2L30.7429-1.42109e-14L33.2571-1.42109e-14L33.2571 59.2L62.1714 30.1714L64 32L32 64Z"
-              fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M32 64L-8.85555e-07 32L1.82857 30.1714L30.7429 59.2L30.7429-1.42109e-14L33.2571-1.42109e-14L33.2571 59.2L62.1714 30.1714L64 32L32 64Z" fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
           </svg>
         </div>
       </div>
@@ -848,13 +841,8 @@
         <a href="https://github.com/EricHsia7" target="_blank">
           <div class="github-button">
             <div class="github-icon">
-              <svg stroke-miterlimit="10"
-                style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-                viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path
-                  d="M28.4343 0.870753C13.6954 2.47281 1.84014 14.328 0.238084 28.7466C-1.68439 44.7671 8.24837 58.5448 22.3465 63.0306L22.3465 55.6611C22.3465 55.6611 21.0648 55.9816 19.4628 55.9816C14.977 55.9816 13.0545 52.1366 12.7341 49.8937C12.4137 48.6121 11.7729 47.6509 10.8117 46.6896C9.85043 46.3692 9.53002 46.3692 9.53002 46.0488C9.53002 45.408 10.4913 45.408 10.8117 45.408C12.7341 45.408 14.3362 47.6509 14.977 48.6121C16.5791 51.1754 18.5015 51.8162 19.4628 51.8162C20.7444 51.8162 21.7057 51.4958 22.3465 51.1754C22.6669 48.9325 23.6281 46.6896 25.5506 45.408C18.1811 43.8059 12.7341 39.6406 12.7341 32.5915C12.7341 29.067 14.3362 25.5424 16.5791 22.9792C16.2587 22.3383 15.9383 20.7363 15.9383 18.4934C15.9383 17.2117 15.9383 15.2893 16.8995 13.3668C16.8995 13.3668 21.3853 13.3668 25.871 17.5322C27.4731 16.8913 29.716 16.5709 31.9588 16.5709C34.2017 16.5709 36.4446 16.8913 38.3671 17.5322C42.5324 13.3668 47.3386 13.3668 47.3386 13.3668C47.9794 15.2893 47.9794 17.2117 47.9794 18.4934C47.9794 21.0567 47.659 22.3383 47.3386 22.9792C49.5815 25.5424 51.1835 28.7466 51.1835 32.5915C51.1835 39.6406 45.7365 43.8059 38.3671 45.408C40.2895 47.01 41.5712 49.8937 41.5712 52.7774L41.5712 63.351C54.7081 59.1857 64 47.01 64 32.9119C64 13.6872 47.659-1.37213 28.4343 0.870753Z"
-                  fill="#fff" fill-rule="nonzero" opacity="1" stroke="none" />
+              <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path d="M28.4343 0.870753C13.6954 2.47281 1.84014 14.328 0.238084 28.7466C-1.68439 44.7671 8.24837 58.5448 22.3465 63.0306L22.3465 55.6611C22.3465 55.6611 21.0648 55.9816 19.4628 55.9816C14.977 55.9816 13.0545 52.1366 12.7341 49.8937C12.4137 48.6121 11.7729 47.6509 10.8117 46.6896C9.85043 46.3692 9.53002 46.3692 9.53002 46.0488C9.53002 45.408 10.4913 45.408 10.8117 45.408C12.7341 45.408 14.3362 47.6509 14.977 48.6121C16.5791 51.1754 18.5015 51.8162 19.4628 51.8162C20.7444 51.8162 21.7057 51.4958 22.3465 51.1754C22.6669 48.9325 23.6281 46.6896 25.5506 45.408C18.1811 43.8059 12.7341 39.6406 12.7341 32.5915C12.7341 29.067 14.3362 25.5424 16.5791 22.9792C16.2587 22.3383 15.9383 20.7363 15.9383 18.4934C15.9383 17.2117 15.9383 15.2893 16.8995 13.3668C16.8995 13.3668 21.3853 13.3668 25.871 17.5322C27.4731 16.8913 29.716 16.5709 31.9588 16.5709C34.2017 16.5709 36.4446 16.8913 38.3671 17.5322C42.5324 13.3668 47.3386 13.3668 47.3386 13.3668C47.9794 15.2893 47.9794 17.2117 47.9794 18.4934C47.9794 21.0567 47.659 22.3383 47.3386 22.9792C49.5815 25.5424 51.1835 28.7466 51.1835 32.5915C51.1835 39.6406 45.7365 43.8059 38.3671 45.408C40.2895 47.01 41.5712 49.8937 41.5712 52.7774L41.5712 63.351C54.7081 59.1857 64 47.01 64 32.9119C64 13.6872 47.659-1.37213 28.4343 0.870753Z" fill="#fff" fill-rule="nonzero" opacity="1" stroke="none" />
               </svg>
             </div>
             <div class="github-text">@EricHsia7</div>
@@ -871,13 +859,8 @@
 
           <li>
             <div class="content_foot_list_icon">
-              <svg stroke-miterlimit="10"
-                style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-                viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path
-                  d="M64 12.153C61.6442 13.1984 59.1158 13.9011 56.4548 14.2212C59.1683 12.5957 61.2515 10.0198 62.2319 6.9587C59.6935 8.46172 56.88 9.55461 53.8914 10.1423C51.4981 7.58892 48.0869 5.99586 44.3106 5.99586C37.058 5.99586 31.1785 11.8754 31.1785 19.1255C31.1785 20.1533 31.296 21.1562 31.5211 22.1165C20.6097 21.5663 10.9338 16.3395 4.45657 8.3967C3.32617 10.3399 2.68094 12.5957 2.68094 15.0015C2.68094 19.5556 4.99425 23.5745 8.52049 25.9304C6.36724 25.8628 4.34403 25.2701 2.5734 24.2873C2.5734 24.3423 2.5734 24.3973 2.5734 24.4523C2.5734 30.8171 7.1 36.1164 13.1021 37.3269C12.0042 37.6295 10.8438 37.7895 9.64589 37.7895C8.79809 37.7895 7.9753 37.707 7.17252 37.552C8.84811 42.7638 13.6948 46.5651 19.4393 46.6702C14.9478 50.1914 9.28576 52.2871 3.1311 52.2871C2.06823 52.2871 1.02536 52.2296 7.10543e-15 52.1046C5.80704 55.8309 12.712 58.0041 20.1271 58.0041C44.2781 58.0041 57.4877 37.9946 57.4877 20.6485C57.4877 20.0758 57.4727 19.5081 57.4477 18.9479C60.0186 17.1023 62.2419 14.7864 64 12.153"
-                  fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+              <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path d="M64 12.153C61.6442 13.1984 59.1158 13.9011 56.4548 14.2212C59.1683 12.5957 61.2515 10.0198 62.2319 6.9587C59.6935 8.46172 56.88 9.55461 53.8914 10.1423C51.4981 7.58892 48.0869 5.99586 44.3106 5.99586C37.058 5.99586 31.1785 11.8754 31.1785 19.1255C31.1785 20.1533 31.296 21.1562 31.5211 22.1165C20.6097 21.5663 10.9338 16.3395 4.45657 8.3967C3.32617 10.3399 2.68094 12.5957 2.68094 15.0015C2.68094 19.5556 4.99425 23.5745 8.52049 25.9304C6.36724 25.8628 4.34403 25.2701 2.5734 24.2873C2.5734 24.3423 2.5734 24.3973 2.5734 24.4523C2.5734 30.8171 7.1 36.1164 13.1021 37.3269C12.0042 37.6295 10.8438 37.7895 9.64589 37.7895C8.79809 37.7895 7.9753 37.707 7.17252 37.552C8.84811 42.7638 13.6948 46.5651 19.4393 46.6702C14.9478 50.1914 9.28576 52.2871 3.1311 52.2871C2.06823 52.2871 1.02536 52.2296 7.10543e-15 52.1046C5.80704 55.8309 12.712 58.0041 20.1271 58.0041C44.2781 58.0041 57.4877 37.9946 57.4877 20.6485C57.4877 20.0758 57.4727 19.5081 57.4477 18.9479C60.0186 17.1023 62.2419 14.7864 64 12.153" fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
               </svg>
             </div>
             <div class="content_foot_list_text">
@@ -891,13 +874,8 @@
 
   <div class="title" m="0">
     <div class="title-list-icon">
-      <svg stroke-miterlimit="10"
-        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path
-          d="M0 53.3333L0 48L64 48L64 53.3333L0 53.3333ZM0 34.6667L0 29.3333L64 29.3333L64 34.6667L0 34.6667ZM0 16L0 10.6667L64 10.6667L64 16L0 16Z"
-          fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
+      <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M0 53.3333L0 48L64 48L64 53.3333L0 53.3333ZM0 34.6667L0 29.3333L64 29.3333L64 34.6667L0 34.6667ZM0 16L0 10.6667L64 10.6667L64 16L0 16Z" fill="var(--main-color-text)" fill-rule="nonzero" opacity="1" stroke="none" />
       </svg>
     </div>
     <div class="title-list">
@@ -1130,7 +1108,33 @@
       }
     }
   }
+  var pinned_repos_loaded = 0
 
+  function load_pinned_repos() {
+    var pinned_repos_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRo34Kw26e-gyhihir0iZz5dy5Q-Qt3pRqeGqhTYK1mxztcz4lVIPpb_dX7j_XzE4c4LtVqfexCXvrb/pub?gid=1782226489&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
+    if (pinned_repos_loaded === 0) {
+      var nt = new Date().getTime()
+      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_pinned_repos_api_cahce_time')))) > 3600000 || !(localStorage.hasOwnProperty('erichsia7_github_io_pinned_repos_api_cahce_time') === true)) {
+        $.ajax({
+          type: 'get', url: pinned_repos_api, dataType: 'text', success: function (e) {
+            load_pinned_repos_callback(e)
+            localStorage.setItem('erichsia7_github_io_pinned_repos_api_cahce', String(e))
+            localStorage.setItem('erichsia7_github_io_pinned_repos_api_cahce_time', nt)
+          }
+        });
+      }
+      else {
+        load_pinned_repos_callback(String(localStorage.getItem('erichsia7_github_io_pinned_repos_api_cahce')))
+      }
+    }
+  }
+  function load_pinned_repos_callback(e) {
+    var res = e.replaceAll('""', '"')
+    var res_json = JSON.parse(res.substring(1, (res.length - 1)))
+    var repos = res_json.repos
+    var update = String(repos.update)
+    console.log(repos,update)
+  }
   function load_repos_callback(e, loadmore, page) {
     if (!(loadmore === true)) {
       $('.repos').html('')
