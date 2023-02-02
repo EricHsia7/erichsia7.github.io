@@ -715,7 +715,7 @@
     }
 
     .pinned_repos_box_s {
-      width: calc((var(--pinned-repos-box-width) + 10px) * var(--r-repo-count));
+      width: calc((var(--pinned-repos-box-width) + 20px) * var(--r-repo-count) - 20px);
       position: relative;
       height: 400px;
     }
@@ -728,7 +728,7 @@
       overflow: hidden;
       position: relative;
       float: left;
-      margin-right: 10px;
+      margin-right: 20px;
     }
 
     .pinned_repos_box_s .pinned_repo:last-child {
@@ -963,6 +963,10 @@
       justify-content: center;
     }
 
+    .pinned_repo div[len="0"],
+    .pinned_repo a[len="0"] {
+      display: none;
+    }
 
     @media screen and (max-width:600px) {
       .title-list-icon {
@@ -1404,8 +1408,10 @@
     for (var q = 0; q < repos_len; q++) {
       var this_repo = repos[q]
       var recentEvent_htm = ''
+      var recentEvent_l = 0
       if (this_repo.recentEvent.hasOwnProperty('title')) {
-        recentEvent_htm = `<div class="pinned_repo_recent_event"><div class="pinned_repo_recent_event_title">${this_repo.recentEvent.title}</div><div class="pinned_repo_recent_event_time">${this_repo.recentEvent.time}</div><a href="${this_repo.recentEvent.url}"><div class="pinned_repo_recent_event_view">View</div></a></div>`
+        recentEvent_l = 1
+        recentEvent_htm = `<div class="pinned_repo_recent_event" len="${recentEvent_l}"><div class="pinned_repo_recent_event_title">${this_repo.recentEvent.title}</div><div class="pinned_repo_recent_event_time">${this_repo.recentEvent.time}</div><a href="${this_repo.recentEvent.url}"><div class="pinned_repo_recent_event_view">View</div></a></div>`
       }
       var active_status = 0
       var active_status_text = 'Unactive'
@@ -1428,7 +1434,7 @@
       else {
         ogimage = `url(${ogimage})`
       }
-      var html = `<div class="pinned_repo"><div class="pinned_repo_ogimage" style="--r-ogimage:${ogimage}"></div><div class="pinned_repo_content"><div class="pinned_repo_name">${this_repo.full_name}</div><div class="pinned_repo_desc">${this_repo.description}</div><div class="pinned_repo_languages_and_status">${this_repo_languages.join('')}<div class="pinned_repo_active_status" status="${active_status}">${active_status_text}</div></div><div class="pinned_repo_tags">${this_repo_tags.join('')}</div>${recentEvent_htm}</div><div class="pinned_repo_github"><a href="https://github.com/${this_repo.full_name}"><div class="pinned_repo_github_link">View on GitHub</div></a></div></div>`
+      var html = `<div class="pinned_repo"><div class="pinned_repo_ogimage" style="--r-ogimage:${ogimage}"></div><div class="pinned_repo_content"><div class="pinned_repo_name">${this_repo.full_name}</div><div class="pinned_repo_desc">${this_repo.description}</div><div class="pinned_repo_languages_and_status">${this_repo_languages.join('')}<div class="pinned_repo_active_status" status="${active_status}">${active_status_text}</div></div><div class="pinned_repo_tags" len="${this_repo_tags.length}">${this_repo_tags.join('')}</div>${recentEvent_htm}</div><div class="pinned_repo_github"><a href="https://github.com/${this_repo.full_name}"><div class="pinned_repo_github_link">View on GitHub</div></a></div></div>`
       allhtml.push(html)
     }
     $('.pinned_repos_box_s').html(allhtml.join('')).css({ '--r-repo-count': repos_len })
