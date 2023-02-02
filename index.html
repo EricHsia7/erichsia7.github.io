@@ -1132,7 +1132,7 @@
     var res = e.replaceAll('""', '"')
     var res_json = JSON.parse(res.substring(1, (res.length - 1)))
     var repos = res_json.repos
-    var update = String(repos.update)
+    var update = String(res_json.update)
     console.log(repos,update)
   }
   function load_repos_callback(e, loadmore, page) {
