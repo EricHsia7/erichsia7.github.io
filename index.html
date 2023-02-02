@@ -938,6 +938,7 @@
       color: rgba(0, 0, 0, 0);
       background: var(--d-e3e3e3);
       border-radius: var(--d-border-radius-h);
+      height:20px;
     }
 
     .pinned_repo_recent_event_time {
@@ -1008,6 +1009,7 @@
 
     .pinned_repos_box_s[loading="1"] .pinned_repo_github_link {
       color: rgba(0, 0, 0, 0);
+      background:var(--d-e3e3e3);
     }
 
     .pinned_repo div[len="0"],
@@ -1616,7 +1618,9 @@
       if (st > ($('.content[s="repos"]').offset().top - loadwh)) {
         load_repos()
       }
-
+if(st >$('.content[s="pinned_repos"]').offset().top - loadwh)) {
+  load_pinned_repos()
+  }
       check_title_list(st)
     })
 
