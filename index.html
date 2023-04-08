@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
+      --background-height: 180px;
       --d-f5f5f5: #f5f5f5;
       --d-f5f5f5-r: 245;
       --d-f5f5f5-g: 245;
@@ -21,6 +22,7 @@
       --d-border-radius-h: 9px;
       --d-width: clamp(180px, 90%, 600px);
       --pinned-repos-box-width: 280px;
+      --f-padding: clamp(30px, calc(100vw - 500px), 180px);
     }
 
     @media (prefers-color-scheme: dark) {
@@ -40,679 +42,95 @@
     }
 
     body {
-      margin: 0px;
       padding: 0px;
-      background: var(--d-f5f5f5);
-    }
-
-    * {
+      margin: 0px;
       font-family: 'Noto Sans', sans-serif;
-      -webkit-appearance: none;
-      appearance: none;
-      outline: none;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      user-select: none;
-      -webkit-user-select: none;
-      color: unset;
-    }
-
-    textarea,
-    input {
-      user-select: text;
-      -webkit-user-select: text;
-    }
-
-    .title {
-      position: fixed;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 50px;
       background: var(--d-f5f5f5);
-      color: var(--d-333333);
     }
 
-    .title-text {
-      font-weight: 700;
-      font-size: 24px;
+    .background {
       position: absolute;
       top: 0px;
-      left: 15px;
-      margin: 0px;
-      padding: 0px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      height: 50px;
-    }
-
-    .title-list {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      display: inline-flex;
-      flex-direction: row;
-    }
-
-    .title-list ul {
-      display: inline-flex;
-      flex-direction: row;
-      height: 50px;
-      position: absolute;
-      right: 5px;
-      top: 0px;
-      margin: 0px;
-      padding: 0px;
-    }
-
-    .title-list ul li {
-      list-style: none;
-      margin: 0px;
-      padding: 0px 10px;
-      font-size: 18px;
-      height: 50px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
-      position: relative;
-      font-weight: 500;
-      opacity: 0.8;
-    }
-
-    .title-list ul li[sl="1"] {
-      opacity: 1
-    }
-
-    .title-list ul li[sl="1"]::after {
-      content: '';
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      width: calc(100% - 20px);
-      height: 1.5px;
-      background: var(--d-333333);
-      border-radius: 2px;
-      transform: translateX(-50%)
-    }
-
-    .title[d="1"] {
-      -webkit-backdrop-filter: blur(17px);
-      backdrop-filter: blur(17px);
-      background: rgba(var(--d-f5f5f5-r), var(--d-f5f5f5-g), var(--d-f5f5f5-b), 0.6);
-    }
-
-    .title-list-icon {
-      display: none;
-      width: 50px;
-      height: 50px;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      top: 0px;
-      right: 0px;
-    }
-
-    .title-list-icon svg {
-      width: 25px;
-      height: 25px;
-    }
-
-    .content_box {
-      position: absolute;
-      top: 50px;
       left: 0px;
-      display: inline-block;
       width: 100%;
-      height: auto;
-      margin: 0px;
-      padding: 0px;
+      height: var(--background-height);
+      background: url(https://images.unsplash.com/photo-1671519821564-ced7e41ee7ae?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=milad-fakurian-rPdxh2xl2-E-unsplash.jpg&w=1920);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .avatar_picture {
+      position: absolute;
+      top: calc(var(--background-height) - (90px / 1.5));
+      left: var(--f-padding);
+      width: 90px;
+      height: 90px;
+      background: url(https://avatars.githubusercontent.com/u/54091924?s=400&u=afc56dbfdb1425f55e9c671903088bb77e382c2b&v=4);
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
     }
 
     .content {
-      position: relative;
-      width: 100%;
-      height: auto;
-      display: inline-block;
-      padding: 0px;
-      margin: 0px;
-      padding-top: 20px;
-      box-sizing: border-box;
-    }
-
-    .content_title {
-      font-weight: 700;
-      font-size: 25px;
-      color: var(--d-333333);
-      width: 100%;
-      height: 40px;
-      margin: 10px 0px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .stats_box,
-    .stats_contributions {
-      width: var(--d-width);
-      height: 160px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-column-gap: 1px;
-      background: var(--d-ffffff);
-      border-radius: var(--d-border-radius) var(--d-border-radius) 0px 0px;
-    }
-
-    .stats_contributions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .stats {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .stats_value {
-      width: 100%;
-      height: calc(100% - 50px);
-      justify-content: center;
-      align-items: center;
-      font-size: 23px;
-      font-weight: 600;
-      display: flex;
-      color: var(--d-333333);
-      position: relative;
-    }
-
-    .stats_name {
-      width: 100%;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: 400;
-      font-size: 16px;
-      color: var(--d-333333);
-    }
-
-    .stats_update_time,
-    .contributions_update_time {
-      width: var(--d-width);
-      height: 40px;
-      color: var(--d-888888);
-      font-size: 13px;
-      font-weight: 400;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      word-break: break-all;
-      overflow: hidden;
-      box-sizing: border-box;
-      padding-left: 10px;
-      border-radius: 0px 0px var(--d-border-radius) var(--d-border-radius);
-      background: var(--d-ffffff);
-      border-top: 1px solid var(--d-border-color);
-      position: relative;
-    }
-
-    .stats_update_time[loading="1"]::after,
-    .contributions_update_time[loading="1"]::after {
-      content: '';
       position: absolute;
-      top: 50%;
-      left: 10px;
-      height: 25px;
-      width: calc(100% - 20px);
-      transform: translateY(-50%);
-      border-radius: var(--d-border-radius-h);
-      background: var(--d-e3e3e3);
-    }
-
-    .stats_box[loading="1"] .stats_value::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      height: 20px;
-      width: calc(80% - 30px);
-      transform: translate(-50%, -50%);
-      background: var(--d-e3e3e3);
-      border-radius: var(--d-border-radius-h);
-    }
-
-    .stats_contributions[loading="1"] .stats_contributions_canvas::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      height: 100%;
-      width: 100%;
-      transform: translate(-50%, -50%);
-      background: var(--d-e3e3e3);
-      border-radius: var(--d-border-radius-h);
-    }
-
-    .stats_contributions_canvas {
-      width: calc(100% - 20px);
-      height: calc(100% - 20px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    #contributions_chart {
-      width: 100%;
-      height: 100%;
-    }
-
-    .center {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: auto;
-      padding: 0px;
-    }
-
-    .repos {
-      position: relative;
-      width: var(--d-width);
-      height: auto;
-      display: inline-block;
-      background: var(--d-ffffff);
-      border-radius: var(--d-border-radius);
-    }
-
-    .repo {
-      height: 50px;
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      display: block;
-      border-top: 1px solid var(--d-border-color);
-      box-sizing: border-box;
-    }
-
-    .repos .repo:first-child {
-      border-top: none;
-    }
-
-    .repo_title {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      height: calc(100% - 20px);
-      width: calc(100% - 20px - 47px * 2 - 5px - 5px);
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      font-size: 18px;
-      color: var(--d-333333);
-      font-weight: 600;
-      word-break: keep-all;
-    }
-
-    .repo_link,
-    .repo_open_description {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      background: var(--d-e3e3e3);
-      display: flex;
-      width: 47px;
-      height: 25px;
-      border-radius: var(--d-border-radius-h);
-      font-size: 14px;
-      align-items: center;
-      justify-content: center;
-      color: var(--d-333333)
-    }
-
-    .repo_open_description {
-      right: 62px;
-    }
-
-    .repo_description {
-      display: none;
-    }
-
-    .repos[loading="1"] .repo .repo_title {
-      background: var(--d-e3e3e3);
-      border-radius: var(--d-border-radius-h);
-      height: 25px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: rgba(0, 0, 0, 0);
-    }
-
-    .repo[desc="1"] {
-      display: inline-block;
-      min-height: 50px;
-      height: auto;
-    }
-
-    .repo[desc="1"] .repo_title {
-      position: relative;
-      height: 40px;
-      top: 5px;
-      left: 10px;
-    }
-
-    .repo[desc="1"] .repo_link,
-    .repo[desc="1"] .repo_open_description {
-      top: 12.5px;
-      transform: translateY(0px);
-    }
-
-    .repo[desc="1"] .repo_description {
-      display: inline-block;
-      position: relative;
-      width: calc(100% - 20px);
-      height: auto;
-      left: 10px;
-      word-break: break-all;
-      margin-bottom: 5px;
-      color: var(--d-333333);
-      font-size: 15px;
-      font-weight: 400;
-    }
-
-    .content_foot {
-      width: 100%;
-      height: 430px;
-      margin: 0px;
-      padding: 0px;
-      background: var(--d-ededed);
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .btn {
-      width: var(--d-width);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 45px;
-      background: var(--d-e3e3e3);
-      color: var(--d-333333);
-      border-radius: var(--d-border-radius);
-      font-weight: 400;
-      margin: 5px 0px;
-      position: relative;
-      font-size: 16px;
-    }
-
-    .btn[qp="1"] {
-      background: rgba(0, 0, 0, 0);
-      color: rgba(0, 0, 0, 0);
-    }
-
-    .btn[qp="1"]::after {
-      content: 'Loading...';
-      color: var(--d-333333);
-      font-size: 16px;
-      font-weight: 400;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      top: 0px;
+      top: calc(var(--background-height) + 40px);
       left: 0px;
+      width: 100%;
+      height: auto;
+      display: inline-block;
     }
 
-    .btn[qp="2"] {
-      display: none;
-    }
-
-    .profile_photo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      overflow: hidden;
-      background: var(--d-ffffff);
-      position: relative;
-      border: 1px solid var(--d-ffffff);
-    }
-
-    .profile_photo img {
-      width: 150px;
-      height: 150px;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-    }
-
-    .profile_photo_mask {
-      width: 150px;
-      height: 150px;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      background: rgba(0, 0, 0, 0);
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: var(--d-333333);
+      padding-left: var(--f-padding);
+      padding-right: var(--f-padding);
+      box-sizing: border-box;
     }
 
     .user_name {
-      display: inline-flex;
-      height: 30px;
+      position: relative;
+      width: 100%;
+      height: 38px;
+      box-sizing: border-box;
+      padding-left: var(--f-padding);
+      font-size: 25px;
+      display: flex;
       align-items: center;
-      justify-content: center;
+      font-weight: 700;
+      color: var(--d-333333);
+    }
+
+    .bio {
+      position: relative;
+      width: 100%;
+      min-height: 35px;
+      box-sizing: border-box;
+      padding-left: var(--f-padding);
+      padding-right: var(--f-padding);
       font-size: 23px;
-      font-weight: 600;
+      display: flex;
+      align-items: center;
       color: var(--d-333333);
     }
 
-    .user_description {
-      display: inline-block;
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--d-333333);
-      text-align: center;
-      padding: 5px 10px;
-      box-sizing: border-box;
-    }
-
-    .content_line {
-      width: var(--d-width);
-      height: 1px;
-      background: var(--d-ffffff);
-      position: relative;
-    }
-
-    .space,
-    .space-h {
-      width: 100%;
-      height: 75px;
-      background: rgba(0, 0, 0, 0);
-      position: relative;
-    }
-
-    .space-h {
-      height: 15px;
-    }
-
-    .scroll_hint {
-      width: 100%;
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: var(--d-333333);
-      font-size: 18px;
-      font-weight: 300;
-    }
-
-    .scroll_hint_icon {
-      width: 25px;
-      height: 40px;
-    }
-
-    .scroll_hint_icon svg {
-      width: 25px;
-      height: 25px;
-      animation-name: scrollhinticon;
-      animation-duration: 1500ms;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
-    }
-
-    @keyframes scrollhinticon {
-
-      0%,
-      100% {
-        transform: translateY(5px);
-      }
-
-      50% {
-        transform: translateY(15px);
-      }
-    }
 
 
 
-    .github-button {
-      width: 130px;
-      height: 45px;
-      border-radius: var(--d-border-radius);
-      position: relative;
-      background: #171515;
-      border: 1px solid var(--d-ffffff);
-    }
 
-    .github-button .github-icon {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 45px;
-      height: 45px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .github-button .github-icon svg {
-      width: 30px;
-      height: 30px
-    }
-
-    .github-button .github-text {
-      position: absolute;
-      top: 0px;
-      left: 48px;
-      width: calc(100% - 45px - 3px - 13px);
-      height: 45px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-family: sans-serif;
-      font-size: 15px;
-      line-height: 13px;
-      white-space: nowrap;
-      font-weight: 500;
-    }
-
-    .content_foot_list {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0px;
-      padding: 0px;
-      width: var(--d-width);
-      height: auto;
-      flex-direction: column;
-    }
-
-    .content_foot_list a {
-      margin: 0px;
-      padding: 0px;
-      display: inline-flex;
-      position: relative;
-      height: 25px;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-    }
-
-    .content_foot_list li {
-      list-style: none;
-      margin: 5px 0px;
-      padding: 0px;
-      display: inline-flex;
-      align-items: center;
-      flex-direction: row;
-      position: relative;
-      height: 25px;
-      width: auto;
-    }
-
-    .content_foot_list_icon {
-      width: 25px;
-      height: 25px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .content_foot_list_icon svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .content_foot_list_text {
-      width: auto;
-      height: 25px;
-      display: inline-flex;
-      align-items: center;
-      box-sizing: border-box;
-      padding-left: 3px;
-      color: var(--d-333333);
-      font-size: 18px;
-      font-weight: 400;
-    }
-
-    .contributions_chart_switch {
-      position: absolute;
-      right: 10px;
-      top: 0px;
-      height: 40px;
-      width: 45px;
-      display: flex;
-      flex-direction: row;
-    }
-
-    .contributions_chart_switch span {
-      display: flex;
-      width: calc(45px / 2);
-      height: 40px;
-      justify-content: center;
-      align-items: center;
-      color: var(--d-333333);
-      font-size: 17px;
-      opacity: 0.6;
-    }
-
-    .contributions_chart_switch span[o="1"] {
-      opacity: 1;
-    }
 
     .pinned_repos_box {
-      width: var(--d-width);
+      width: calc(100% - var(--f-padding) * 2);
       height: 400px;
       overflow-x: scroll;
       overflow-y: hidden;
       border-radius: var(--d-border-radius);
+      left: var(--f-padding);
+      top: 0px;
+      position: relative;
     }
 
     .pinned_repos_box_s {
@@ -745,11 +163,11 @@
       top: 0px;
       left: 0px;
     }
-    
-.pinned_repo_ogimage img {
-width:100%;
-height:100%;
-}
+
+    .pinned_repo_ogimage img {
+      width: 100%;
+      height: 100%;
+    }
 
     .pinned_repo_content {
       position: absolute;
@@ -1020,48 +438,144 @@ height:100%;
       display: none;
     }
 
-    @media screen and (max-width:600px) {
-      .title-list-icon {
-        display: flex;
-      }
 
-      .title {
-        overflow: hidden;
-      }
 
-      .title[m="1"] {
-        height: calc(50px + 40px * 3);
-      }
 
-      .title-list {
-        top: 50px;
-        width: 100%;
-      }
 
-      .title-list ul {
-        height: calc(40px * 3);
-        flex-direction: column;
-        right: auto;
-        left: 0px;
-        width: 100%;
-      }
+    .stats_s {
+      padding-top: 0px;
+    }
 
-      .title-list ul li {
-        height: 40px;
-        box-sizing: border-box;
-        padding: 0px;
-        padding-left: 15px;
-        justify-content: flex-start;
-        width: 100%;
-      }
+    .stats_box,
+    .stats_contributions {
+      width: calc(100% - var(--f-padding) * 2);
 
-      .title-list ul li[sl="1"]::after {
-        display: none;
-      }
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 20px;
 
-      .content_box[m="1"] {
-        transform: translateY(calc(40px * 3));
-      }
+      position: relative;
+      left: var(--f-padding);
+    }
+
+    .stats_contributions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .stats {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background: var(--d-ffffff);
+      border-radius: var(--d-border-radius);
+      padding-bottom: 100%;
+      box-sizing: border-box;
+    }
+
+    .stats_value {
+      width: 100%;
+      height: calc(100% - clamp(40px, calc(40px + (100vw - 400px) * 0.04), 60px) / 2);
+      justify-content: center;
+      align-items: center;
+      font-size: clamp(15px, calc(23px + (100vw - 400px) * 0.023), 70px);
+      font-weight: 600;
+      display: flex;
+      color: var(--d-333333);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .stats_name {
+      width: 100%;
+      height: clamp(40px, calc(40px + (100vw - 400px) * 0.04), 60px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 400;
+      font-size: clamp(10px, calc(16px + (100vw - 400px) * 0.016), 40px);
+      color: var(--d-333333);
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+    }
+
+    .stats_update_time,
+    .contributions_update_time {
+      width: calc(100% - var(--f-padding) * 2);
+      height: 40px;
+      color: var(--d-888888);
+      font-size: 13px;
+      font-weight: 400;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      word-break: break-all;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding-left: 10px;
+      position: relative;
+      left: var(--f-padding);
+
+    }
+
+    .stats_update_time[loading="1"]::after,
+    .contributions_update_time[loading="1"]::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      height: 25px;
+      width: calc(100% - 20px);
+      transform: translateY(-50%);
+      border-radius: var(--d-border-radius-h);
+      background: var(--d-e3e3e3);
+    }
+
+    .stats_box[loading="1"] .stats_value::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 20px;
+      width: calc(80% - 30px);
+      transform: translate(-50%, -50%);
+      background: var(--d-e3e3e3);
+      border-radius: var(--d-border-radius-h);
+    }
+
+    .stats_contributions[loading="1"] .stats_contributions_canvas::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 100%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      background: var(--d-e3e3e3);
+      border-radius: var(--d-border-radius-h);
+    }
+
+    .stats_contributions_canvas {
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    #contributions_chart {
+      width: 100%;
+      height: 100%;
+    }
+
+    .trend_svg {
+      width: calc(100% - var(--f-padding) * 2);
+      position: relative;
+      left: var(--f-padding);
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1070,518 +584,72 @@ height:100%;
 </head>
 
 <body>
-  <div class="content_box">
-    <div class="content" r="0" s="profile">
-      <div class="space"></div>
-      <div class="center">
-        <div class="profile_photo">
-          <img src="https://raw.githubusercontent.com/EricHsia7/erichsia7.github.io/main/profile/photo/EAD9446E-E981-425D-98D5-BDA45F4637BE.jpg">
-          <div class="profile_photo_mask"></div>
-        </div>
-      </div>
-      <div class="center">
-        <div class="user_name">EricHsia7</div>
-      </div>
 
-      <div class="center">
-        <div class="user_description">
-          Hi there👋<br />
-          ⌨️Coding|🎧Music|📖Reading|📝Write fiction
-        </div>
-      </div>
-
-      <div class="scroll_hint">
-        scroll down
-        <div class="scroll_hint_icon">
-          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path d="M32 64L-8.85555e-07 32L1.82857 30.1714L30.7429 59.2L30.7429-1.42109e-14L33.2571-1.42109e-14L33.2571 59.2L62.1714 30.1714L64 32L32 64Z" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
-          </svg>
-        </div>
+  <div class="background"></div>
+  <div class="avatar_picture"></div>
+  <div class="content">
+    <div class="user_name">@EricHsia7</div>
+    <div class="bio">⌨️Coding|🎧Music|📖Reading|📝Write fiction</div>
+    <div class="pinned_repository">
+      <h2>Pinned repository</h2>
+      <div class="pinned_repos_box">
+        <div class="pinned_repos_box_s"></div>
       </div>
     </div>
-    <div class="content" s="pinned_repos" r="1">
-      <div class="content_title">Pinned Repositories</div>
-      <div class="center">
-        <div class="pinned_repos_box">
-          <div class="pinned_repos_box_s"></div>
+    <div class="trend">
+      <h2>Contribution Trend</h2>
+      <div class="trend_svg"></div>
+    </div>
+    <div class="stats_s">
+      <h2>Stats</h2>
+      <div class="stats_box" loading="1">
+        <div class="stats">
+          <div class="stats_value" d="commit"></div>
+          <div class="stats_name">Commits</div>
+        </div>
+        <div class="stats">
+          <div class="stats_value" d="pulls"></div>
+          <div class="stats_name">Pulls</div>
+        </div>
+        <div class="stats">
+          <div class="stats_value" d="issues"></div>
+          <div class="stats_name">Issues</div>
         </div>
       </div>
+      <div class="stats_update_time" loading="1"></div>
     </div>
-    <div class="content" s="stats" r="1">
-      <div class="content_title">Stats</div>
-      <div class="center">
-        <div class="stats_box" loading="1">
-          <div class="stats">
-            <div class="stats_value" d="commit"></div>
-            <div class="stats_name">Commits</div>
-          </div>
-          <div class="stats">
-            <div class="stats_value" d="pulls"></div>
-            <div class="stats_name">Pulls</div>
-          </div>
-          <div class="stats">
-            <div class="stats_value" d="issues"></div>
-            <div class="stats_name">Issues</div>
-          </div>
-        </div>
-      </div>
-      <div class="center">
-        <div class="stats_update_time" loading="1"></div>
-      </div>
-      <div class="space-h"></div>
-      <div class="center">
-        <div class="stats_contributions" loading="1">
-          <div class="stats_contributions_canvas">
-            <canvas id="contributions_chart"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="center">
-        <div class="contributions_update_time" loading="1">
-          <span id="contributions_update_time_text"></span>
-          <div class="contributions_chart_switch">
-            <span k="daily" o="1">D</span>
-            <span k="monthly">M</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="content" s="repos" r="1">
-      <div class="content_title">Repositories</div>
-      <div class="center">
-        <div class="repos" loading="1"></div>
-      </div>
-      <div class="center">
-        <div class="btn" id="loadmorerepos" qp="1" page="1">Load more</div>
-      </div>
-    </div>
-    <div class="content" s="github" r="1">
-      <div class="content_title">GitHub</div>
-      <div class="space"></div>
-      <div class="center">
-        <a href="https://github.com/EricHsia7" target="_blank">
-          <div class="github-button">
-            <div class="github-icon">
-              <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M28.4343 0.870753C13.6954 2.47281 1.84014 14.328 0.238084 28.7466C-1.68439 44.7671 8.24837 58.5448 22.3465 63.0306L22.3465 55.6611C22.3465 55.6611 21.0648 55.9816 19.4628 55.9816C14.977 55.9816 13.0545 52.1366 12.7341 49.8937C12.4137 48.6121 11.7729 47.6509 10.8117 46.6896C9.85043 46.3692 9.53002 46.3692 9.53002 46.0488C9.53002 45.408 10.4913 45.408 10.8117 45.408C12.7341 45.408 14.3362 47.6509 14.977 48.6121C16.5791 51.1754 18.5015 51.8162 19.4628 51.8162C20.7444 51.8162 21.7057 51.4958 22.3465 51.1754C22.6669 48.9325 23.6281 46.6896 25.5506 45.408C18.1811 43.8059 12.7341 39.6406 12.7341 32.5915C12.7341 29.067 14.3362 25.5424 16.5791 22.9792C16.2587 22.3383 15.9383 20.7363 15.9383 18.4934C15.9383 17.2117 15.9383 15.2893 16.8995 13.3668C16.8995 13.3668 21.3853 13.3668 25.871 17.5322C27.4731 16.8913 29.716 16.5709 31.9588 16.5709C34.2017 16.5709 36.4446 16.8913 38.3671 17.5322C42.5324 13.3668 47.3386 13.3668 47.3386 13.3668C47.9794 15.2893 47.9794 17.2117 47.9794 18.4934C47.9794 21.0567 47.659 22.3383 47.3386 22.9792C49.5815 25.5424 51.1835 28.7466 51.1835 32.5915C51.1835 39.6406 45.7365 43.8059 38.3671 45.408C40.2895 47.01 41.5712 49.8937 41.5712 52.7774L41.5712 63.351C54.7081 59.1857 64 47.01 64 32.9119C64 13.6872 47.659-1.37213 28.4343 0.870753Z" fill="#fff" fill-rule="nonzero" opacity="1" stroke="none" />
-              </svg>
-            </div>
-            <div class="github-text">@EricHsia7</div>
-          </div>
-        </a>
-      </div>
-      <div class="space"></div>
-      <div class="space-h"></div>
-    </div>
-
-    <div class="content_foot">
-      <div class="content_foot_list">
-        <a href="https://twitter.com/erichsia7_32922" target="_blank">
-
-          <li>
-            <div class="content_foot_list_icon">
-              <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M64 12.153C61.6442 13.1984 59.1158 13.9011 56.4548 14.2212C59.1683 12.5957 61.2515 10.0198 62.2319 6.9587C59.6935 8.46172 56.88 9.55461 53.8914 10.1423C51.4981 7.58892 48.0869 5.99586 44.3106 5.99586C37.058 5.99586 31.1785 11.8754 31.1785 19.1255C31.1785 20.1533 31.296 21.1562 31.5211 22.1165C20.6097 21.5663 10.9338 16.3395 4.45657 8.3967C3.32617 10.3399 2.68094 12.5957 2.68094 15.0015C2.68094 19.5556 4.99425 23.5745 8.52049 25.9304C6.36724 25.8628 4.34403 25.2701 2.5734 24.2873C2.5734 24.3423 2.5734 24.3973 2.5734 24.4523C2.5734 30.8171 7.1 36.1164 13.1021 37.3269C12.0042 37.6295 10.8438 37.7895 9.64589 37.7895C8.79809 37.7895 7.9753 37.707 7.17252 37.552C8.84811 42.7638 13.6948 46.5651 19.4393 46.6702C14.9478 50.1914 9.28576 52.2871 3.1311 52.2871C2.06823 52.2871 1.02536 52.2296 7.10543e-15 52.1046C5.80704 55.8309 12.712 58.0041 20.1271 58.0041C44.2781 58.0041 57.4877 37.9946 57.4877 20.6485C57.4877 20.0758 57.4727 19.5081 57.4477 18.9479C60.0186 17.1023 62.2419 14.7864 64 12.153" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
-              </svg>
-            </div>
-            <div class="content_foot_list_text">
-              @erichsia7_32922
-            </div>
-          </li>
-        </a>
-      </div>
-    </div>
+    <div class="other_repository"></div>
   </div>
 
-  <div class="title" m="0">
-    <div class="title-list-icon">
-      <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path d="M0 53.3333L0 48L64 48L64 53.3333L0 53.3333ZM0 34.6667L0 29.3333L64 29.3333L64 34.6667L0 34.6667ZM0 16L0 10.6667L64 10.6667L64 16L0 16Z" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
-      </svg>
-    </div>
-    <div class="title-list">
-      <ul>
-        <li s="stats">Stats</li>
-        <li s="repos">Repos</li>
-        <li s="github">GitHub</li>
-      </ul>
-    </div>
-    <div class="title-text">
-      EricHsia7
-    </div>
-  </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <script>
-function lightBox(Allelement) {
- if (Allelement.length === undefined) {
- Allelement = [Allelement];
- }
- for (var k = 0; k < Allelement.length; k++) {
- lightbox_e(Allelement[k]);
- }
-}
-function lightbox_e(element) {
- element.addEventListener("click", function (event) {
- var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
- var image_id = "light-box-";
- for (var i = 0; i < 32; i++) {
- var idrandomNumber = Math.floor(Math.random() * idchars.length);
- image_id += idchars.substring(idrandomNumber, idrandomNumber + 1);
- }
- var imageURL = element.getAttribute("src");
- var scroll_x = document.documentElement.scrollLeft;
- var scroll_y = document.documentElement.scrollTop;
- var element_rect = element.getBoundingClientRect();
- var element_x = element_rect.x;
- var element_y = element_rect.y;
- var element_width = element.clientWidth;
- var element_height = element.clientHeight;
- var window_width = window.innerWidth;
- var window_height = window.innerHeight;
- var element_max = Math.max(element_width, element_height);
- var window_max = Math.max(window_height, window_width);
- var aim_width = 0;
- var aim_height = 0;
- if (element_max === element_width) {
- if (window_max === window_height) {
-  aim_width = window_width;
-  aim_height = (element_height * aim_width) / element_width;
- } else {
-  if (window_max === window_width) {
-  aim_height = window_height;
-  aim_width = (element_width * aim_height) / element_height;
-  }
- }
- } else {
- if (element_max === element_height) {
-  if (window_max === window_height) {
-  aim_width = window_width;
-  aim_height = (element_height * aim_width) / element_width;
-  } else {
-  if (window_max === window_width) {
-  aim_height = window_height;
-  aim_width = (element_width * aim_height) / element_height;
-  }
-  }
- }
- }
- if (aim_height > window_height) {
- if (aim_width > aim_height) {
-  aim_width = aim_width * (window_height / aim_height);
-  aim_height = window_height;
- } else {
-  aim_width = aim_width * (window_height / aim_height);
-  aim_height = window_height;
- }
- } else {
- if (aim_width > window_width) {
-  if (aim_width > aim_height) {
-  aim_height = aim_height * (window_width / aim_width);
-  aim_width = window_width;
-  } else {
-  aim_height = aim_height * (window_width / aim_width);
-  aim_width = window_width;
-  }
- }
- }
-
- var aim_x = (window_width - aim_width) / 2;
- var aim_y = (window_height - aim_height) / 2;
- var transition_duration = 400;
- var transition_timing_fn = "cubic-bezier(0.8, 0, 0.2, 1)";
- var clone = document.createElement("div");
- clone.id = image_id;
- clone.classList.add(image_id);
- clone.innerHTML = `<div class="${image_id}-img"><canvas></canvas></div><style>.${image_id}-hidden {opacity:0;} .${image_id} .${image_id}-img {position:absolute;top:${element_y}px;left:${element_x}px;width:${element_width}px;height:${element_height}px;margin:0px;padding:0px;border:none;transform-origin:top left;} .${image_id} .${image_id}-img-source {position:absolute;top:${aim_y}px;left:${aim_x}px;width:${aim_width}px;height:${aim_height}px;margin:0px;padding:0px;border:none;transform-origin:top left;background:var(--light-box-url);background-size:${aim_width}px ${aim_height}px;background-position:center center;background-repeat:no-repeat;}.${image_id} {position:fixed;top:0px;left:0px;width:${window_width}px;height:${window_height}px;background:rgba(0,0,0,0);user-select:none;--webkit-user-select:none;} .${image_id}-animation-zoom-open {animation-name:animation-zoom-${image_id};animation-fill-mode:forwards;animation-duration:${transition_duration}ms;animation-timing-function:cubic-${transition_timing_fn};} .${image_id}-animation-bg-open {animation-name:animation-bg-${image_id};animation-fill-mode:forwards;animation-duration:${transition_duration}ms;animation-timing-function:${transition_timing_fn};} .${image_id}-animation-zoom-close {animation-name:animation-zoom-${image_id};animation-fill-mode:forwards;animation-duration:${transition_duration}ms;animation-timing-function:${transition_timing_fn};animation-direction: reverse;}.${image_id}-animation-bg-close {animation-name:animation-bg-${image_id};animation-fill-mode:forwards;animation-duration:${transition_duration}ms;animation-timing-function:${transition_timing_fn};animation-direction: reverse;} .${image_id}-zoom-open {transform:translateX(${aim_x - element_x }px) translateY(${aim_y - element_y}px) scaleX(${aim_width / element_width}) scaleY(${ aim_height / element_height })}.${image_id}-bg-open {background:rgba(0,0,0,1)}@keyframes animation-zoom-${image_id} {0%{transform:translateX(0px) translateY(0px) scaleX(1) scaleY(1)}100%{transform:translateX(${aim_x - element_x}px) translateY(${ aim_y - element_y }px) scaleX(${aim_width / element_width}) scaleY(${aim_height / element_height})}} @keyframes animation-bg-${image_id} {0%{background:rgba(0,0,0,0)}100%{background:rgba(0,0,0,1)}}</style>`;
- document.body.appendChild(clone);
- var c = document.querySelector(`#${image_id} .${image_id}-img canvas`);
- c.width = element_width;
- c.height = element_height;
- var ctx = c.getContext("2d");
- ctx.drawImage(element, 0, 0, element_width, element_height);
- document.querySelector(`#${image_id}`).classList.add(`${image_id}-animation-bg-open`);
- document.querySelector(`#${image_id} .${image_id}-img`).classList.add(`${image_id}-animation-zoom-open`);
- element.classList.add(`${image_id}-hidden`);
- document.querySelector(`#${image_id}`).addEventListener(
- "animationend",
- function (event2) {
-  document.querySelector(`#${image_id}`).classList.add(`${image_id}-bg-open`);
-  document.querySelector(`#${image_id} .${image_id}-img`).classList.add(`${image_id}-zoom-open`);
-  document.querySelector(`#${image_id}`).classList.remove(`${image_id}-animation-bg-open`);
-  document.querySelector(`#${image_id} .${image_id}-img`).classList.remove(`${image_id}-animation-zoom-open`);
-  var source_img = document.createElement("div");
-  source_img.classList.add(`${image_id}-img-source`);
-  source_img.style.setProperty("--light-box-url", "url(" + imageURL + ")");
-
-  document.querySelector(`#${image_id}`).appendChild(source_img);
-
-  document.querySelector(`#${image_id}`).addEventListener(
-  "click",
-  function (event3) {
-  document.querySelector(`#${image_id} .${image_id}-img-source`).remove();
-
-  document.querySelector(`#${image_id}`).classList.add(`${image_id}-animation-bg-close`);
-  document.querySelector(`#${image_id} .${image_id}-img`).classList.add(`${image_id}-animation-zoom-close`);
-
-  document.querySelector(`#${image_id}`).classList.remove(`${image_id}-bg-open`);
-  document.querySelector(`#${image_id} .${image_id}-img`).classList.remove(`${image_id}-zoom-open`);
-  document.querySelector(`#${image_id}`).addEventListener(
-  "animationend",
-  function (event4) {
-   document.querySelector(`#${image_id}`).remove();
-   element.classList.remove(`${image_id}-hidden`);
-  },
-  { once: true }
-  );
-  },
-  { once: true }
-  );
- },
- { once: true }
- );
- });
-}
-
-
-
-  function genid(mode) {
-    if (mode === "random") {
-      var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-      var genid = "";
-      for (var i = 0; i < 16; i++) {
-        var genrandomNumber = Math.floor(Math.random() * genidchars.length);
-        genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
-      }
-      return genid;
-    }
-
-    if (mode === "time") {
-      var gtoday = new Date();
-      var genid2 = (gtoday.getMonth() + 1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8));
-
-      return genid2
-    }
-
-    if (mode === "number") {
-
-      var genid3 = '';
-      for (var i = 0; i < 16; i++) {
-        genid3 += '' + (0 + Math.floor(Math.random() * 9))
-      }
-      return genid3
-    }
-
-    if (mode === "uuid") {
-      var genidchars4 = "abcdef012345678";
-      var geniduu = [8, 4, 4, 4, 12];
-      var genid4 = "";
-      var genid5 = "";
-      for (var ia = 0; ia < geniduu.length; ia++) {
-        var genid4 = "";
-        for (var i = 0; i < geniduu[ia]; i++) {
-          var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
-          genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
-        }
-        genid5 += '-' + genid4;
-      }
-      return genid5.substring(1, genid5.length)
-    }
-
-  }
-
-  function load_stats_callback(e) {
-    var res = e.replaceAll('""', '"')
-    var res_json = JSON.parse(res.substring(1, (res.length - 1)))
-    $('.stats_box .stats_value[d="commit"]').text(res_json.commit)
-    $('.stats_box .stats_value[d="pulls"]').text(res_json.pull)
-    $('.stats_box .stats_value[d="issues"]').text(res_json.issues)
-    $('.stats_update_time').text('Update time: ' + res_json.update_time)
-    $('.stats_box,.stats_update_time').attr('loading', '0')
-  }
-
-  var stats_loaded = 0
-  function load_stats() {
-    if (stats_loaded === 0) {
-      stats_loaded = 1
-      var stats_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=0&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
-      var nt = new Date().getTime()
-      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_stats_api_cahce_time')))) > 10800000 || !(localStorage.hasOwnProperty('erichsia7_github_io_stats_api_cahce_time') === true)) {
-        $.ajax({
-          type: 'get', url: stats_api, dataType: 'text', success: function (e) {
-            localStorage.setItem('erichsia7_github_io_stats_api_cahce', String(e))
-            localStorage.setItem('erichsia7_github_io_stats_api_cahce_time', nt)
-            load_stats_callback(e)
-          }
-        });
-      }
-      else {
-        load_stats_callback(String(localStorage.getItem('erichsia7_github_io_stats_api_cahce')))
-      }
-    }
-  }
-
-  var contributions_chart, ctx
-  var chart_data_date_daily = []
-  var chart_data_count_daily = []
-  var chart_data_date_count_monthly_j = {}
-  var chart_data_date_monthly = []
-  var chart_data_count_monthly = []
-  var contributions_loaded = 0
-  var contributions_load_success = 0
-
-  function draw_contributions_chart(labels, data) {
-    ctx = document.getElementById('contributions_chart');
-    contributions_chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Commits',
-          data: data,
-          cubicInterpolationMode: 'monotone',
-          tension: 0.9,
-          borderColor: 'rgba(0, 0, 0, 0)',
-          pointStyle: 'circle',
-          pointRadius: 0,
-          pointHoverRadius: 0,
-          borderWidth: 1.1,
-          fill: true,
-          backgroundColor: 'rgba(86, 171, 90, 1)'
-        }]
-      },
-      options: {
-        devicePixelRatio: window.devicePixelRatio * 3,
-        animation: false,
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            display: false,
-            grid: {
-              display: false
-            }
-          },
-          x: {
-            display: false,
-            grid: {
-              display: false
-            },
-            ticks: {
-              display: false
-            }
-          }
-        },
-        plugins: {
-          legend: false
-        },
-        tooltip: {
-          display: false
-        }
-      }
-    });
-    $('#contributions_chart').css({ 'width': '100%', 'height': '100%' })
-    $('.stats_contributions').attr('loading', '0')
-  }
-
-  function load_contributions_callback(e) {
-    var res = e.split(/\r?\n|\r|\n/g)
-    for (var y = 0; y < res.length; y++) {
-      var this_res = String(res[y]).split(',')
-      chart_data_date_daily.push('')
-      chart_data_count_daily.push(this_res[1])
-      var thsdd = new Date(this_res[0])
-      var thedd_key = 't_' + thsdd.getFullYear() + '_' + (thsdd.getMonth() + 1)
-      if (!(chart_data_date_count_monthly_j.hasOwnProperty(thedd_key) === true)) {
-        chart_data_date_count_monthly_j[thedd_key] = 0
-      }
-      chart_data_date_count_monthly_j[thedd_key] = (parseInt(chart_data_date_count_monthly_j[thedd_key]) + parseInt(this_res[1]))
-    }
-
-    for (var e in chart_data_date_count_monthly_j) {
-      chart_data_date_monthly.push(e)
-      chart_data_count_monthly.push(chart_data_date_count_monthly_j[e])
-    }
-    contributions_load_success = 1
-    draw_contributions_chart(chart_data_date_daily, chart_data_count_daily)
-  }
-
-  function switch_contributions_chart(sw) {
-    if (contributions_load_success === 0) {
-      return ''
-    }
-    var l, d
-    if (sw === 0) {
-      l = chart_data_date_daily
-      d = chart_data_count_daily
-    }
-    if (sw === 1) {
-      l = chart_data_date_monthly
-      d = chart_data_count_monthly
-    }
-    contributions_chart.data.labels = l
-    contributions_chart.data.datasets[0].data = d
-    contributions_chart.update()
-  }
-
-  function load_contributions_update_time_callback(e2) {
-    $('.contributions_update_time #contributions_update_time_text').text('Update time: ' + e2)
-    $('.contributions_update_time').attr('loading', '0')
-  }
-  function load_contributions() {
-    if (contributions_loaded === 0) {
-      contributions_loaded = 1
-      var contributions_graph_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1205904222&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
-      var contributions_graph_update_time_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=1258891098&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
-      var nt = new Date().getTime()
-      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_contributions_api_cahce_time')))) > 3600000 || !(localStorage.hasOwnProperty('erichsia7_github_io_contributions_api_cahce_time') === true)) {
-        $.ajax({
-          type: 'get', url: contributions_graph_api, dataType: 'text', success: function (e) {
-            load_contributions_callback(e)
-            localStorage.setItem('erichsia7_github_io_contributions_api_cahce', String(e))
-            localStorage.setItem('erichsia7_github_io_contributions_api_cahce_time', nt)
-          }
-        });
-      }
-      else {
-        load_contributions_callback(String(localStorage.getItem('erichsia7_github_io_contributions_api_cahce')))
-      }
-      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_contributions_update_time_api_cahce_time')))) > 3600000 || !(localStorage.hasOwnProperty('erichsia7_github_io_contributions_update_time_api_cahce_time') === true)) {
-        $.ajax({
-          type: 'get', url: contributions_graph_update_time_api, dataType: 'text', success: function (e2) {
-            load_contributions_update_time_callback(e2)
-            localStorage.setItem('erichsia7_github_io_contributions_update_time_api_cahce', String(e2))
-            localStorage.setItem('erichsia7_github_io_contributions_update_time_api_cahce_time', nt)
-          }
-        });
-      }
-      else {
-        load_contributions_update_time_callback(String(localStorage.getItem('erichsia7_github_io_contributions_update_time_api_cahce')))
-      }
-    }
-  }
+  new VConsole()
   var pinned_repos_loaded = 0
 
-  function load_pinned_repos() {
+  function load_pinned_repo() {
     var pinned_repos_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRo34Kw26e-gyhihir0iZz5dy5Q-Qt3pRqeGqhTYK1mxztcz4lVIPpb_dX7j_XzE4c4LtVqfexCXvrb/pub?gid=1782226489&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
     if (pinned_repos_loaded === 0) {
       pinned_repos_loaded = 1
       var nt = new Date().getTime()
       if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_pinned_repos_api_cahce_time')))) > 3600000 || !(localStorage.hasOwnProperty('erichsia7_github_io_pinned_repos_api_cahce_time') === true)) {
-        $.ajax({
-          type: 'get', url: pinned_repos_api, dataType: 'text', success: function (e) {
+        fetch(pinned_repos_api)
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (e) {
             load_pinned_repos_callback(e)
+
             localStorage.setItem('erichsia7_github_io_pinned_repos_api_cahce', String(e))
             localStorage.setItem('erichsia7_github_io_pinned_repos_api_cahce_time', nt)
-            $('.pinned_repos_box_s').attr('loading', '0')
-          }
-        });
+            document.querySelector('.pinned_repos_box_s').setAttribute('loading', '0')
+
+          });
+
       }
       else {
         load_pinned_repos_callback(String(localStorage.getItem('erichsia7_github_io_pinned_repos_api_cahce')))
-        $('.pinned_repos_box_s').attr('loading', '0')
+
+        document.querySelector('.pinned_repos_box_s').setAttribute('loading', '0')
       }
     }
   }
@@ -1623,206 +691,75 @@ function lightbox_e(element) {
       var html = `<div class="pinned_repo"><div class="pinned_repo_ogimage">${ogimage}</div><div class="pinned_repo_content"><div class="pinned_repo_name">${this_repo.full_name}</div><div class="pinned_repo_desc">${this_repo.description}</div><div class="pinned_repo_languages_and_status">${this_repo_languages.join('')}<div class="pinned_repo_active_status" status="${active_status}">${active_status_text}</div></div><div class="pinned_repo_tags" len="${this_repo_tags.length}">${this_repo_tags.join('')}</div>${recentEvent_htm.join('')}</div><div class="pinned_repo_github"><a href="https://github.com/${this_repo.full_name}"><div class="pinned_repo_github_link">View on GitHub</div></a></div></div>`
       allhtml.push(html)
     }
-    $('.pinned_repos_box_s').html(allhtml.join('')).css({ '--r-repo-count': repos_len })
-    lightBox(document.querySelectorAll('.pinned_repo_ogimage img'))
+    document.querySelector('.pinned_repos_box_s').innerHTML = allhtml.join('')
+    document.querySelector('.pinned_repos_box').style.setProperty('--r-repo-count', repos_len)
   }
-  function load_repos_callback(e, loadmore, page) {
-    if (!(loadmore === true)) {
-      $('.repos').html('')
-    }
-    for (var i = 0; i < e.length; i++) {
-      var tyrdes = e[i].description;
-      if (String(e[i].description) === 'null') {
-        tyrdes = 'No description.'
-      }
-      var eeid = genid('random');
-      $('.repos').append('<div class="repo" e-id="' + eeid + '" desc="0"><div class="repo_title">' + e[i].name + '</div><a href="' + e[i].html_url + '" target="_blank"><div class="repo_link">Open</div></a><div class="repo_open_description" desc="0" e-id="' + eeid + '">DESC</div><div class="repo_description">' + tyrdes + '</div</div>')
-      $('.repo[e-id="' + eeid + '"] .repo_open_description').click(function () {
-        var this_desc = $(this).attr('desc')
-        var this_eeid = $(this).attr('e-id')
-        if (this_desc === '0') {
-          $('.repo[e-id="' + this_eeid + '"]').attr('desc', '1')
-          $(this).attr('desc', '1')
-        }
-        else {
-          $('.repo[e-id="' + this_eeid + '"]').attr('desc', '0')
-          $(this).attr('desc', '0')
-        }
-      })
-    }
-    $('.repos .repo[loading="1"]').remove()
-    $('.repos').attr('loading', '0')
-    if (loadmore === true) {
-      if (page < 3) {
-        $('.btn#loadmorerepos').attr('qp', '0')
+
+
+  function load_stats_callback(e) {
+    var res = e.replaceAll('""', '"')
+    var res_json = JSON.parse(res.substring(1, (res.length - 1)))
+    document.querySelector('.stats_box .stats_value[d="commit"]').innerText = res_json.commit
+    document.querySelector('.stats_box .stats_value[d="pulls"]').innerText = res_json.pull
+    document.querySelector('.stats_box .stats_value[d="issues"]').innerText = res_json.issues
+    document.querySelector('.stats_update_time').innerText = 'Last update at ' + res_json.update_time
+    document.querySelector('.stats_box').setAttribute('loading', '0')
+    document.querySelector('.stats_update_time').setAttribute('loading', '0')
+  }
+
+  var stats_loaded = 0
+  function load_stats() {
+    if (stats_loaded === 0) {
+      stats_loaded = 1
+      var stats_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=0&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
+      var nt = new Date().getTime()
+      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_stats_api_cahce_time')))) > 10800000 || !(localStorage.hasOwnProperty('erichsia7_github_io_stats_api_cahce_time') === true)) {
+
+
+        fetch(stats_api)
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (e) {
+            localStorage.setItem('erichsia7_github_io_stats_api_cahce', String(e))
+            localStorage.setItem('erichsia7_github_io_stats_api_cahce_time', nt)
+            load_stats_callback(e)
+
+          });
       }
       else {
-        $('.btn#loadmorerepos').attr('qp', '2')
+        load_stats_callback(String(localStorage.getItem('erichsia7_github_io_stats_api_cahce')))
       }
+    }
+  }
+  function load_trend_callback(e) {
+    var res = e.replaceAll('""', '"')
+    var svg = res.substring(1, (res.length - 1))
+    document.querySelector('.trend_svg').innerHTML = svg
+  }
+  function load_trend() {
+    var trend_svg_api = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoAK4MEuoLZEFq-hKYCIU-LcFQRPMBJt7UN6VONVzBSv7VnQLZzgjbO3kIy9_j0S15y3FAyVv6NTFF/pub?gid=183345801&single=true&output=csv&' + new Date().getTime() + '.' + Math.random()
+    var nt = new Date().getTime()
+    if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_trend_api_cahce_time')))) > 10800000 || !(localStorage.hasOwnProperty('erichsia7_github_io_trend_api_cahce_time') === true)) {
+
+      fetch(trend_svg_api)
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (e) {
+          localStorage.setItem('erichsia7_github_io_trend_api_cahce', e)
+          localStorage.setItem('erichsia7_github_io_trend_api_cahce_time', nt)
+          load_trend_callback(e)
+        });
     }
     else {
-      $('.btn#loadmorerepos').attr('qp', '0')
-    }
-
-  }
-
-
-  var repos_loaded = 0
-  function load_repos(loadmore, page) {
-    if (repos_loaded === 0 || loadmore === true) {
-      if (!(loadmore === true)) {
-        page = 1
-      }
-      repos_loaded = 1
-      var randid = ''
-      var nt = new Date().getTime()
-      if ((nt - parseInt(String(localStorage.getItem('erichsia7_github_io_github_repo_api_cache_time')))) > 3600000 || !(localStorage.hasOwnProperty('erichsia7_github_io_github_repo_api_cache_time') === true)) {
-        randid = genid('random')
-        localStorage.setItem('erichsia7_github_io_github_repo_api_cache_randid', randid)
-        localStorage.setItem('erichsia7_github_io_github_repo_api_cache_time', nt)
-      }
-      else {
-        randid = String(localStorage.getItem('erichsia7_github_io_github_repo_api_cache_randid'))
-      }
-
-      var repos_api = 'https://api.github.com/users/Erichsia7/repos?sort=pushed&per_page=10&page=' + page + '&' + randid
-      var api_id = page + '_' + randid
-      var api_name = 'erichsia7_github_io_github_repo_api_cache_p_' + page
-      if (String(localStorage.getItem(api_name + '_id')) === api_id) {
-        load_repos_callback(JSON.parse(String(localStorage.getItem(api_name))), loadmore, page)
-      }
-      else {
-        $.ajax({
-          type: 'get', url: repos_api, dataType: 'json', success: function (e2) {
-            localStorage.setItem(api_name + '_id', api_id)
-            localStorage.setItem(api_name, JSON.stringify(e2))
-            load_repos_callback(e2, loadmore, page)
-          }
-        });
-      }
-    }
-  }
-  function addPinnedReposSkeletonScreen() {
-    var data = { 'repos': [], 'update': '' }
-    var repo = { "full_name": "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;", "tags": ['&emsp;&emsp;&emsp;', '&emsp;&emsp;&emsp;&emsp;', '&emsp;&emsp;'], "description": "&emsp;&emsp;&emsp;", "pushed_at": "", "created_at": "", "updated_at": "", "active": false, "recentEvents": [{ "title": "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;", "url": "", "time": "&emsp;&emsp;&emsp;&emsp;&emsp;" }, { "title": "&emsp;&emsp;&emsp;&emsp;&emsp;", "url": "", "time": "&emsp;&emsp;&emsp;&emsp;&emsp;" }, { "title": "&emsp;&emsp;&emsp;", "url": "", "time": "&emsp;&emsp;&emsp;&emsp;&emsp;" }], "ogImage": "", "languages": [{ "lang": "&emsp;&emsp;&emsp;", "value": 0, "color": "#888888" }, { "lang": "&emsp;&emsp;&emsp;", "value": 0, "color": "#888888" }, { "lang": "&emsp;&emsp;&emsp;&emsp;", "value": 0, "color": "#888888" }] }
-    for (var q = 0; q < 3; q++) {
-      data.repos.push(repo)
-    }
-    load_pinned_repos_callback(`"${String(JSON.stringify(data)).replaceAll('"', '""')}"`)
-    $('.pinned_repos_box_s').attr('loading', '1')
-  }
-
-  function addreposskeletonscreen() {
-    for (var i = 0; i < 10; i++) {
-      $('.repos').append('<div class="repo" loading="1"><div class="repo_title"></div><div class="repo_link"></div><div class="repo_open_description"></div><div class="repo_description"></div</div>')
+      load_trend_callback(String(localStorage.getItem('erichsia7_github_io_trend_api_cahce')))
     }
   }
 
-  function check_title_list(st) {
-    var content_len = $('.content_box .content').length
-    var s_content_len = 0
-    for (var u = 0; u < content_len; u++) {
-      var this_c = $('.content_box .content').eq(u)
-      var ft = this_c.offset().top
-      var this_c_h = this_c.height()
-      var this_s = this_c.attr('s')
-      if ((ft - st) < 50 && st < (ft + this_c_h - 50) && this_c.attr('r') === '1') {
-        $('.title .title-list ul li').attr('sl', '0')
-        $('.title .title-list ul li[s="' + this_s + '"]').attr('sl', '1')
-        s_content_len += 1
-        return ''
-      }
-    }
-    if (s_content_len < 1) {
-      $('.title .title-list ul li').attr('sl', '0')
-    }
-  }
-
-  function evt() {
-    $(document).scroll(function () {
-      var st = $(document).scrollTop()
-      if (st > 10) {
-        $('.title').attr('d', '1')
-      }
-      else {
-        $('.title').attr('d', '0')
-      }
-      var loadwh = window.innerHeight * (0.8)
-      if (st > ($('.content[s="stats"]').offset().top - loadwh)) {
-        load_stats()
-        load_contributions()
-      }
-      if (st > ($('.content[s="repos"]').offset().top - loadwh)) {
-        load_repos()
-      }
-      if (st > ($('.content[s="pinned_repos"]').offset().top - loadwh)) {
-        load_pinned_repos()
-      }
-      check_title_list(st)
-    });
-
-    $('.btn#loadmorerepos').click(function () {
-      if ($('.btn#loadmorerepos').attr('qp') === '1') {
-        return ''
-      }
-      var oldpage = parseInt($(this).attr('page'))
-      var newpage = oldpage + 1
-      if (oldpage < 3) {
-        $('.btn#loadmorerepos').attr('qp', '1')
-        load_repos(true, newpage)
-        $(this).attr('page', newpage)
-      }
-      else {
-        $('.btn#loadmorerepos').attr('qp', '1')
-      }
-    })
-    $('.title .title-list ul li').click(function () {
-      $('.title,.content_box').attr('m', '0')
-      var s = $(this).attr('s')
-      var st = $('.content_box .content[s="' + s + '"]').offset().top - 49
-      $('html,body').animate({ 'scrollTop': st }, 550)
-    })
-
-    $('.title-list-icon').click(function () {
-      if ($('.title').attr('m') === '0') {
-        $('.title,.content_box').attr('m', '1')
-      }
-      else {
-        $('.title,.content_box').attr('m', '0')
-      }
-    })
-
-    $(window).resize(function () {
-      $('#contributions_chart').css({ 'width': '100%', 'height': '100%' })
-    })
-
-    $('.contributions_chart_switch span').click(function () {
-      var this_a = $(this)
-      var k = this_a.attr('k')
-      $('.contributions_chart_switch span').attr('o', '0')
-      if (k === 'daily') {
-        switch_contributions_chart(0)
-        this_a.attr('o', '1')
-      }
-      if (k === 'monthly') {
-        switch_contributions_chart(1)
-        this_a.attr('o', '1')
-      }
-    })
-
-    $('li#content_foot_email').click(function () {
-      email_protection()
-    })
-
-  }
-
-
-
-  $(document).ready(function () {
-    addreposskeletonscreen()
-    addPinnedReposSkeletonScreen()
-    evt()
-  });
+  load_pinned_repo()
+  load_stats()
+  load_trend()
 </script>
 
 </html>
