@@ -1,0 +1,33 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<style>
+ 
+
+  body {
+    padding-top: env(safe-area-inset-top);
+    /* Ensure content starts below the status bar */
+  }
+
+  /* Customize the background color of the status bar */
+  /* You can also adjust the color based on the light/dark mode using @media queries */
+  @supports(padding: max(0px)) {
+    body {
+      padding-top: constant(safe-area-inset-top);
+      /* For older Safari versions */
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .status-bar {
+      background: #f5f5f5;
+      height: env(safe-area-inset-top);
+      /* Set the height of the status bar */
+    }
+  }
+</style>
+
+
+<body>
+  <div class="status-bar"></div>
+</body>
