@@ -1,16 +1,91 @@
-<meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Condole Log</title>
-<script>
-function injectScript() {
-    const e = document.createElement("script");
-    (e.src = "https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"),
-        document.getElementsByTagName("head")[0].appendChild(e),
-        setTimeout(() => {
-            const e = document.createElement("script");
-            (e.text = "window.vConsole = new VConsole();"), document.body.appendChild(e);
-        }, 1e3);
-}
-injectScript();
-
-</script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
+    <title>Condole Log</title>
+  </head>
+  <body>
+    <script>
+      function activate() {
+        let e = document.createElement('script');
+        e.src = 'https://cdn.jsdelivr.net/npm/vconsole@latest/dist/vconsole.min.js';
+        e.onload = function () {
+          class e extends VConsole.VConsolePlugin {
+            constructor() {
+              super('indexeddb', 'IndexedDB');
+            }
+            onRenderTab(e) {
+              let t = `
+            <div>
+              <style>#dataTable {width:100%;} #dataTable tr {display:grid; grid-template-columns: 2fr 1fr 2fr 5fr;} #dataTable th, #dataTable td {word-break: break-all;white-space: pre-line; vertical-align: top;display:inline-block} </style>
+              <table id="dataTable">
+                <thead>
+                  <tr>
+                    <th f="dbname">Database Name</th>
+                    <th f="osname">Object Store Name</th>
+                    <th f="key">Key</th>
+                    <th f="value">Value</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+                </table>
+            </div>`;
+              e(t);
+            }
+            onAddTool(e) {
+              e([{ name: 'Load IndexedDB Data', global: !1, onClick: () => this.loadData() }]);
+            }
+            loadData() {
+              let e = document.querySelector('#dataTable tbody');
+              if (((e.innerHTML = ''), !window.indexedDB.databases)) {
+                alert('Your browser does not support listing IndexedDB databases.');
+                return;
+              }
+              window.indexedDB
+                .databases()
+                .then((t) => {
+                  t.forEach((t) => {
+                    let a = t.name,
+                      d = indexedDB.open(a);
+                    d.onsuccess = (t) => {
+                      let d = t.target.result,
+                        n = d.objectStoreNames;
+                      for (let l = 0; l < n.length; l++) {
+                        let o = n[l],
+                          s = d.transaction(o, 'readonly'),
+                          r = s.objectStore(o),
+                          i = r.getAllKeys();
+                        i.onsuccess = () => {
+                          let t = i.result;
+                          t.forEach((t) => {
+                            let d = r.get(t);
+                            d.onsuccess = () => {
+                              let n = d.result,
+                                l = encodeURIComponent(JSON.stringify(n)),
+                                s = `<tr onclick="console.log(decodeURIComponent('${l}'))"><td f="dbname">${a}</td><td f="osname">${o}</td><td f="key">${t}</td><td f="value">${JSON.stringify(n).substring(0, 512)}…</td></tr>`;
+                              e.insertAdjacentHTML('beforeend', s);
+                            };
+                          });
+                        };
+                      }
+                    };
+                  });
+                })
+                .catch((e) => {
+                  console.error('Error listing databases:', e);
+                });
+            }
+          }
+          let t = new VConsole(),
+            a = new e();
+          t.addPlugin(a);
+        };
+        document.body.appendChild(e);
+      }
+      activate();
+    </script>
+  </body>
+</html>
