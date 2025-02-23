@@ -6,7 +6,8 @@
 
 .css_home_field .css_home_body .css_home_groups .css_home_group {
   position: relative;
-  width: 100%;
+  width: clamp(100px, 100%, 600px);
+  left: calc((100% - clamp(100px, 100%, 600px)) / 2);
 }
 
 .css_home_field .css_home_body .css_home_groups .css_home_group .css_home_group_body {
