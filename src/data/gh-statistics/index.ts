@@ -53,7 +53,7 @@ export interface Repository {
   languages: Array<RepositoryLanguage>;
 }
 
-export async function getRepositories(limit: number = 3): Array<Repository> {
+export async function getRepositories(limit: number = 3): Promise<Array<Repository>> {
   const now = new Date().getTime();
   const url = `https://erichsia7.github.io/gh-statistics/repositories.json?t=${now}`;
   const response = await fetch(url);

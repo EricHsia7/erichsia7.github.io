@@ -1,10 +1,9 @@
 import { getRepositories, Repository, RepositoryLanguage, RepositoryRecentEvent, RepositoryTag } from '../../data/gh-statistics/index';
 
-const HomeField = document.querySelector('.css_home_field') as HTMLElement
-const HomeGroupsElement = HomeField.querySelector('.css_home_groups') as HTMLElement
-const RepositoriesGroupElement = HomeGroupsElement.querySelector('.css_home_group[group="repositories"]') as HTMLElement
-const RepositoriesGroupBodyElement = RepositoriesGroupElement.querySelector('.css_home_group_body') as HTMLElement
-
+const HomeField = document.querySelector('.css_home_field') as HTMLElement;
+const HomeGroupsElement = HomeField.querySelector('.css_home_groups') as HTMLElement;
+const RepositoriesGroupElement = HomeGroupsElement.querySelector('.css_home_group[group="repositories"]') as HTMLElement;
+const RepositoriesGroupBodyElement = RepositoriesGroupElement.querySelector('.css_home_group_body') as HTMLElement;
 
 function generateElementOfRepository(repo: Repository): HTMLElement {
   function createEventHTML(event: RepositoryRecentEvent) {
@@ -37,15 +36,13 @@ function generateElementOfRepository(repo: Repository): HTMLElement {
   return element;
 }
 
-export function updateHomeField(): void {
+export async function updateHomeField(): void {
   const repositories = await getRepositories(3);
 
-const fragment = new DocumentFragment()
-for(const repository of repositories) {
-const newElement = generateElementOfRepository(repository)
-fragment.appendChild(newElement)
-}
-RepositoriesGroupBodyElement.append(fragment)
-
-
+  const fragment = new DocumentFragment();
+  for (const repository of repositories) {
+    const newElement = generateElementOfRepository(repository);
+    fragment.appendChild(newElement);
+  }
+  RepositoriesGroupBodyElement.append(fragment);
 }
