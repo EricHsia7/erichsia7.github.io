@@ -1,15 +1,17 @@
+/*
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body {
-  /*height: calc(100vh - 45px - 30px);*/
+  height: calc(100vh - 45px - 30px);
 }
+*/
 
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 20px;
   background-color: var(--b-cssvar-f1f3f5);
-  overflow: hidden;
   contain: layout;
+  overflow: hidden;
 }
 
 @property --b-cssvar-repositpry-open-graph-image-width {
@@ -30,7 +32,7 @@
   left: 0px;
   width: 100%;
   height: auto;
-  aspect-ratio: var(--b-cssvar-repositpry-open-graph-image-width) / var(--b-cssvar-repositpry-open-graph-image-height);
+  aspect-ratio: calc(var(--b-cssvar-repositpry-open-graph-image-width) / var(--b-cssvar-repositpry-open-graph-image-height));
   user-select: none;
   -webkit-user-select: none;
 }
