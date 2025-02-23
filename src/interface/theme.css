@@ -6,6 +6,7 @@
   --b-cssvar-ffffff-g: 255;
   --b-cssvar-ffffff-b: 255;
 
+  --b-cssvar-f1f3f5: #f1f3f5;
 }
 
 
@@ -15,5 +16,7 @@
     --b-cssvar-ffffff-r: 4;
     --b-cssvar-ffffff-g: 5;
     --b-cssvar-ffffff-b: 10;
+
+    --b-cssvar-f1f3f5: #0a0b0f;
   }
 }
