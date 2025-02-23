@@ -35,12 +35,15 @@
   top: 0px;
   left: 45px;
   width: calc(100% - 45px);
+  height: 45px;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--b-cssvar-main-color);
   display: flex;
   align-items: center;
   overflow: hidden;
   word-break: keep-all;
   white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
 }

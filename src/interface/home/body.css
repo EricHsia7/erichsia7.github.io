@@ -1,0 +1,15 @@
+.css_home_field .css_home_body {
+  position: absolute;
+  top: 45px;
+  left: 0px;
+  width: 100%;
+  height: calc(100% - 45px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.css_home_field .css_home_body::-webkit-scrollbar {
+  display: none;
+}
