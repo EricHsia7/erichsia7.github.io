@@ -51,7 +51,6 @@
   white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
-  contain: layout;
 }
 
 .css_home_field .css_home_head .css_home_head_links {
