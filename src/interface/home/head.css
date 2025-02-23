@@ -5,7 +5,7 @@
   width: 100%;
   height: 45px;
   width: 100%;
-  background-color: rgba(var(--b-cssvar-ffffff-r), var(--b-cssvar-ffffff-g), var(--b-cssvar-ffffff-b), 0.7);
+  background-color: rgba(var(--b-cssvar-ffffff-r), var(--b-cssvar-ffffff-g), var(--b-cssvar-ffffff-b), var(--b-cssvar-ffffff-opacity-a));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   contain: layout;

@@ -5,6 +5,8 @@
   --b-cssvar-ffffff-r: 255;
   --b-cssvar-ffffff-g: 255;
   --b-cssvar-ffffff-b: 255;
+  
+  --b-cssvar-ffffff-opacity-a: 0.75;
 
   --b-cssvar-f1f3f5: #f1f3f5;
 }
