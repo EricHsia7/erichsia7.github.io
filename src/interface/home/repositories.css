@@ -4,23 +4,10 @@
 }
 */
 
-@property --b-cssvar-repositpry-open-graph-image-width {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 1;
-}
-
-@property --b-cssvar-repositpry-open-graph-image-height {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 1;
-}
-
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository {
   position: relative;
   width: 100%;
   height: auto;
-  aspect-ratio: calc(var(--b-cssvar-repositpry-open-graph-image-width) / var(--b-cssvar-repositpry-open-graph-image-height));
   border-radius: 20px;
   background-color: var(--b-cssvar-f1f3f5);
   contain: layout;
