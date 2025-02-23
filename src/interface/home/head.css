@@ -4,7 +4,10 @@
   left: 0px;
   width: 100%;
   height: 45px;
+  width: 45px;
   background-color: var(--b-cssvar-ffffff);
+  contain: layout;
+  overflow: hidden;
 }
 
 .css_home_field .css_home_head .css_home_head_icon {
@@ -17,6 +20,7 @@
   user-select: none;
   -webkit-user-select: none;
   overflow: none;
+  contain: layout;
 }
 
 .css_home_field .css_home_head .css_home_head_icon img {
@@ -28,15 +32,16 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
+  contain: layout;
 }
 
 .css_home_field .css_home_head .css_home_head_title {
   position: absolute;
   top: 0px;
   left: 45px;
-  width: calc(100% - 45px);
+  width: 100px;
   height: 45px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   color: var(--b-cssvar-main-color);
   display: flex;
@@ -46,4 +51,47 @@
   white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
+  contain: layout;
+}
+
+.css_home_field .css_home_head .css_home_head_links {
+  position: absolute;
+  top: 0px;
+  left: calc(45px + 100px);
+  width: calc(100% - 45px - 100px);
+  /* icon: 45px + title: 100px */
+  height: 45px;
+  contain: layout;
+  display: flex;
+  flex-direction: row;
+  visibility: hidden;
+}
+
+.css_home_field .css_home_head .css_home_head_links .css_home_head_link {
+  position: relative;
+  display: inline-flex;
+  height: 45px;
+  align-items: center;
+  padding: 0px 5px;
+  color: var(--b-cssvar-main-color);
+  font-size: 16px;
+  font-weight: 400;
+  word-break: keep-all;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.css_home_field .css_home_head .css_home_head_links .css_home_head_link a {
+  text-decoration: none;
+}
+
+.css_home_field .css_home_head .css_home_head_links .css_home_head_link a:visited {
+  color: var(--b-cssvar-main-color);
+}
+
+@media (min-width: 600px) and (orientation: landscape) {
+  .css_home_field .css_home_head .css_home_head_links {
+    visibility: visible;
+  }
 }
