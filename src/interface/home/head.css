@@ -39,7 +39,7 @@
   position: absolute;
   top: 0px;
   left: 45px;
-  width: 100px;
+  width: 80px;
   height: 45px;
   font-size: 16px;
   font-weight: 300;
@@ -57,9 +57,9 @@
 .css_home_field .css_home_head .css_home_head_links {
   position: absolute;
   top: 0px;
-  left: calc(45px + 100px);
-  width: calc(100% - 45px - 100px);
-  /* icon: 45px + title: 100px */
+  left: calc(45px + 80px);
+  width: calc(100% - 45px - 80px);
+  /* icon: 45px + title: 80px */
   height: 45px;
   display: flex;
   flex-direction: row;
@@ -71,7 +71,7 @@
   display: inline-flex;
   height: 45px;
   align-items: center;
-  padding: 0px 5px;
+  padding: 0px 8px;
   color: var(--b-cssvar-main-color);
   font-size: 16px;
   font-weight: 400;
