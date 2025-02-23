@@ -1,0 +1,16 @@
+.css_home_field .css_home_body .css_home_groups {
+  position: relative;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.css_home_field .css_home_body .css_home_groups .css_home_group {
+  position: relative;
+  width: 100%;
+}
+
+.css_home_field .css_home_body .css_home_groups .css_home_group .css_home_groups_body {
+  position: relative;
+  left: 15px;
+  width: calc(100% - 30px);
+}
