@@ -4,16 +4,6 @@
 }
 */
 
-.css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository {
-  position: relative;
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  background-color: var(--b-cssvar-f1f3f5);
-  contain: layout;
-  overflow: hidden;
-}
-
 @property --b-cssvar-repositpry-open-graph-image-width {
   syntax: '<number>';
   inherits: true;
@@ -26,13 +16,23 @@
   initial-value: 1;
 }
 
+.css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository {
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: calc(var(--b-cssvar-repositpry-open-graph-image-width) / var(--b-cssvar-repositpry-open-graph-image-height));
+  border-radius: 20px;
+  background-color: var(--b-cssvar-f1f3f5);
+  contain: layout;
+  overflow: hidden;
+}
+
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_open_graph_image {
   position: absolute;
   top: 0px;
   left: 0px;
   width: 100%;
-  height: auto;
-  aspect-ratio: calc(var(--b-cssvar-repositpry-open-graph-image-width) / var(--b-cssvar-repositpry-open-graph-image-height));
+  height: 100%;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -42,8 +42,7 @@
   top: 0px;
   left: 0px;
   width: 100%;
-  height: auto;
-  aspect-ratio: var(--b-cssvar-repositpry-open-graph-image-width) / var(--b-cssvar-repositpry-open-graph-image-height);
+  height: 100%;
   -webkit-user-drag: none;
   user-select: none;
   -webkit-user-select: none;

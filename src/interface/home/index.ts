@@ -32,7 +32,9 @@ function generateElementOfRepository(repo: Repository): HTMLElement {
   const { status, text } = getActiveStatus(repo.active);
   const element = document.createElement('div');
   element.classList.add('css_home_repository');
-  element.innerHTML = `<div class="css_home_repository_open_graph_image" style="--b-cssvar-repositpry-open-graph-image-width:${repo.open_graph_image.size.width};--b-cssvar-repositpry-open-graph-image-height:${repo.open_graph_image.size.height};">${createOGImage(repo.open_graph_image.url)}</div><div class="css_home_repository_content"><div class="css_home_repository_name">${repo.full_name}</div><div class="css_home_repository_desc">${repo.description}</div><div class="css_home_repository_languages_and_status">${languages}<div class="css_home_repository_active_status" status="${status}">${text}</div></div><div class="css_home_repository_tags" len="${repo.tags.length}">${tags}</div>${recentEvents}</div><div class="css_home_repository_github"><a href="https://github.com/${repo.full_name}"><div class="css_home_repository_github_link">View on GitHub</div></a></div>`;
+  element.style.setProperty('--b-cssvar-repositpry-open-graph-image-width', repo.open_graph_image.size.width.toString());
+  element.style.setProperty('--b-cssvar-repositpry-open-graph-image-height', repo.open_graph_image.size.height.toString());
+  element.innerHTML = `<div class="css_home_repository_open_graph_image">${createOGImage(repo.open_graph_image.url)}</div><div class="css_home_repository_content"><div class="css_home_repository_name">${repo.full_name}</div><div class="css_home_repository_desc">${repo.description}</div><div class="css_home_repository_languages_and_status">${languages}<div class="css_home_repository_active_status" status="${status}">${text}</div></div><div class="css_home_repository_tags" len="${repo.tags.length}">${tags}</div>${recentEvents}</div><div class="css_home_repository_github"><a href="https://github.com/${repo.full_name}"><div class="css_home_repository_github_link">View on GitHub</div></a></div>`;
   return element;
 }
 
