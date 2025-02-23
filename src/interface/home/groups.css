@@ -1,7 +1,7 @@
 .css_home_field .css_home_body .css_home_groups {
   position: relative;
   width: 100%;
-  margin-top: 15px;
+  margin-top: calc(45px + 15px);
 }
 
 .css_home_field .css_home_body .css_home_groups .css_home_group {

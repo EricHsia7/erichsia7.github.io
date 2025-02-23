@@ -5,7 +5,9 @@
   width: 100%;
   height: 45px;
   width: 100%;
-  background-color: var(--b-cssvar-ffffff);
+  background-color: rgba(var(--b-cssvar-ffffff-r), var(--b-cssvar-ffffff-g), var(--b-cssvar-ffffff-b), 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   contain: layout;
   overflow: hidden;
 }
