@@ -16,3 +16,16 @@ export async function getStats(): Promise<Stats> {
 export function getContributionGraph(scale: 15 | 12 | 6 | 3): string {
   return `https://erichsia7.github.io/gh-statistics/images/contribution_graph@${scale}x.png`;
 }
+
+interface ProjectLanguage {
+  name: string;
+  color: string;
+}
+
+interface Project {
+  image: string;
+  link: string;
+  languages: Array<ProjectLanguage>;
+}
+
+export async function getProjects(limit: number = 3): Array<Project> {}
