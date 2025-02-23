@@ -40,6 +40,14 @@ export interface RepositoryLanguage {
   color: string;
 }
 
+export interface RepositoryOpenGraphImage {
+  url: string;
+  size: {
+    width: number;
+    height: number;
+  };
+}
+
 export interface Repository {
   full_name: string;
   tags: Array<RepositoryTag>;
@@ -49,7 +57,7 @@ export interface Repository {
   updated_at: string;
   active: boolean;
   recent_events: Array<RepositoryRecentEvent>;
-  open_graph_image: string;
+  open_graph_image: RepositoryOpenGraphImage;
   languages: Array<RepositoryLanguage>;
 }
 
