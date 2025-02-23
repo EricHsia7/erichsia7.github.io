@@ -26,7 +26,7 @@ function generateElementOfRepository(repo: Repository): HTMLElement {
     return imageURL ? `<img src="${imageURL}">` : '';
   }
 
-  const recentEvents = repo.recentEvents.map(createEventHTML).join('');
+  const recentEvents = repo.recent_events.map(createEventHTML).join('');
   const tags = repo.tags.map(createTagHTML).join('');
   const languages = repo.languages.map(createLanguageHTML).join('');
   const { status, text } = getActiveStatus(repo.active);
