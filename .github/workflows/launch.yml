@@ -29,6 +29,7 @@ jobs:
         run: |
           cp -r ./icons/ ./dist/icons/
           cp -r ./manifest.json ./dist/manifest.json
+          cp -r ./google43e97e3ae41e32f8.html ./dist/google43e97e3ae41e32f8.html
       # cp -r ./open-graph-image.png ./dist/open-graph-image.png
 
       #- name: Generate splash screen
