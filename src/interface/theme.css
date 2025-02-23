@@ -1,0 +1,10 @@
+:root {
+  --b-cssvar-ffffff: #ffffff;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --b-cssvar-ffffff: #04050A;
+  }
+}
