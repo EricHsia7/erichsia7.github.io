@@ -1,10 +1,19 @@
 :root {
+  --b-cssvar-main-color: #8a8a8a;
+
   --b-cssvar-ffffff: #ffffff;
+  --b-cssvar-ffffff-r: 255;
+  --b-cssvar-ffffff-g: 255;
+  --b-cssvar-ffffff-b: 255;
+
 }
 
 
 @media (prefers-color-scheme: dark) {
   :root {
     --b-cssvar-ffffff: #04050A;
+    --b-cssvar-ffffff-r: 4;
+    --b-cssvar-ffffff-g: 5;
+    --b-cssvar-ffffff-b: 10;
   }
 }
