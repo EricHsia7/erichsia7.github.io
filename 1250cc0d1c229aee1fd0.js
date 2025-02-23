@@ -1,0 +1,2 @@
+!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("erichsia7",[],t):"object"==typeof exports?exports.erichsia7=t():e.erichsia7=t()}(self,(()=>(()=>{"use strict";var e={d:(t,o)=>{for(var i in o)e.o(o,i)&&!e.o(t,i)&&Object.defineProperty(t,i,{enumerable:!0,get:o[i]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t)},t={};e.d(t,{default:()=>o}),window.erichsia7={initialize:function(){}};const o=window.erichsia7;return t=t.default})()));
+//# sourceMappingURL=1250cc0d1c229aee1fd0.js.map
