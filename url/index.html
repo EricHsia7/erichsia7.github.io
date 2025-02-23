@@ -1,10 +1,10 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>url</title>
 <script>
-function urlparams(p) {
-      var getUrlString = location.href;
-      var url = new URL(getUrlString);
-      return url.searchParams.get(p);
-    }
-location.href = urlparams('url')
+  function urlparams(p) {
+    var getUrlString = location.href;
+    var url = new URL(getUrlString);
+    return url.searchParams.get(p);
+  }
+  location.href = urlparams('url');
 </script>
