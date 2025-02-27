@@ -13,7 +13,7 @@ function generateElementOfRepository(repo: Repository): HTMLElement {
     return `<div class="css_home_repository_tag">${tag.name}</div>`;
   }
   function createLanguageHTML(language: RepositoryLanguage) {
-    return `<div class="css_home_repository_language" style="--r-lang-color:${language.color}">${language.lang}</div>`;
+    return `<div class="css_home_repository_language"><div class="css_home_repository_language_color" style="--b-cssvar-language-color: ${language.color}"></div>${language.lang}</div>`;
   }
   function getActiveStatus(isActive: boolean) {
     return {
@@ -32,7 +32,7 @@ function generateElementOfRepository(repo: Repository): HTMLElement {
   const { status, text } = getActiveStatus(repo.active);
   const element = document.createElement('div');
   element.classList.add('css_home_repository');
-  element.innerHTML = `<div class="css_home_repository_open_graph_image" style="aspect-ratio: ${repo.open_graph_image.size.width} / ${repo.open_graph_image.size.height}">${createOGImage(repo.open_graph_image.url)}</div><div class="css_home_repository_content"><div class="css_home_repository_name">${repo.full_name}</div><div class="css_home_repository_description">${repo.description}</div><div class="css_home_repository_languages_and_status">${languages}<div class="css_home_repository_active_status" status="${status}">${text}</div></div><div class="css_home_repository_tags" len="${repo.tags.length}">${tags}</div>${recentEvents}</div><div class="css_home_repository_github"><a href="https://github.com/${repo.full_name}"><div class="css_home_repository_github_link">View on GitHub</div></a></div>`;
+  element.innerHTML = `<div class="css_home_repository_open_graph_image" style="aspect-ratio: ${repo.open_graph_image.size.width} / ${repo.open_graph_image.size.height}">${createOGImage(repo.open_graph_image.url)}</div><div class="css_home_repository_content"><div class="css_home_repository_name">${repo.full_name}</div><div class="css_home_repository_description">${repo.description}</div><div class="css_home_repository_languages">${languages}</div><div class="css_home_repository_active_status" status="${status}">${text}</div><div class="css_home_repository_tags" len="${repo.tags.length}">${tags}</div>${recentEvents}</div><div class="css_home_repository_github"><a href="https://github.com/${repo.full_name}"><div class="css_home_repository_github_link">View on GitHub</div></a></div>`;
   return element;
 }
 

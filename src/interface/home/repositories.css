@@ -60,9 +60,38 @@
   position: relative;
   width: 100%;
   height: auto;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: var(--b-cssvar-333333);
   text-align: justify;
   text-justify: inter-word;
+}
+
+.css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_content .css_home_repository_languages {
+  position: relative;
+  width: 100%;
+  height: 15px;
+  word-break: keep-all;
+  white-space: nowrap;
+  line-height: 15px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--b-cssvar-333333);
+  overflow: hidden;
+}
+
+.css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_content .css_home_repository_languages .css_home_repository_language {
+  position: relative;
+  height: 15px;
+  display: inline-block;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_content .css_home_repository_languages .css_home_repository_language .css_home_repository_language_color {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--b-cssvar-language-color);
 }
