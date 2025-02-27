@@ -197,7 +197,7 @@
         border-radius: var(--d-border-radius-h);
       }
 
-      .css_home_repository_desc {
+      .css_home_repository_description {
         width: calc(100% - 10px);
         height: auto;
         overflow: hidden;
@@ -214,7 +214,7 @@
         color: var(--d-333333);
       }
 
-      .css_home_repositorys_box_s[loading="1"] .css_home_repository_desc {
+      .css_home_repositorys_box_s[loading="1"] .css_home_repository_description {
         background: var(--d-e3e3e3);
         border-radius: var(--d-border-radius-h);
       }
@@ -686,7 +686,7 @@
         } else {
           ogimage = `<img src="${ogimage}">`;
         }
-        var html = `<div class="css_home_repository"><div class="css_home_repository_open_graph_image">${ogimage}</div><div class="css_home_repository_content"><div class="css_home_repository_name">${this_repo.full_name}</div><div class="css_home_repository_desc">${this_repo.description}</div><div class="css_home_repository_languages_and_status">${this_repo_languages.join('')}<div class="css_home_repository_active_status" status="${active_status}">${active_status_text}</div></div><div class="css_home_repository_tags" len="${this_repo_tags.length}">${this_repo_tags.join('')}</div>${recentEvent_htm.join('')}</div><div class="css_home_repository_github"><a href="https://github.com/${this_repo.full_name}"><div class="css_home_repository_github_link">View on GitHub</div></a></div></div>`;
+        var html = `<div class="css_home_repository"><div class="css_home_repository_open_graph_image">${ogimage}</div><div class="css_home_repository_content"><div class="css_home_repository_name">${this_repo.full_name}</div><div class="css_home_repository_description">${this_repo.description}</div><div class="css_home_repository_languages_and_status">${this_repo_languages.join('')}<div class="css_home_repository_active_status" status="${active_status}">${active_status_text}</div></div><div class="css_home_repository_tags" len="${this_repo_tags.length}">${this_repo_tags.join('')}</div>${recentEvent_htm.join('')}</div><div class="css_home_repository_github"><a href="https://github.com/${this_repo.full_name}"><div class="css_home_repository_github_link">View on GitHub</div></a></div></div>`;
         allhtml.push(html);
       }
       document.querySelector('.css_home_repositorys_box_s').innerHTML = allhtml.join('');

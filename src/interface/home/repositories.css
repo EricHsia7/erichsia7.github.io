@@ -35,8 +35,34 @@
 
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_content {
   position: relative;
-  width: 100%;
+  left: 10px;
+  width: calc(100% - 20px);
   height: auto;
   user-select: none;
   -webkit-user-select: none;
+}
+
+.css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_content .css_home_repository_name {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  word-break: keep-all;
+  white-space: nowrap;
+  line-height: 40px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--b-cssvar-333333);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_content .css_home_repository_description {
+  position: relative;
+  width: 100%;
+  height: auto;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--b-cssvar-333333);
+  text-align: justify;
+  text-justify: inter-word;
 }
