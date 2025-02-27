@@ -8,20 +8,19 @@
   position: relative;
   width: 100%;
   height: auto;
-  border-radius: 20px;
-  background-color: var(--b-cssvar-f1f3f5);
-  contain: layout;
-  overflow: hidden;
+  display: inline-block;
 }
 
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_open_graph_image {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
+  background-color: var(--b-cssvar-f1f3f5);
+  border-radius: 20px;
+  overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
+  contain: layout;
 }
 
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_open_graph_image img {
@@ -36,15 +35,9 @@
 }
 
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_content {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   user-select: none;
   -webkit-user-select: none;
-  background: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  visibility: hidden;
 }
