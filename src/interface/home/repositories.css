@@ -20,7 +20,6 @@
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
-  contain: layout;
 }
 
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_open_graph_image img {
