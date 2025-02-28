@@ -79,6 +79,8 @@
   color: var(--b-cssvar-333333);
   overflow-y: hidden;
   overflow-x: hidden;
+  padding: 2.5px 0px;
+  box-sizing: border-box;
 }
 
 .css_home_field .css_home_body .css_home_groups .css_home_group[group="repositories"] .css_home_group_body .css_home_repository .css_home_repository_content .css_home_repository_languages .css_home_repository_language {
